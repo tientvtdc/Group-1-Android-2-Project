@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
 
+    private static final int FRAGMENT_REPASS = 1;
+
     private int mCurrentFragment = 0;
 
     private DrawerLayout mDrawerLayout;
@@ -64,6 +66,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mCurrentFragment!=FRAGMENT_SCHEDULE){
                     replaceFragment(new ScheduleFragment());
                     mCurrentFragment = FRAGMENT_SCHEDULE;
+                }
+                break;
+            }
+            case R.id.nav_change_password:{
+                if (mCurrentFragment!=FRAGMENT_REPASS){
+                    replaceFragment(new ScheduleFragment());
+                    mCurrentFragment = FRAGMENT_REPASS;
                 }
                 break;
             }
