@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Barber Shop</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_schedule">Lịch hẹn</string>
+    <string name="nav_address">Địa chỉ</string>
+    <string name="nav_account">Tài khoản</string>
+    <string name="nav_profile">Thông tin cá nhân</string>
+    <string name="nav_change_password">Đổi mật khẩu</string>
+    <string name="navigation_drawer_open">Open navigation drawer </string>
+    <string name="navigation_drawer_close">Close navigation drawer </string>
+</resources>
