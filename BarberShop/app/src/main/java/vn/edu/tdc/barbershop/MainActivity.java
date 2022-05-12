@@ -1,6 +1,7 @@
 package vn.edu.tdc.barbershop;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,12 +11,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
+import vn.edu.tdc.barbershop.entity.Service;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
@@ -29,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,17 +63,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.nav_home:{
-                if (mCurrentFragment!=FRAGMENT_HOME){
+            case R.id.nav_home: {
+                if (mCurrentFragment != FRAGMENT_HOME) {
                     replaceFragment(new HomeFragment());
                     mCurrentFragment = FRAGMENT_HOME;
                 }
                 break;
-                }
+            }
             case R.id.nav_address:
                 break;
-            case R.id.nav_schedule:{
-                if (mCurrentFragment!=FRAGMENT_SCHEDULE){
+            case R.id.nav_schedule: {
+                if (mCurrentFragment != FRAGMENT_SCHEDULE) {
                     replaceFragment(new ScheduleFragment());
                     mCurrentFragment = FRAGMENT_SCHEDULE;
                 }
@@ -74,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame,fragment);
+        fragmentTransaction.replace(R.id.content_frame, fragment);
         fragmentTransaction.commit();
     }
 
