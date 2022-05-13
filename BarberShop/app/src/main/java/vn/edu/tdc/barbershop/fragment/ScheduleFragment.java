@@ -3,12 +3,19 @@ package vn.edu.tdc.barbershop.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import vn.edu.tdc.barbershop.R;
+import vn.edu.tdc.barbershop.adapter.ScheduleAdapter;
+import vn.edu.tdc.barbershop.entity.Schedule;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,9 @@ public class ScheduleFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView rcvSchedule;
+    private ScheduleAdapter scheduleAdapter;
+    private ArrayList<Schedule> scheduleArrayList;
 
     public ScheduleFragment() {
         // Required empty public constructor
@@ -61,6 +71,32 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        rcvSchedule = view.findViewById(R.id.fragment_rcv);
+        rcvSchedule.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        scheduleArrayList = new ArrayList<>();
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh2, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh2, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh2, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh2, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh2, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh2, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+        scheduleArrayList.add(new Schedule(R.drawable.anh1, "303 Nguyễn Trãi, Q.Thanh Xuân, Hà Nội", "20:30 | 15/05/2022 | 160k"));
+
+        scheduleAdapter = new ScheduleAdapter(scheduleArrayList);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        rcvSchedule.addItemDecoration(itemDecoration);
+
+        rcvSchedule.setAdapter(scheduleAdapter);
+        return view;
     }
 }

@@ -1,4 +1,4 @@
-package vn.edu.tdc.barbershop.models;
+package vn.edu.tdc.barbershop.entity;
 
 public class Schedule {
     private int image;
