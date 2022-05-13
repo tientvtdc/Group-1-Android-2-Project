@@ -1,4 +1,4 @@
-package vn.edu.tdc.barbershop;
+package vn.edu.tdc.barbershop.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import vn.edu.tdc.barbershop.R;
+import vn.edu.tdc.barbershop.models.User;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder>{
 
@@ -68,9 +71,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
 
-//            Thêm những trường khác vào đây 4
-            imgUser = itemView.findViewById(R.id.img_user);
-            tvName = itemView.findViewById(R.id.tv_name);
+////            Thêm những trường khác vào đây 4
+//            imgUser = itemView.findViewById(R.id.img_user);
+//            tvName = itemView.findViewById(R.id.tv_name);
         }
     }
 }

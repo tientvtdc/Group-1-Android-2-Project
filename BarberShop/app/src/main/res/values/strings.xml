@@ -9,6 +9,9 @@
     <string name="nav_logout">Đăng xuất</string>
     <string name="navigation_drawer_open">Open navigation drawer </string>
     <string name="navigation_drawer_close">Close navigation drawer </string>
+    <string name="txt_change_password">Thay đổi mật khẩu</string>
+    <string name="btn_Cancer">Quay lại</string>
+    <string name="btn_Save">Lưu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

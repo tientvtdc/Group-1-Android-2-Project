@@ -1,4 +1,4 @@
-package vn.edu.tdc.barbershop;
+package vn.edu.tdc.barbershop.models;
 
 public class User {
 

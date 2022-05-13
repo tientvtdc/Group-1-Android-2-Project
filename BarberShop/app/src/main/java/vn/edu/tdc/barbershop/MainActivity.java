@@ -8,19 +8,21 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
+import vn.edu.tdc.barbershop.adapter.UserAdapter;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
-
+//    repass
     private static final int FRAGMENT_REPASS = 1;
 
     private int mCurrentFragment = 0;
