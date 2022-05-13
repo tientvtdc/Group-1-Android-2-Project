@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -26,14 +27,25 @@ import java.util.Locale;
 
 import vn.edu.tdc.barbershop.R;
 import vn.edu.tdc.barbershop.entity.Service;
+import vn.edu.tdc.barbershop.interface_listener.IClickItemServiceListener;
 
-public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.ServiceViewHolder>{
+public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.ServiceViewHolder> {
     private List<Service> serviceList;
     private Context context;
+    private IClickItemServiceListener clickItemServiceListener;
+
     public void setServiceList(List<Service> serviceList) {
         this.serviceList = serviceList;
         notifyDataSetChanged();
     }
+    public ServiceAdpapter() {
+    }
+
+    public ServiceAdpapter(List<Service> serviceList, IClickItemServiceListener clickItemServiceListener) {
+        this.serviceList = serviceList;
+        this.clickItemServiceListener = clickItemServiceListener;
+    }
+
 
     @NonNull
     @Override
@@ -55,6 +67,9 @@ public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.Servic
             Locale localeVN = new Locale("vi", "VN");
             NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
             holder.priceService.setText(currencyVN.format(service.getPrice()));
+            holder.cardView.setOnClickListener(view -> {
+                clickItemServiceListener.onClickItem(service);
+            });
         }
     }
 
@@ -63,12 +78,14 @@ public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.Servic
         return serviceList.size();
     }
 
-    public class ServiceViewHolder extends RecyclerView.ViewHolder {
+    public class ServiceViewHolder extends RecyclerView.ViewHolder  {
         private ImageView imgService;
         private TextView nameService;
         private TextView priceService;
+        private CardView cardView;
         public ServiceViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.card_view_item_service);
             imgService = itemView.findViewById(R.id.img_service);
             nameService = itemView.findViewById(R.id.name_service);
             priceService  = itemView.findViewById(R.id.price_service);
