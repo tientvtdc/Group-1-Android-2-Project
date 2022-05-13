@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +44,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+
         List<Service> services = new ArrayList<Service>();
 
         rcvService = (RecyclerView) view.findViewById(R.id.service_recycler_view);
@@ -58,8 +61,9 @@ public class HomeFragment extends Fragment {
 
         rcvFeaturedService = (RecyclerView) view.findViewById(R.id.featured_service_recycler_view);
         rcvFeaturedService.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
         featuredServiceAdapter = new FeaturedServiceAdapter();
-        featuredServiceAdapter.setServiceList(getServiceList());
+        featuredServiceAdapter.setServiceList(services);
         rcvFeaturedService.setAdapter(featuredServiceAdapter);
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("services");
@@ -70,9 +74,9 @@ public class HomeFragment extends Fragment {
                 Service service = snapshot.getValue(Service.class);
                 if (service != null) {
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference("imgService");
-
                     services.add(service);
                     serviceAdpapter.notifyDataSetChanged();
+                    featuredServiceAdapter.notifyDataSetChanged();
                 }
             }
 

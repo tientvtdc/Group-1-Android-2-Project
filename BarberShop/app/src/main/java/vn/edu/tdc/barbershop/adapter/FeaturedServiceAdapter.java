@@ -1,6 +1,7 @@
 
 package vn.edu.tdc.barbershop.adapter;
 
+        import android.content.Context;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -9,6 +10,8 @@ package vn.edu.tdc.barbershop.adapter;
 
         import androidx.annotation.NonNull;
         import androidx.recyclerview.widget.RecyclerView;
+
+        import com.bumptech.glide.Glide;
 
         import java.text.NumberFormat;
         import java.util.List;
@@ -19,7 +22,7 @@ package vn.edu.tdc.barbershop.adapter;
 
 public class FeaturedServiceAdapter extends RecyclerView.Adapter<FeaturedServiceAdapter.ServiceViewHolder>{
     private List<Service> serviceList;
-
+    private Context context;
     public void setServiceList(List<Service> serviceList) {
         this.serviceList = serviceList;
         notifyDataSetChanged();
@@ -30,7 +33,7 @@ public class FeaturedServiceAdapter extends RecyclerView.Adapter<FeaturedService
     public ServiceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_featured_service,parent,false);
-
+        context = parent.getContext();
         return new ServiceViewHolder(view);
     }
 
@@ -38,7 +41,7 @@ public class FeaturedServiceAdapter extends RecyclerView.Adapter<FeaturedService
     public void onBindViewHolder(@NonNull ServiceViewHolder holder, int position) {
         Service service = serviceList.get(position);
         if (service!=null){
-            holder.imgService.setImageResource(R.drawable.anh1);
+            Glide.with(context).load(service.getImage()).error(R.drawable.anh1).into(holder.imgService);
             holder.nameService.setText(service.getName());
             Locale localeVN = new Locale("vi", "VN");
             NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);

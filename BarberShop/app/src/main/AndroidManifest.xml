@@ -3,6 +3,7 @@
     package="vn.edu.tdc.barbershop">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_logo"
@@ -11,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
         <activity
-            android:name=".MainActivity"
+            android:name=".CusomerScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

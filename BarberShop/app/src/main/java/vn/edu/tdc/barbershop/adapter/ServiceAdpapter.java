@@ -1,6 +1,8 @@
 package vn.edu.tdc.barbershop.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,19 +49,7 @@ public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.Servic
         Service service = serviceList.get(position);
         if (service!=null){
             StorageReference storageRef = FirebaseStorage.getInstance().getReference("imgService");
-
-            storageRef.child("+service.getImage()").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    Glide.with(context).load(uri).error(R.drawable.anh1).into(holder.imgService);
-                    Log.d("TAG", "onSuccess: "+uri);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle any errors
-                }
-            });
+            Glide.with(context).load(service.getImage()).error(R.drawable.anh1).placeholder(new ColorDrawable(Color.BLACK)).into(holder.imgService);
             holder.nameService.setText(service.getName());
 
             Locale localeVN = new Locale("vi", "VN");
