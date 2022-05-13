@@ -1,7 +1,6 @@
 package vn.edu.tdc.barbershop;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,44 +10,41 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
-import vn.edu.tdc.barbershop.entity.Service;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CusomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
 
     private int mCurrentFragment = 0;
 
     private DrawerLayout mDrawerLayout;
+    private ImageView imageViewBGToolbar;
+    private Toolbar toolbar;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_customer);
 
+        imageViewBGToolbar = findViewById(R.id.img_backgound_collapsing_toolbar);
+        collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
+        toolbar = findViewById(R.id.toolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
+        setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.getDrawerArrowDrawable().setColor(getColor(R.color.white));
+
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -56,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         replaceFragment(new HomeFragment());
+        collapsingToolbarLayout.setTitle(getString(R.string.app_name));
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
     }
 
@@ -65,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.nav_home: {
                 if (mCurrentFragment != FRAGMENT_HOME) {
+                    imageViewBGToolbar.setImageResource(R.drawable.bg_header);
+                    collapsingToolbarLayout.setTitle(getString(R.string.app_name));
                     replaceFragment(new HomeFragment());
                     mCurrentFragment = FRAGMENT_HOME;
                 }
@@ -74,8 +73,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_schedule: {
                 if (mCurrentFragment != FRAGMENT_SCHEDULE) {
+                    collapsingToolbarLayout.setTitle(getString(R.string.nav_schedule));
                     replaceFragment(new ScheduleFragment());
                     mCurrentFragment = FRAGMENT_SCHEDULE;
+                    imageViewBGToolbar.setImageResource(R.drawable.schedule_bg);
                 }
                 break;
             }
