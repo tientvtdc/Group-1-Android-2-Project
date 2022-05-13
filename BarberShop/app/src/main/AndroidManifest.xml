@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
         <activity
-            android:name=".MainActivity2"
+            android:name=".AdminActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
 
+<!--        Chạy cái nào thì true cái đó, copy đoạn lệnh-->
         <activity
             android:name=".MainActivity"
             android:exported="false">
