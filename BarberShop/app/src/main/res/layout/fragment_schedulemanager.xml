@@ -4,4 +4,95 @@
     android:layout_height="match_parent"
     >
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ServiceDetailActivity">
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            >
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="Quan ly khach hang"
+                app:titleCentered="true"
+                app:navigationIcon="@drawable/ic_sharp_arrow_back_24" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- Note: A RecyclerView can also be used -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:padding="10dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_service"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="15dp"
+                    android:src="@drawable/anh1"
+                    >
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:id="@+id/txtUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@id/img_service"
+                    android:text="Truong Thanh Phu"
+                    android:textColor="@color/blueDark"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:id="@+id/sdt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/txtUsername"
+                    android:text="1610"
+                    android:textColor="@color/blueDark"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/sdt"
+                    android:background="@drawable/btn_luu"
+                    android:text="Xong"
+                    android:textColor="#ffffff"
+                    android:layout_marginStart="30dp"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"/>
+
+
+
+
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </LinearLayout>

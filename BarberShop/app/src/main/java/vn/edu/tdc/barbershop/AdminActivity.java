@@ -34,13 +34,6 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        //narba
-//        androix.appcompat.app.Actionbar actionbar = getSupportActionBar();
-//
-//        actionbar.setHomeButtonEnabled(true);
-//        actionbar.setDisplayHomeAsUpEnabled(true);
-//        actionbar.setTitle("Quản lý lịch hẹn");
-
         rcvUser = findViewById(R.id.rcv_user);
         userAdapter = new UserAdapter(this);
 
