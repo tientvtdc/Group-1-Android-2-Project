@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 
 import vn.edu.tdc.barbershop.adapter.UserAdapter;
+import vn.edu.tdc.barbershop.fragment.ChangePasswordFragment;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
 //    repass
-    private static final int FRAGMENT_REPASS = 1;
+    private static final int FRAGMENT_CHANGE_PASSWORD = 4;
 
     private int mCurrentFragment = 0;
 
@@ -75,9 +76,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.nav_change_password:{
-                if (mCurrentFragment!=FRAGMENT_REPASS){
-                    replaceFragment(new ScheduleFragment());
-                    mCurrentFragment = FRAGMENT_REPASS;
+                if (mCurrentFragment!=FRAGMENT_CHANGE_PASSWORD){
+                    replaceFragment(new ChangePasswordFragment());
+                    mCurrentFragment = FRAGMENT_CHANGE_PASSWORD;
                 }
                 break;
             }
