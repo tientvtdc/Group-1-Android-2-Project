@@ -60,14 +60,7 @@
             android:textSize="15dp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnPass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="qua"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="5dp"
-            android:layout_toEndOf="@+id/timeFinish"/>
+
     </RelativeLayout>
 
 
