@@ -29,4 +29,7 @@
     <string name="btn_log_in">ĐĂNG NHẬP</string>
     <string name="tv_password">Mật khẩu</string>
     <string name="edt_phone_number">Số điện thoại</string>
+    <string name="edtFindUser">Tìm kiếm</string>
+    <string name="tv_user_name">Tên user</string>
+    <string name="tv_phone_number">Số điện thoại</string>
 </resources>

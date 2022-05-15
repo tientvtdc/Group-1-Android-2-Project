@@ -1,4 +1,4 @@
-package vn.edu.tdc.barbershop.model;
+package vn.edu.tdc.barbershop.entity;
 
 public class User {
     private int id;
