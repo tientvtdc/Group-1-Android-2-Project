@@ -3,6 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable-v24/ic_lock.xml" value="0.155" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable/ic_description.xml" value="0.1" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable/ic_logout.xml" value="0.155" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable/ic_money.xml" value="0.1" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable/ic_name_service.xml" value="0.1" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_add_new_service.xml" value="0.264" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_customer.xml" value="0.264" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_detail_service.xml" value="0.19427083333333334" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_service_list.xml" value="0.264" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/fragment_schedule.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_featured_service.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_manage_service.xml" value="0.253125" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_service.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/layout_header_nav.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/menu/menu_nav.xml" value="0.1" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/menu/top_app_bar.xml" value="0.2" />
         <entry key="..\:/Android/BarberShop/app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.142" />
         <entry key="..\:/Android/BarberShop/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.142" />
         <entry key="..\:/Android/BarberShop/app/src/main/res/drawable-v24/ic_location.xml" value="0.142" />
@@ -21,15 +38,21 @@
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/drawable/ic_launcher_logo_background.xml" value="0.163" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/drawable/ic_logout.xml" value="0.163" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/drawable/ic_sharp_arrow_back_24.xml" value="0.189" />
+        <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/activity_customer.xml" value="0.2546875" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/activity_main.xml" value="0.25833333333333336" />
+        <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/activity_register.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/activity_service_detail.xml" value="0.2546875" />
+        <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/activity_service_list.xml" value="0.2546875" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/content_service_detail.xml" value="0.2546875" />
+        <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/fragment_address.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/fragment_first.xml" value="0.2546875" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/fragment_home.xml" value="0.25833333333333336" />
+        <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/fragment_register_user.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/fragment_schedule.xml" value="0.25833333333333336" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/fragment_second.xml" value="0.2546875" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/image_slider_layout_item.xml" value="0.2546875" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/item_featured_service.xml" value="0.25833333333333336" />
+        <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/item_schedule.xml" value="0.2546875" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/item_service.xml" value="0.2" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/layout_header_nav.xml" value="0.536" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/layout/main_activity.xml" value="0.2546875" />
