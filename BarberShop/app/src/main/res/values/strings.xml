@@ -23,4 +23,10 @@
     <string name="title_detail_service">Chi tiết dịch vụ</string>
     <string name="btn_text_dat_lich">Đặt lịch</string>
     <string name="heading_feature_service">Dịch vụ nổi bật</string>
+    <string name="sign_in">Sign in</string>
+    <string name="register">Đăng ký</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="btn_log_in">ĐĂNG NHẬP</string>
+    <string name="tv_password">Mật khẩu</string>
+    <string name="edt_phone_number">Số điện thoại</string>
 </resources>
