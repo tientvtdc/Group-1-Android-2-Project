@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/img_avatar"
+        android:layout_toEndOf="@+id/img_user_img"
         android:orientation="vertical">
 
         <TextView
