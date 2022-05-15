@@ -11,20 +11,21 @@
         android:theme="@style/Theme.BarberShop">
         <activity
             android:name=".AdminActivity"
-            android:exported="false" >
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
 
 <!--        Chạy cái nào thì true cái đó, copy đoạn lệnh-->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

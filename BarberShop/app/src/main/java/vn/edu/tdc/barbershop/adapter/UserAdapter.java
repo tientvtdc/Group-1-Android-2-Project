@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,15 +20,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     private Context mContext;
 //    List dùng để lưu những user
-    private List<User> mListUser;
+    private List<User> mListUsers;
 
-    public UserAdapter(Context mContext) {
-        this.mContext = mContext;
+    private IClickListener mIClickListener;
+
+    public interface IClickListener{
+        void onClickUpdateItem(User user);
+        void onClickDeleteItem(User user);
+    }
+
+    public UserAdapter(List<User> mListUsers, IClickListener listener) {
+        this.mListUsers = mListUsers;
+        this.mIClickListener = listener;
     }
 
     //Sử lý danh sách
     public void setData(List<User> list) {
-        this.mListUser = list;
+        this.mListUsers = list;
         notifyDataSetChanged();
     }
 
@@ -36,44 +45,71 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 //        Cái view này bằng với 1 cái layout tạo bên item_user(item_oder)
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oder, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
         return new UserViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         //hàm xét dữ liệu lên
-        User user = mListUser.get(position);
+        User user = mListUsers.get(position);
         if (user == null) {
             return;
         }
 
         //thêm những trường khác vào đây 5
+        holder.tvid.setText(user.getId());
+
         holder.imgUser.setImageResource(user.getResourceId());
         holder.tvName.setText(user.getName());
+
+        holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mIClickListener.onClickUpdateItem(user);
+            }
+        });
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mIClickListener.onClickDeleteItem(user);
+            }
+        });
+
+
     }
 
     @Override
     public int getItemCount() {
         //Nếu mlistUser khác null thì rerurn
-        if (mListUser != null){
-            return mListUser.size();
+        if (mListUsers != null){
+            return mListUsers.size();
         }
         return 0;
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
 //        Thêm những trường còn lại vào đây 3
+        private TextView tvid;
+
         private ImageView imgUser;
         private TextView tvName;
+
+        private Button btnUpdate;
+        private  Button btnDelete;
 
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
 
 ////            Thêm những trường khác vào đây 4
-//            imgUser = itemView.findViewById(R.id.img_user);
-//            tvName = itemView.findViewById(R.id.tv_name);
+            tvid = itemView.findViewById(R.id.txtId);
+            imgUser = itemView.findViewById(R.id.img_service);
+            tvName = itemView.findViewById(R.id.txtName);
+
+            //btnUpdate = itemView.findViewById(R.id.btn_Update);
+            btnDelete = itemView.findViewById(R.id.btn_delete);
         }
     }
 }
