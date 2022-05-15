@@ -81,11 +81,7 @@
             android:text="Xong"
             android:textStyle="bold"/>
 
-
     </RelativeLayout>
-
-
-
 
 </androidx.cardview.widget.CardView>
 
