@@ -16,6 +16,7 @@ public class Service implements Serializable {
         this.price = price;
         this.description = description;
     }
+
     public Service(){
 
     }

@@ -14,11 +14,11 @@
     </runningDeviceTargetSelectedWithDropDown>
     <targetSelectedWithDropDown>
       <Target>
-        <type value="QUICK_BOOT_TARGET" />
+        <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\TienIT\.android\avd\Pixel_5_API_31.avd" />
+            <value value="C:\Users\Admin\.android\avd\Pixel_2_XL_API_28.avd" />
           </Key>
         </deviceKey>
       </Target>
