@@ -19,7 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
 
-public class CusomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CustomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
 

@@ -15,7 +15,7 @@
             android:name=".ServiceDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".CusomerScreenActivity"
+            android:name=".CustomerScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.BarberShop.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden">
