@@ -20,7 +20,7 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="Quan ly khach hang"
+                app:title="Quan ly lịch hẹn"
                 app:titleCentered="true"
                 app:navigationIcon="@drawable/ic_sharp_arrow_back_24" />
 
@@ -28,6 +28,7 @@
 
         <!-- Note: A RecyclerView can also be used -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/rcv_oder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"

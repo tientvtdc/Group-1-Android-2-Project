@@ -40,12 +40,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         notifyDataSetChanged();
     }
 
-
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 //        Cái view này bằng với 1 cái layout tạo bên item_user(item_oder)
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oder, parent, false);
         return new UserViewHolder(view);
     }
 
@@ -58,17 +57,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         }
 
         //thêm những trường khác vào đây 5
-        holder.tvid.setText(user.getId());
+//        holder.txtId.setText(user.getId());
+//        holder
+//        holder.imgUser.setImageResource(user.getResourceId());
+//        holder.txtName.setText(user.getName());
 
-        holder.imgUser.setImageResource(user.getResourceId());
-        holder.tvName.setText(user.getName());
-
-        holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mIClickListener.onClickUpdateItem(user);
-            }
-        });
 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,12 +84,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
 //        Thêm những trường còn lại vào đây 3
-        private TextView tvid;
+        private TextView Id;
 
         private ImageView imgUser;
-        private TextView tvName;
+        private TextView txtName;
+        private TextView txtPhone;
 
-        private Button btnUpdate;
+//        private Button btnUpdate;
         private  Button btnDelete;
 
 
@@ -104,10 +98,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             super(itemView);
 
 ////            Thêm những trường khác vào đây 4
-            tvid = itemView.findViewById(R.id.txtId);
-            imgUser = itemView.findViewById(R.id.img_service);
-            tvName = itemView.findViewById(R.id.txtName);
-
+            //txtId = itemView.findViewById(R.id.txtId);
+            //imgUser = itemView.findViewById(R.id.img_user);
+            txtName = itemView.findViewById(R.id.txtName);
+            //txtPhone = itemView.findViewById(R.id.txtPhone);
             //btnUpdate = itemView.findViewById(R.id.btn_Update);
             btnDelete = itemView.findViewById(R.id.btn_delete);
         }

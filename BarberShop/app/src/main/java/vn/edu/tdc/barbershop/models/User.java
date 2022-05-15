@@ -7,37 +7,18 @@ public class User {
 
 //Thêm những trường còn lại vào đây, alt enter 2
     private int id;
-
-    private int resourceId;
     private String name;
+    private String phone;
+    private String password;
+    private String image;
+    private int role;
 
-
-
-    public User(){
-
-    }
-
-    public User(int resourceId, String name) {
-        this.id = id;
-
-        this.resourceId = resourceId;
-        this.name = name;
-
-    }
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(int resourceId) {
-        this.resourceId = resourceId;
     }
 
     public String getName() {
@@ -48,21 +29,52 @@ public class User {
         this.name = name;
     }
 
-//    public String getSdt() {
-//        return sdt;
-//    }
-//
-//    public void setSdt(String sdt) {
-//        this.sdt = sdt;
-//    }
-//
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+
+
+    public User(int id, String name, String phone, String password, String image, int role) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.password = password;
+        this.image = image;
+        this.role = role;
+    }
+
+    public User(){
+
+    }
 
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();

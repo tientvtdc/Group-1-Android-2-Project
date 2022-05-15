@@ -12,6 +12,17 @@
     <string name="txt_change_password">Thay đổi mật khẩu</string>
     <string name="btn_Cancer">Quay lại</string>
     <string name="btn_Save">Lưu</string>
+    <string name="txtId">1</string>
+    <string name="txtName">Phu</string>
+    <string name="txtPhone">0338xxxx76</string>
+<!--    <string name="txtName">Phu</string>-->
+    <string name="txtTimeOder">17/10 -></string>
+    <string name="txtTimeFinish">18/10</string>
+
+
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

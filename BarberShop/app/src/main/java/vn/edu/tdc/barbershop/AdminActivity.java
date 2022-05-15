@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,7 +21,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import vn.edu.tdc.barbershop.adapter.UserAdapter;
 import vn.edu.tdc.barbershop.models.User;
@@ -42,15 +40,14 @@ public class AdminActivity extends AppCompatActivity {
     private UserAdapter mUserAdapter;
     private List<User> mListUsers;
 
-    private EditText edtId, edtName;
-    private Button btnAddUser;
-
-
+    //private EditText edtId, edtName;
+    //private Button btnAddUser;
+    private  Button btnDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.fragment_oder);
 
 
 //        Dữ liệu
@@ -59,16 +56,23 @@ public class AdminActivity extends AppCompatActivity {
 
 
         initUi();
-        btnAddUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int id = Integer.parseInt(edtId.getText().toString().trim());
-                String name = edtName.getText().toString().trim();
-                User user = new User(id, name);
+//        btnAddUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int id = Integer.parseInt(edtId.getText().toString().trim());
+//                String name = edtName.getText().toString().trim();
+//                User user = new User(id, name);
+//
+//                onClickAddUser(user);
+//            }
+//        });
 
-                onClickAddUser(user);
-            }
-        });
+//        btnDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
         getListUsersFromRealtimeDatabase();
     }
@@ -98,35 +102,36 @@ public class AdminActivity extends AppCompatActivity {
         rcvUser.setAdapter(mUserAdapter);
     }
 
-    private void onClickAddUser(User user){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("list_users");
-
-        String pathObject = String.valueOf(user.getResourceId());
-        myRef.child(pathObject).setValue(user, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                Toast.makeText(AdminActivity.this, "Add thanh cong", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void onClickAddAllUser(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("list_users");
-
-        List<User> list = new ArrayList<>();
-        list.add(new User(1, "user 1"));
-        list.add(new User(2, "user 2"));
-        list.add(new User(3, "user 3"));
-
-        myRef.setValue(list, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                Toast.makeText(AdminActivity.this, "Add all thanh cong", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+    //Them user
+//    private void onClickAddUser(User user){
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("list_users");
+//
+//        String pathObject = String.valueOf(user.getResourceId());
+//        myRef.child(pathObject).setValue(user, new DatabaseReference.CompletionListener() {
+//            @Override
+//            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+//                Toast.makeText(AdminActivity.this, "Add thanh cong", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//
+//    private void onClickAddAllUser(){
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("list_users");
+//
+//        List<User> list = new ArrayList<>();
+//        list.add(new User(1, "user 1"));
+//        list.add(new User(2, "user 2"));
+//        list.add(new User(3, "user 3"));
+//
+//        myRef.setValue(list, new DatabaseReference.CompletionListener() {
+//            @Override
+//            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+//                Toast.makeText(AdminActivity.this, "Add all thanh cong", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     private void getListUsersFromRealtimeDatabase(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -225,8 +230,8 @@ public class AdminActivity extends AppCompatActivity {
     private List<User> getListUser(){
         List<User> list = new ArrayList<>();
 
-        list.add(new User(R.drawable.anh1, "Tên khách hàng 1"));
-        list.add(new User(R.drawable.anh2, "Tên khách hàng 2"));
+//        list.add(new User(R.drawable.anh1, "Tên khách hàng 1"));
+//        list.add(new User(R.drawable.anh2, "Tên khách hàng 2"));
 
         return list;
     }
@@ -279,7 +284,7 @@ public class AdminActivity extends AppCompatActivity {
     private void onClickDeleteData(User user){
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.app_name))
-                .setMessage("Ban co muon xoa ban ghi nay ko")
+                .setMessage("Chắc chắn đã hoàn thành chưa")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -289,13 +294,13 @@ public class AdminActivity extends AppCompatActivity {
                         myRef.removeValue(new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                                Toast.makeText(AdminActivity.this, "delete thanh cong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminActivity.this, "Đã hoàn thành", Toast.LENGTH_SHORT).show();
 
                             }
                         });
                     }
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Quay lại", null)
                 .show();
     }
 
