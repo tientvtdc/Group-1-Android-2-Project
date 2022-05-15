@@ -24,6 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,7 @@ import vn.edu.tdc.barbershop.R;
 import vn.edu.tdc.barbershop.ServiceDetailActivity;
 import vn.edu.tdc.barbershop.adapter.FeaturedServiceAdapter;
 import vn.edu.tdc.barbershop.adapter.ServiceAdpapter;
+import vn.edu.tdc.barbershop.adapter.SliderNewServiceAdapter;
 import vn.edu.tdc.barbershop.entity.Service;
 import vn.edu.tdc.barbershop.interface_listener.IClickItemServiceListener;
 
@@ -47,8 +51,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
-
         List<Service> services = new ArrayList<Service>();
 
         rcvService = (RecyclerView) view.findViewById(R.id.service_recycler_view);
@@ -63,7 +65,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        SliderView sliderView = view.findViewById(R.id.imageSlider);
+        SliderNewServiceAdapter sliderNewServiceAdapter = new SliderNewServiceAdapter(view.getContext(),services);
+        sliderView.setSliderAdapter(sliderNewServiceAdapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.startAutoCycle();
         rcvService.setAdapter(serviceAdpapter);
 
         rcvFeaturedService = (RecyclerView) view.findViewById(R.id.featured_service_recycler_view);
@@ -85,6 +92,7 @@ public class HomeFragment extends Fragment {
                     services.add(service);
                     serviceAdpapter.notifyDataSetChanged();
                     featuredServiceAdapter.notifyDataSetChanged();
+                    sliderNewServiceAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -108,6 +116,9 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+
+
         return view;
     }
 

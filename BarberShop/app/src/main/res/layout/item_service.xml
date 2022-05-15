@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Massage cổ vai gáy bạc hà"
             android:textStyle="bold"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@color/blueDark"
             android:textSize="20sp"
             android:padding="5dp"
             />

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="false">
@@ -9,7 +12,45 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="10">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:padding="10dp"
+            android:text="Dịch vụ mới"
+            android:textColor="@android:color/white" />
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_5dp"
+            >
 
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="#FFF"
+                app:sliderScrollTimeInSec="3"
+                app:sliderStartAutoCycle="true" />
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/black"
                 android:padding="10dp"
-                android:text="Dịch vụ nổi bật"
+                android:text="@string/heading_feature_service"
                 android:textColor="@android:color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
