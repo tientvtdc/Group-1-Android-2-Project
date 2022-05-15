@@ -9,7 +9,7 @@
     <string name="nav_logout">Đăng xuất</string>
     <string name="navigation_drawer_open">Open navigation drawer </string>
     <string name="navigation_drawer_close">Close navigation drawer </string>
-    <string name="txt_change_password">Thay đổi mật khẩu</string>
+    <string name="txt_change_password">Mật khẩu mới</string>
     <string name="btn_Cancer">Quay lại</string>
     <string name="btn_Save">Lưu</string>
     <string name="txtId">1</string>
@@ -18,6 +18,8 @@
 <!--    <string name="txtName">Phu</string>-->
     <string name="txtTimeOder">17/10 -></string>
     <string name="txtTimeFinish">18/10</string>
+    <string name="txtPassword">Mật khẩu</string>
+    <string name="txtRePassword">Nhập lại mật khẩu</string>
 
 
 
