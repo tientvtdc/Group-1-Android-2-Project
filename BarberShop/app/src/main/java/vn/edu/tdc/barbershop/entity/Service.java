@@ -1,6 +1,8 @@
 package vn.edu.tdc.barbershop.entity;
 
-public class Service {
+import java.io.Serializable;
+
+public class Service implements Serializable {
     private String ID;
     private String name;
     private String image;
@@ -14,6 +16,7 @@ public class Service {
         this.price = price;
         this.description = description;
     }
+
     public Service(){
 
     }

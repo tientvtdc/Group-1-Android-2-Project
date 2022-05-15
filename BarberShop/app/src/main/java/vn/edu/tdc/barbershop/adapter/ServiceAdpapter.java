@@ -1,9 +1,11 @@
 package vn.edu.tdc.barbershop.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +28,12 @@ import java.util.Locale;
 
 import vn.edu.tdc.barbershop.R;
 import vn.edu.tdc.barbershop.entity.Service;
+import vn.edu.tdc.barbershop.models.ServiceModel;
 
 public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.ServiceViewHolder>{
     private List<Service> serviceList;
     private Context context;
+
     public void setServiceList(List<Service> serviceList) {
         this.serviceList = serviceList;
         notifyDataSetChanged();
@@ -74,5 +78,7 @@ public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.Servic
             priceService  = itemView.findViewById(R.id.price_service);
         }
     }
+
+
 }
 
