@@ -32,15 +32,11 @@ import vn.edu.tdc.barbershop.SignupActivity;
 
 public class VerifyFragment extends Fragment {
 
-    EditText phone, otp;
-    Button btnSendOtp, btnVerify;
-    FirebaseAuth mAuth;
-    String verificationId;
-    ProgressBar bar;
-
-    public VerifyFragment() {
-        // Required empty public constructor
-    }
+    private EditText phone, otp;
+    private Button btnSendOtp, btnVerify;
+    private FirebaseAuth mAuth;
+    private String verificationId;
+    private ProgressBar bar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

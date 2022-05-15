@@ -35,7 +35,7 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
     //logout and login
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
 
     @Override
