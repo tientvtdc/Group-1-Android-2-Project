@@ -23,4 +23,5 @@
     <string name="title_detail_service">Chi tiết dịch vụ</string>
     <string name="btn_text_dat_lich">Đặt lịch</string>
     <string name="heading_feature_service">Dịch vụ nổi bật</string>
+    <string name="api_key_googl_map">AIzaSyDfY_sXprnWMB8R1x2f4nFIWQzDJIHLk18</string>
 </resources>
