@@ -12,8 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
         <activity
+            android:name=".ServiceDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".CusomerScreenActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.BarberShop.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
