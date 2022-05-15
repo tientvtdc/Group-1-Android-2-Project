@@ -16,13 +16,14 @@ import android.widget.ImageView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationView;
 
+import vn.edu.tdc.barbershop.fragment.AddressFragment;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
 
 public class CustomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
-
+    private static final int FRAGMENT_ADDRESS = 2;
     private int mCurrentFragment = 0;
 
     private DrawerLayout mDrawerLayout;
@@ -70,6 +71,12 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
                 break;
             }
             case R.id.nav_address:
+                if (mCurrentFragment != FRAGMENT_ADDRESS) {
+                    imageViewBGToolbar.setImageResource(R.drawable.bg_header);
+                    collapsingToolbarLayout.setTitle(getString(R.string.nav_address));
+                    replaceFragment(new AddressFragment());
+                    mCurrentFragment = FRAGMENT_ADDRESS;
+                }
                 break;
             case R.id.nav_schedule: {
                 if (mCurrentFragment != FRAGMENT_SCHEDULE) {
