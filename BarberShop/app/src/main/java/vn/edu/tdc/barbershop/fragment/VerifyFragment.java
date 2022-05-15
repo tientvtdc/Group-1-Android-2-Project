@@ -1,66 +1,144 @@
 package vn.edu.tdc.barbershop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+
+import vn.edu.tdc.barbershop.CusomerScreenActivity;
 import vn.edu.tdc.barbershop.R;
+import vn.edu.tdc.barbershop.SignupActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link VerifyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class VerifyFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    EditText phone, otp;
+    Button btnSendOtp, btnVerify;
+    FirebaseAuth mAuth;
+    String verificationId;
+    ProgressBar bar;
 
     public VerifyFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment VerifyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static VerifyFragment newInstance(String param1, String param2) {
-        VerifyFragment fragment = new VerifyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_verify, container, false);
+        View view = inflater.inflate(R.layout.fragment_verify, container, false);
+
+        phone = (EditText) view.findViewById(R.id.phone_number);
+        otp = (EditText) view.findViewById(R.id.otp);
+        btnSendOtp = view.findViewById(R.id.send_otp);
+        btnVerify = view.findViewById(R.id.verify);
+        bar = view.findViewById(R.id.bar);
+
+        btnSendOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(phone.getText().toString())) {
+                    Toast.makeText(getContext(), "Nhập số điện thoại của bạn !", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    String number = phone.getText().toString();
+                    bar.setVisibility(View.VISIBLE);
+                    sendVerificationCode(number);
+                }
+            }
+        });
+        btnVerify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(otp.getText().toString())) {
+                    Toast.makeText(getContext(), "Nhập mã OTP !", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    VerifyCode(otp.getText().toString());
+                }
+            }
+        });
+
+        return view;
+    }
+    private void sendVerificationCode(String phoneNumber) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber(phoneNumber)       // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(getActivity())                 // Activity (for callback binding)
+                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+            mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
+            final String code = credential.getSmsCode();
+            if (code != null) {
+                VerifyCode(code);
+            }
+        }
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+
+            Toast.makeText(getContext(), "Xác nhận mã OTP thất bại", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCodeSent(@NonNull String s,
+                               @NonNull PhoneAuthProvider.ForceResendingToken token) {
+            super.onCodeSent(s, token);
+            verificationId = s;
+            Toast.makeText(getContext(), "Đã gửi mã OPT", Toast.LENGTH_SHORT).show();
+            btnVerify.setEnabled(true);
+            bar.setVisibility(View.INVISIBLE);
+        }
+    };
+    private void VerifyCode(String code) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+        signinbyCredentials(credential);
+    }
+
+    private void signinbyCredentials(PhoneAuthCredential credential) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getContext(), CusomerScreenActivity.class));
+                }
+            }
+        });
     }
 }

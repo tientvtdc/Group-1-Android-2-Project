@@ -4,11 +4,13 @@ public class Schedule {
     private int image;
     private String name;
     private String time;
+    private String price;
 
-    public Schedule(int image, String name, String time) {
+    public Schedule(int image, String name, String time, String price) {
         this.image = image;
         this.name = name;
         this.time = time;
+        this.price = price;
     }
 
     public int getImage() {
@@ -33,5 +35,13 @@ public class Schedule {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

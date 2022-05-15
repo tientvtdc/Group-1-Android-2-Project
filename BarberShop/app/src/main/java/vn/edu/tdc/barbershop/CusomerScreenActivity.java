@@ -9,19 +9,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
+import vn.edu.tdc.barbershop.fragment.ScheduleDetailsFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
 
 public class CusomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
+    private static final int FRAGMENT_ADDRESS = 2;
 
     private int mCurrentFragment = 0;
 
@@ -29,6 +33,10 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
     private ImageView imageViewBGToolbar;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
+
+    //logout and login
+    FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +78,13 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
                 break;
             }
             case R.id.nav_address:
+                if (mCurrentFragment != FRAGMENT_ADDRESS
+                ) {
+                    collapsingToolbarLayout.setTitle(getString(R.string.nav_schedule));
+                    replaceFragment(new ScheduleDetailsFragment());
+                    mCurrentFragment = FRAGMENT_ADDRESS;
+                    imageViewBGToolbar.setImageResource(R.drawable.schedule_bg);
+                }
                 break;
             case R.id.nav_schedule: {
                 if (mCurrentFragment != FRAGMENT_SCHEDULE) {
@@ -78,6 +93,13 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
                     mCurrentFragment = FRAGMENT_SCHEDULE;
                     imageViewBGToolbar.setImageResource(R.drawable.schedule_bg);
                 }
+                break;
+            }
+            case R.id.nav_log_out: {
+                mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                startActivity(new Intent(CusomerScreenActivity.this, SignupActivity.class));
+                finish();
                 break;
             }
         }

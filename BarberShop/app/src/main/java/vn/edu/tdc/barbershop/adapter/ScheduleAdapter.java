@@ -39,6 +39,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         holder.imgSchedule.setImageResource(schedule.getImage());
         holder.txtName.setText(schedule.getName());
         holder.txtTime.setText(schedule.getTime());
+        holder.txtPrice.setText(schedule.getPrice());
     }
 
     @Override
@@ -54,6 +55,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         private CircleImageView imgSchedule;
         private TextView txtName;
         private TextView txtTime;
+        private TextView txtPrice;
 
         public ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +63,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
             imgSchedule = itemView.findViewById(R.id.imgSchedule);
             txtName = itemView.findViewById(R.id.txtName);
             txtTime = itemView.findViewById(R.id.txtTime);
+            txtPrice = itemView.findViewById(R.id.txtPrice);
         }
     }
 }

@@ -34,8 +34,15 @@
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/menu/menu_nav.xml" value="0.25833333333333336" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.163" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.163" />
+        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_customer.xml" value="0.20416666666666666" />
+        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/fragment_schedule.xml" value="0.20416666666666666" />
-        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_schedule.xml" value="0.33" />
+        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/fragment_schedule_details.xml" value="0.33" />
+        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/fragment_verify.xml" value="0.22" />
+        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_schedule.xml" value="0.5" />
+        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_service.xml" value="0.33" />
+        <entry key="..\:/Hoc Tap/HK4 2021-2022/App Mobile/Android Project/Group-1-Android-2-Project/BarberShop/app/src/main/res/menu/menu_nav.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
