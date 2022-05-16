@@ -29,14 +29,14 @@
             app:cardCornerRadius="5dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:layout_width="144dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imgUser"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/anh1"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:src="@drawable/ic_account_box"
                 android:scaleType="centerCrop"/>
 
         </androidx.cardview.widget.CardView>
@@ -53,7 +53,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="User name"
+            android:hint="name"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="5dp"
@@ -66,65 +66,10 @@
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        password-->
-        <TextView
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Mật Khẩu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="5dp"
-            app:startIconDrawable="@drawable/ic_lock"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-<!--        re password-->
-        <TextView
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Nhập lại mật Khẩu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="5dp"
-            app:startIconDrawable="@drawable/ic_lock"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/re_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:id="@+id/success"
+            android:id="@+id/btn_success"
             android:layout_gravity="end"
             android:background="@drawable/ic_arrow_forward"
             android:layout_width="40dp"

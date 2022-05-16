@@ -20,20 +20,27 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
+
+import vn.edu.tdc.barbershop.entity.User;
 
 public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = SignupActivity.class.getName();
     private EditText phone, otp;
-    private Button btnSendOtp, btnVerify;
+    private Button btnSendOtp;
+    private Button btnVerify;
     private ProgressBar bar;
     private TextView btnSendOtpAgain;
 
@@ -121,7 +128,7 @@ public class SignupActivity extends AppCompatActivity {
                 // Invalid request
                 Toast.makeText(SignupActivity.this, "Yêu cầu không hợp lệ", Toast.LENGTH_SHORT).show();
             } else if (e instanceof FirebaseTooManyRequestsException) {
-                // The SMS quota for the project has been exceeded Đã vượt quá hạn ngạch SMS cho dự án
+                // The SMS quota for the project has been exceeded
                 Toast.makeText(SignupActivity.this, "Đã vượt quá số lần gửi SMS cho số điện thoại này", Toast.LENGTH_SHORT).show();
             }
 
@@ -156,22 +163,43 @@ public class SignupActivity extends AppCompatActivity {
 
                             FirebaseUser user = task.getResult().getUser();
                             // Update UI
-                            goToRegisterActivity(user.getPhoneNumber());
+
+                            //dang ky tai khoan roi -> khong dang ky nua
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = database.getReference("user/" + user.getUid());
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    User userValue = snapshot.getValue(User.class);
+                                    if (userValue != null) {
+                                        if (userValue.getPhone().equals(user.getPhoneNumber())) {
+                                            startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
+                                            finish();
+                                        }
+                                    }
+                                    Toast.makeText(SignupActivity.this, "Vui lòng đăng ký tài khoản", Toast.LENGTH_SHORT).show();
+                                    goToRegisterActivity(user.getPhoneNumber(), user.getUid());
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
                                 Toast.makeText(SignupActivity.this,
-                                        "The verification code entered was invalid", Toast.LENGTH_SHORT).show();
+                                        "Mã xác minh đã nhập không hợp lệ", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 });
     }
-    private void goToRegisterActivity(String phoneNumber) {
+    private void goToRegisterActivity(String phoneNumber, String idToken) {
         Intent intent = new Intent(this, RegisterActivity.class);
-        intent.putExtra("phone_number", phoneNumber);
+        intent.putExtra("phoneNumber", phoneNumber);
+        intent.putExtra("idToken", idToken);
         startActivity(intent);
     }
 
@@ -192,5 +220,16 @@ public class SignupActivity extends AppCompatActivity {
     private void VerifyCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
         signInWithPhoneAuthCredential(credential);
+    }
+
+    //dang nhap
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
+            finish();
+        }
     }
 }

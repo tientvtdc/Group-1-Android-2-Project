@@ -5,15 +5,13 @@ public class User {
     private String id;
     private String name;
     private String phone;
-    private String password;
     private String image;
     private int role;
 
-    public User(String id, String name, String phone, String password, String image, int role) {
+    public User(String id, String name, String phone, String image, int role) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.password = password;
         this.image = image;
         this.role = role;
     }
@@ -40,14 +38,6 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getImage() {

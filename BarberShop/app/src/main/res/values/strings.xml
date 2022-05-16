@@ -9,15 +9,22 @@
     <string name="nav_logout">Đăng xuất</string>
     <string name="navigation_drawer_open">Open navigation drawer </string>
     <string name="navigation_drawer_close">Close navigation drawer </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_service_detail">ServiceDetailActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Bao - Remove or change this placeholder text -->
+    <!-- toast -->
+    <string name="toast_phone_is_empty">Nhập số điện thoại của bạn !</string>
+    <string name="toast_otp_is_empty">Nhập mã OTP !</string>
+    <string name="toast_verify_success">Xác minh thành công</string>
+    <string name="toast_invalid_request">Yêu cầu không hợp lệ</string>
+    <string name="toast_The_SMS_quota_exceeded">Đã vượt quá số lần gửi SMS cho số điện thoại này</string>
+    <string name="toast_verify_failed">Xác minh thất bại</string>
+    <string name="toast_The_SMS_send_to_phone">Mã xác minh SMS đã được gửi</string>
+    <string name="toast_verification_invalid">Mã xác minh đã nhập không hợp lệ</string>
+    <!-- layout -->
+    <string name="layout_enter_phone">Nhập số diện thoại của bạn</string>
+    <string name="layout_hint_phone">0123456789</string>
+    <string name="layout_send_otp">Gửi mã OTP</string>
+    <string name="layout_re_send_otp">Gửi lại mã OTP</string>
+    <string name="layout_enter_otp">Nhập mã OTP đã được gửi về số điện thoại của bạn</string>
+    <string name="layout_hint_otp">358789</string>
 </resources>

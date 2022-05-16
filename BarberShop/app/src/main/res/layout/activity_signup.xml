@@ -31,14 +31,14 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="Nhập số diện thoại của bạn"
+            android:text="@string/layout_enter_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập số điện thoại"
+            android:hint="@string/layout_hint_phone"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="5dp"
@@ -55,7 +55,7 @@
             android:id="@+id/send_otp"
             android:layout_marginEnd="16dp"
             android:layout_gravity="end"
-            android:text="Gửi mã OTP"
+            android:text="@string/layout_send_otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -65,7 +65,7 @@
             android:layout_marginEnd="16dp"
             android:layout_gravity="end"
             android:textStyle="italic"
-            android:text="Gửi lại mã OTP"
+            android:text="@string/layout_re_send_otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -76,14 +76,14 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="Nhập mã OTP đã được gửi về số điện thoại của bạn"
+            android:text="@string/layout_enter_otp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập mã OTP"
+            android:hint="@string/layout_hint_otp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="5dp"
