@@ -12,7 +12,8 @@
         android:id="@+id/img_avatar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/content_img_item_manage_service_default" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Tên dịch vụ"
+            android:text="@string/txt_name_item_manage_service_default"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
@@ -35,7 +36,7 @@
             android:id="@+id/tv_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Giá dịch vụ"
+            android:text="@string/txt_price_item_manage_service_default"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="16sp" />
     </LinearLayout>

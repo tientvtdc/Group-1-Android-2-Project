@@ -22,4 +22,11 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="btn_delete_manage_service_detail">Lưu</string>
     <string name="btn_content_edit_detail_service">Xóa</string>
+    <string name="txt_name_add_service">Nhập tên dịch vụ</string>
+    <string name="txt_price_add_service">Nhập giá dịch vụ</string>
+    <string name="txt_description_add_service">Nhập mô tả dịch vụ</string>
+    <string name="btn_add_new_service">Thêm dịch vụ</string>
+    <string name="txt_name_item_manage_service_default">Tên dịch vụ</string>
+    <string name="txt_price_item_manage_service_default">Giá dịch vụ</string>
+    <string name="content_img_item_manage_service_default">ImgService</string>
 </resources>

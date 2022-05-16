@@ -33,7 +33,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:hint="Name"
+        android:hint="@string/txt_name_add_service"
         app:counterEnabled="true"
         app:counterMaxLength="50"
         app:endIconMode="clear_text"
@@ -48,7 +48,9 @@
             android:id="@+id/textInputName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="50" />
+            android:maxLength="50"
+            android:textColorHint="@color/txt_input_add_new_service"
+            tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -58,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Price"
+        android:hint="@string/txt_price_add_service"
         app:counterEnabled="true"
         app:counterMaxLength="20"
         app:endIconMode="clear_text"
@@ -71,10 +73,12 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputPrice"
-            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="57dp"
-            android:maxLength="20" />
+            android:inputType="number"
+            android:maxLength="20"
+            android:textColorHint="@color/txt_input_add_new_service"
+            tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -84,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Descriptions"
+        android:hint="@string/txt_description_add_service"
         app:counterEnabled="true"
         app:counterMaxLength="200"
         app:endIconMode="clear_text"
@@ -99,7 +103,9 @@
             android:id="@+id/textInputDes"
             android:layout_width="match_parent"
             android:layout_height="57dp"
-            android:maxLength="200" />
+            android:maxLength="200"
+            android:textColorHint="@color/txt_input_add_new_service"
+            tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -120,8 +126,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:backgroundTint="#FF8C00"
-        android:text="Add New Service"
-        android:textSize="30sp"
+        android:text="@string/btn_add_new_service"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgInput" />

@@ -11,4 +11,5 @@
     <color name="red">#FF0000</color>
     <color name="br_danger">#dc3545</color>
     <color name="btn_agree">#006600</color>
+    <color name="txt_input_add_new_service">#757575</color>
 </resources>
