@@ -82,7 +82,7 @@ public class AdminActivity extends AppCompatActivity {
 //        edtName = findViewById(R.id.edt_name);
 //        btnAddUser = findViewById(R.id.btn_add_user);
 
-        rcvUser = findViewById(R.id.rcv_user);
+        rcvUser = findViewById(R.id.fragment_rcv);
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvUser.setLayoutManager(linearLayoutManager);
