@@ -32,4 +32,5 @@
     <string name="edtFindUser">Tìm kiếm</string>
     <string name="tv_user_name">Tên user</string>
     <string name="tv_phone_number">Số điện thoại</string>
+    <string name="loi_choo_login">Vui lòng nhập số điện thoại đăng nhập</string>
 </resources>
