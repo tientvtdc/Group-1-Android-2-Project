@@ -20,10 +20,23 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="btn_delete_manage_service_detail">Lưu</string>
-    <string name="btn_content_edit_detail_service">Xóa</string>
     <string name="title_detail_service">Chi tiết dịch vụ</string>
     <string name="btn_text_dat_lich">Đặt lịch</string>
     <string name="heading_feature_service">Dịch vụ nổi bật</string>
+    <string name="sign_in">Đăng nhập</string>
+    <string name="register">Đăng ký</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="btn_log_in">ĐĂNG NHẬP</string>
+    <string name="tv_password">Mật khẩu</string>
+    <string name="edt_phone_number">Số điện thoại</string>
+    <string name="edtFindUser">Tìm kiếm</string>
+    <string name="tv_user_name">Tên user</string>
+    <string name="tv_phone_number">Số điện thoại</string>
+    <string name="loi_choo_login">Vui lòng nhập số điện thoại đăng nhập</string>
+    <string name="text_hint_code_login">Nhập mã xác nhận</string>
+    <string name="label_code_login">Chờ nhận mã xác nhận</string>
+    <string name="title_dialog_logout">Bạn thực sự muốn đăng xuất</string>
+    <string name="text_positive_btn">OK</string>
+    <string name="text_neutral_btn">Cancel</string>
     <string name="api_key_googl_map">AIzaSyDfY_sXprnWMB8R1x2f4nFIWQzDJIHLk18</string>
 </resources>

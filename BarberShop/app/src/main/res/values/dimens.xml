@@ -6,4 +6,8 @@
     <dimen name="text_size_decription_service_detail">12sp</dimen>
     <dimen name="padding_10dp">10dp</dimen>
     <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="text_size_loi_chao">20sp</dimen>
+    <dimen name="corner_50dp">50dp</dimen>
+    <dimen name="padding_15dp">15dp</dimen>
+    <dimen name="text_size_40dp">40sp</dimen>
 </resources>
