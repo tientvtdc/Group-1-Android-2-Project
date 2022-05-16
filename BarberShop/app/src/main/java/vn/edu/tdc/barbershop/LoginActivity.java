@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String strPhoneNumber = edtPhoneNumber.getText().toString().trim();
+                Log.d("phone", strPhoneNumber);
                 onClickVerifyPhoneNumber(strPhoneNumber);
             }
         });
