@@ -16,18 +16,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".EnterOtpActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserManagementActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-
         </activity>
         <activity
             android:name=".DetailServiceActivity"
@@ -37,8 +44,7 @@
             android:exported="false" />
         <activity
             android:name=".ServiceListActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".CustomerScreenActivity"
             android:exported="false"
