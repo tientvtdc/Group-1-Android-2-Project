@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blueDark">#0F044C</color>
     <color name="red">#FF0000</color>
+    <color name="br_danger">#dc3545</color>
+    <color name="btn_agree">#006600</color>
     <color name="bg_warning">#ffc107</color>
 </resources>

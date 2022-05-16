@@ -3,6 +3,8 @@ package vn.edu.tdc.barbershop.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,18 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.tdc.barbershop.R;
 import vn.edu.tdc.barbershop.entity.Service;
 import vn.edu.tdc.barbershop.models.ServiceModel;
 
-public class ManageServiceAdapter extends RecyclerView.Adapter<ManageServiceAdapter.ManageServiceHolder> {
+public class ManageServiceAdapter extends RecyclerView.Adapter<ManageServiceAdapter.ManageServiceHolder> implements Filterable {
     private List<Service> mListService;
+    private List<Service> mListServiceOld;
     private ServiceModel.IClickItemListener iClickItemListener;
 
     public ManageServiceAdapter(List<Service> mListService, ServiceModel.IClickItemListener iClickItemListener) {
         this.mListService = mListService;
+        this.mListServiceOld = mListService;
         this.iClickItemListener = iClickItemListener;
     }
 
@@ -71,5 +76,35 @@ public class ManageServiceAdapter extends RecyclerView.Adapter<ManageServiceAdap
             name = itemView.findViewById(R.id.tv_name);
             price = itemView.findViewById(R.id.tv_price);
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String strSearch = charSequence.toString();
+                if (strSearch.isEmpty()) {
+                    mListService = mListServiceOld;
+                } else {
+                    List<Service> list = new ArrayList<>();
+                    for (Service service : mListServiceOld) {
+                        if (service.getName().toLowerCase().contains(strSearch.toLowerCase())) {
+                            list.add(service);
+                        }
+                    }
+                    mListService = list;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mListService;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mListService = (List<Service>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

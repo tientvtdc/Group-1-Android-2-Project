@@ -4,13 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -35,13 +38,14 @@ import java.util.UUID;
 import vn.edu.tdc.barbershop.entity.Service;
 import vn.edu.tdc.barbershop.models.ServiceModel;
 
-public class AddNewServiceActivity extends AppCompatActivity {
+public class ManageDetailServiceActivity extends AppCompatActivity {
 
-    private TextInputEditText name, description, price;
-    private ShapeableImageView img;
-    private Button btnAdd;
+    private MaterialToolbar materialToolbar;
+    private Button btnSave, btnDelete;
+    ShapeableImageView img;
+    private TextInputEditText edtName, edtPrice, edtDes;
     private int REQ = 1;
-    private MaterialToolbar add_new_service_back;
+    private Service service;
 
     private Uri filePath;
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -52,38 +56,78 @@ public class AddNewServiceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_service);
-
+        setContentView(R.layout.activity_detail_service);
         init();
-
+        materialToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectImg();
             }
         });
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 uploadImg();
             }
         });
-        add_new_service_back.setOnClickListener(new View.OnClickListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onClickDeleteData(service.getID());
             }
         });
     }
 
+    private void onClickDeleteData(String serviceId) {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.app_name))
+                .setMessage("Bạn có muốn xóa dịch vụ này không?")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference("services/" + serviceId);
+                        myRef.removeValue(new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                Toast.makeText(ManageDetailServiceActivity.this, "Delete data success", Toast.LENGTH_SHORT).show();
+
+                                // gọi hàm finish() để đóng Activity hiện tại và trở về MainActivity.
+                                finish();
+
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
     private void init() {
         serviceModel = new ServiceModel();
-        name = (TextInputEditText) findViewById(R.id.textInputName);
-        description = (TextInputEditText) findViewById(R.id.textInputDes);
-        price = (TextInputEditText) findViewById(R.id.textInputPrice);
-        img = (ShapeableImageView) findViewById(R.id.imgInput);
-        btnAdd = (Button) findViewById(R.id.btnAddNewService);
-        add_new_service_back = findViewById(R.id.add_new_service_back);
+        materialToolbar = findViewById(R.id.detail_edit_topAppBar);
+        edtName = findViewById(R.id.textInputEditName);
+        edtPrice = findViewById(R.id.textInputEditPrice);
+        edtDes = findViewById(R.id.textInputEditDes);
+        btnSave = findViewById(R.id.btn_save);
+        btnDelete = findViewById(R.id.btn_del);
+        img = findViewById(R.id.imgEditInput);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) {
+            return;
+        }
+        service = (Service) bundle.get("object_service");
+        edtName.setText(service.getName());
+        edtPrice.setText(service.getPrice() + "");
+        edtDes.setText(service.getDescription());
+
+        Picasso.with(ManageDetailServiceActivity.this).load(service.getImage()).into(img);
     }
 
     private void selectImg() {
@@ -125,27 +169,29 @@ public class AddNewServiceActivity extends AppCompatActivity {
                                     Uri downloadUrl = uri;
                                     //Do what you want with the url
 
-                                    Toast.makeText(AddNewServiceActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ManageDetailServiceActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
                                     //Tạo node trên phần database
 //                                    HinhAnh hinhAnh = new HinhAnh(edtTenHinh.getText().toString(), String.valueOf(downloadUrl));
-                                    String mServiceId = mData.push().getKey();
+                                    String mServiceId = service.getID();
 
 //                                    Service service = new Service(mServiceId, name.getText().toString(),String.valueOf(downloadUrl),Double.parseDouble(price.getText().toString()),description.getText().toString());
 
-                                    serviceModel.addNewSevice(name.getText().toString(),
+                                    Log.d("senddata", edtName.getText().toString()+"-"+String.valueOf(downloadUrl)+"-"+Double.parseDouble(edtPrice.getText().toString()));
+                                    serviceModel.editServiceWithID(mServiceId,
+                                            edtName.getText().toString(),
                                             String.valueOf(downloadUrl),
-                                            Double.parseDouble(price.getText().toString()),
-                                            description.getText().toString(), new ServiceModel.IServiceListennerModel() {
+                                            Double.parseDouble(edtPrice.getText().toString()),
+                                            edtDes.getText().toString(), new ServiceModel.IServiceListennerModel() {
                                                 @Override
                                                 public void onCompleteAddService(DatabaseError error) {
                                                     if (error == null) {
-                                                        Toast.makeText(AddNewServiceActivity.this, "Luu du lieu thanh cong", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(ManageDetailServiceActivity.this, "Luu du lieu thanh cong", Toast.LENGTH_SHORT).show();
                                                         finish();
                                                     } else {
-                                                        Toast.makeText(AddNewServiceActivity.this, "Loi!!!", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(ManageDetailServiceActivity.this, "Loi!!!", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
-                                    });
+                                            });
                                 }
                             });
 
@@ -155,7 +201,7 @@ public class AddNewServiceActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(AddNewServiceActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ManageDetailServiceActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -166,6 +212,24 @@ public class AddNewServiceActivity extends AppCompatActivity {
                             progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
+        } else {
+            String mServiceId = service.getID();
+            serviceModel.editServiceWithID(mServiceId,
+                    edtName.getText().toString(),
+                    service.getImage(),
+                    Double.parseDouble(edtPrice.getText().toString()),
+                    edtDes.getText().toString(), new ServiceModel.IServiceListennerModel() {
+                        @Override
+                        public void onCompleteAddService(DatabaseError error) {
+                            if (error == null) {
+                                Toast.makeText(ManageDetailServiceActivity.this, "Luu du lieu thanh cong", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(ManageDetailServiceActivity.this, "Loi!!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
         }
     }
+
 }

@@ -21,14 +21,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/api_key_googl_map" />
         <activity
-            android:name=".DetailServiceActivity"
+            android:name=".ManageDetailServiceActivity"
             android:exported="false" />
         <!-- <activity -->
         <!-- android:name=".ServiceListActivity" -->
         <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".AddNewServiceActivity" -->
-        <!-- android:exported="false" /> -->
+         <activity
+         android:name=".AddNewServiceActivity"
+         android:exported="false" />
         <activity
             android:name=".ServiceDetailActivity"
             android:exported="false" />
