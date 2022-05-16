@@ -41,7 +41,7 @@ public class FeaturedServiceAdapter extends RecyclerView.Adapter<FeaturedService
     public void onBindViewHolder(@NonNull ServiceViewHolder holder, int position) {
         Service service = serviceList.get(position);
         if (service!=null){
-            Glide.with(context).load(service.getImage()).error(R.drawable.anh1).into(holder.imgService);
+            Glide.with(context).load(service.getImage()).placeholder(R.drawable.placeholder_image).error(R.drawable.anh1).into(holder.imgService);
             holder.nameService.setText(service.getName());
             Locale localeVN = new Locale("vi", "VN");
             NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);

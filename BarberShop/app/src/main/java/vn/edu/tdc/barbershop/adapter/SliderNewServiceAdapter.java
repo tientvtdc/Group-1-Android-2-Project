@@ -37,7 +37,7 @@ public class SliderNewServiceAdapter extends  SliderViewAdapter<SliderNewService
         viewHolder.textViewDescription.setTextSize(16);
         viewHolder.textViewDescription.setTextColor(Color.WHITE);
         Glide.with(viewHolder.itemView)
-                .load(service.getImage())
+                .load(service.getImage()).placeholder(R.drawable.placeholder_image)
                 .fitCenter()
                 .into(viewHolder.imageViewBackground);
 

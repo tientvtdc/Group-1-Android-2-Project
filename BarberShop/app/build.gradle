@@ -29,6 +29,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'vn.edu.tdc.barbershop'
 }
 
 dependencies {
