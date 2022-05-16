@@ -14,15 +14,16 @@
     <string name="btn_Save">Lưu</string>
     <string name="txtId">1</string>
     <string name="txtName">Phu</string>
-    <string name="txtPhone">0338xxxx76</string>
-<!--    <string name="txtName">Phu</string>-->
-    <string name="txtTimeOder">17/10 -></string>
-    <string name="txtTimeFinish">18/10</string>
+    <string name="txtPhone">0338143476</string>
+    <!--    <string name="txtName">Phu</string>-->
+    <string name="txtTimeOder">17/10</string>
+    <string name="txtDen">-></string>
+    <string name="txtTimeFinish">17/10</string>
     <string name="txtPassword">Mật khẩu</string>
     <string name="txtRePassword">Nhập lại mật khẩu</string>
-
-
-
+    <string name="TitleSchedule">Quản lý lịch hẹn</string>
+    <string name="title_detail_service">Chi tiết lịch hẹn</string>
+    <string name="btn_pass">Xong</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
