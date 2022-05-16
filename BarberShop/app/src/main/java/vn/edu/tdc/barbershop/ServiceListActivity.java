@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import vn.edu.tdc.barbershop.adapter.ManageServiceAdapter;
@@ -96,12 +97,20 @@ public class ServiceListActivity extends AppCompatActivity {
                     // Thêm service vào mảng
                     mListServices.add(service);
                     // Tìm sv trong mList sau
-                    for (Service sv :
-                            mListServices) {
+                    List<Service> toRemove = new ArrayList<>();
+                    for (Service sv : mListServices) {
                         if (service.getID().equals(sv.getID())) {
-                            mListServices.add(sv);
+                            toRemove.add(sv);
                         }
                     }
+                    mListServices.removeAll(toRemove);
+                    mListServices.add(toRemove.get(1));
+//                    mListServices.addAll(toRemove);
+//                    for (Service sv : mListServices) {
+//                        if (service.getID().equals(sv.getID())) {
+//                            mListServices.add(sv);
+//                        }
+//                    }
                     manageServiceAdapter.notifyDataSetChanged();
                 }
             }
