@@ -39,4 +39,6 @@
     <string name="text_positive_btn">OK</string>
     <string name="text_neutral_btn">Cancel</string>
     <string name="api_key_googl_map">AIzaSyDfY_sXprnWMB8R1x2f4nFIWQzDJIHLk18</string>
+    <string name="btn_content_edit_detail_service">Lưu</string>
+    <string name="btn_delete_manage_service_detail">Xoá</string>
 </resources>
