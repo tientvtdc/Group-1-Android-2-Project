@@ -35,4 +35,7 @@
     <string name="loi_choo_login">Vui lòng nhập số điện thoại đăng nhập</string>
     <string name="text_hint_code_login">Nhập mã xác nhận</string>
     <string name="label_code_login">Chờ nhận mã xác nhận</string>
+    <string name="title_dialog_logout">Bạn thực sự muốn đăng xuất</string>
+    <string name="text_positive_btn">OK</string>
+    <string name="text_neutral_btn">Cancel</string>
 </resources>

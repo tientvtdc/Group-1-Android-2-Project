@@ -65,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textColorHint="#757575"
                 android:inputType="phone"
+                android:maxLength="10"
              />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>

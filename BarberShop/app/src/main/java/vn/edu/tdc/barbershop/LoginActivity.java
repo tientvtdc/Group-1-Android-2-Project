@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private MaterialButton buttonLogin;
@@ -21,10 +23,11 @@ public class LoginActivity extends AppCompatActivity {
         inputPhone = findViewById(R.id.input_login_phone);
 
         buttonLogin = findViewById(R.id.loginbtn);
+        nextActivity();
         buttonLogin.setOnClickListener(view -> {
             String mobile = inputPhone.getText().toString().trim();
             if(mobile.isEmpty() || mobile.length() < 9){
-                inputPhone.setError("Enter a valid mobile");
+                inputPhone.setError("Số điện thoại không hợp lệ");
                 inputPhone.requestFocus();
                 return;
             }
@@ -33,4 +36,14 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+    private void nextActivity() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user!=null){
+            Intent intent = new Intent(LoginActivity.this,CustomerScreenActivity.class);
+            startActivity(intent);
+            finishAffinity();
+        }
+    }
+
 }
