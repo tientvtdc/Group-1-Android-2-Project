@@ -1,6 +1,7 @@
 package vn.edu.tdc.barbershop;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +45,7 @@ public class SignupActivity extends AppCompatActivity {
     private Button btnVerify;
     private ProgressBar bar;
     private TextView btnSendOtpAgain;
+    private User userValue;
 
     //firebase
     private FirebaseAuth mAuth;
@@ -167,23 +170,41 @@ public class SignupActivity extends AppCompatActivity {
                             //dang ky tai khoan roi -> khong dang ky nua
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference reference = database.getReference("user/" + user.getUid());
-                            reference.addValueEventListener(new ValueEventListener() {
+                            reference.addChildEventListener(new ChildEventListener() {
                                 @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    User userValue = snapshot.getValue(User.class);
-                                    if (userValue != null) {
-                                        if (userValue.getPhone().equals(user.getPhoneNumber())) {
-                                            startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
-                                            finish();
-                                        }
-                                    }
-                                    Toast.makeText(SignupActivity.this, "Vui lòng đăng ký tài khoản", Toast.LENGTH_SHORT).show();
-                                    goToRegisterActivity(user.getPhoneNumber(), user.getUid());
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    userValue = snapshot.getValue(User.class);
+
                                 }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
+
                                 }
                             });
+                            if (userValue != null) {
+                                if (userValue.getPhone().equals(user.getPhoneNumber())) {
+                                    startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
+                                    finish();
+                                }
+                            }
+                            Toast.makeText(SignupActivity.this, "Vui lòng đăng ký tài khoản", Toast.LENGTH_SHORT).show();
+                            goToRegisterActivity(user.getPhoneNumber(), user.getUid());
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
