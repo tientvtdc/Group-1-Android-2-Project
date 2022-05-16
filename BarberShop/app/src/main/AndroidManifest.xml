@@ -16,14 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
         <activity
-            android:name=".DetailServiceActivity"
+            android:name=".ManageDetailServiceActivity"
             android:exported="false" />
         <!-- <activity -->
         <!-- android:name=".ServiceListActivity" -->
         <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".AddNewServiceActivity" -->
-        <!-- android:exported="false" /> -->
+         <activity
+         android:name=".AddNewServiceActivity"
+         android:exported="false" />
         <activity
             android:name=".ServiceListActivity"
             android:exported="true">

@@ -8,4 +8,11 @@
         android:contentDescription="Add"
         app:showAsAction="always">
     </item>
+
+    <item android:id="@+id/del"
+        android:title="Del"
+        android:icon="@drawable/ic_description"
+        android:contentDescription="Del"
+        app:showAsAction="always">
+    </item>
 </menu>

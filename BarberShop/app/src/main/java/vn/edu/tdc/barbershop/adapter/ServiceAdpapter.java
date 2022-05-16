@@ -78,7 +78,5 @@ public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.Servic
             priceService  = itemView.findViewById(R.id.price_service);
         }
     }
-
-
 }
 
