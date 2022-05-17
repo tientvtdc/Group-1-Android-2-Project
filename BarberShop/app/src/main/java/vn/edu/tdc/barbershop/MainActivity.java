@@ -8,15 +8,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
-import vn.edu.tdc.barbershop.adapter.UserAdapter;
-import vn.edu.tdc.barbershop.fragment.ChangePasswordFragment;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
 
@@ -72,13 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mCurrentFragment!=FRAGMENT_SCHEDULE){
                     replaceFragment(new ScheduleFragment());
                     mCurrentFragment = FRAGMENT_SCHEDULE;
-                }
-                break;
-            }
-            case R.id.nav_change_password:{
-                if (mCurrentFragment!=FRAGMENT_CHANGE_PASSWORD){
-                    replaceFragment(new ChangePasswordFragment());
-                    mCurrentFragment = FRAGMENT_CHANGE_PASSWORD;
                 }
                 break;
             }

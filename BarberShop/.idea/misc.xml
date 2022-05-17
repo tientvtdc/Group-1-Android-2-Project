@@ -43,16 +43,20 @@
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/activity_admin.xml" value="0.1" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/activity_manament_schedule_detail.xml" value="0.12972972972972974" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/activity_manament_service_detail.xml" value="0.2" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/activity_service_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/fragment_change_password.xml" value="0.22" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/fragment_home.xml" value="0.18" />
+        <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/fragment_manament_schedule.xml" value="0.12972972972972974" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/fragment_oder.xml" value="0.16" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/fragment_repass.xml" value="0.22" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/fragment_schedule.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/fragment_schedulemanager.xml" value="0.16" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/item_featured_service.xml" value="0.16" />
+        <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/item_manament_schedule.xml" value="0.25" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/item_oder.xml" value="0.22" />
+        <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/item_schedule.xml" value="0.12972972972972974" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/item_service.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/item_user.xml" value="0.25" />
         <entry key="..\:/Users/Phu/AndroidStudioProjects/Group-1-Android-2-Project.git/BarberShop/app/src/main/res/layout/layout_dialog_update.xml" value="0.12972972972972974" />

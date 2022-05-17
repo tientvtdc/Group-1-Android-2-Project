@@ -6,18 +6,17 @@ import java.util.Map;
 public class User {
 
 //Thêm những trường còn lại vào đây, alt enter 2
-    private int id;
+    private String id;
     private String name;
     private String phone;
-    private String password;
     private String image;
     private int role;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -37,14 +36,6 @@ public class User {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getImage() {
         return image;
     }
@@ -62,12 +53,10 @@ public class User {
     }
 
 
-
-    public User(int id, String name, String phone, String password, String image, int role) {
+    public User(String id, String name, String phone, String image, int role) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.password = password;
         this.image = image;
         this.role = role;
     }

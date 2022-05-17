@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Oder extends AppCompatActivity implements Serializable {
+public class Schedule extends AppCompatActivity implements Serializable {
 //    Những trường trên firebase
 //    private String id;
 //    private User customer;
@@ -72,7 +72,7 @@ public class Oder extends AppCompatActivity implements Serializable {
 //    }
 
 //String id, User customer, Service service, Date timeOder, Date timeFinish, int isFinish,
-    public Oder( String test) {
+    public Schedule(String test) {
 //        this.id = id;
 //        this.customer = customer;
 //        this.service = service;
@@ -84,7 +84,7 @@ public class Oder extends AppCompatActivity implements Serializable {
     }
 
 //String id, User customer, Service service, Date timeOder, Date timeFinish, int isFinish,
-    public Oder(int contentLayoutId,  String test) {
+    public Schedule(int contentLayoutId, String test) {
         super(contentLayoutId);
 //        this.id = id;
 //        this.customer = customer;

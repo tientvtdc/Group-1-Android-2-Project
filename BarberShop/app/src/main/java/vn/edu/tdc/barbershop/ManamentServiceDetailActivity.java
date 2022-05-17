@@ -3,17 +3,15 @@ package vn.edu.tdc.barbershop;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.Button;
-
-import vn.edu.tdc.barbershop.models.Oder;
 
 public class ManamentServiceDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manament_service_detail);
+        setContentView(R.layout.activity_manament_schedule_detail);
 
+        //Màn hình chi tiết một lịch hẹn
 //        Bundle bundle = getIntent().getBundleExtra();
 //        if(bundle == null){
 //            return;
@@ -21,7 +19,7 @@ public class ManamentServiceDetailActivity extends AppCompatActivity {
 //
 //        Oder oder = (Oder) bundle.get("object_oder");
 //
-//        tvUserName.setText(oder.getTest());
+//        txtName.setText(oder.getTest());
 
     }
 }
