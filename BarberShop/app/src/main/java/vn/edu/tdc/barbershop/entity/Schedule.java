@@ -1,47 +1,70 @@
 package vn.edu.tdc.barbershop.entity;
 
-public class Schedule {
-    private int image;
-    private String name;
-    private String time;
-    private String price;
+import java.io.Serializable;
+import java.util.Calendar;
 
-    public Schedule(int image, String name, String time, String price) {
-        this.image = image;
-        this.name = name;
-        this.time = time;
-        this.price = price;
+public class Schedule implements Serializable {
+    private String id;
+    private User customer;
+    private Service service;
+    private Calendar timeOrder;
+    private Calendar timeFinish;
+    private int isFinish;
+
+    public Schedule(String id, User customer, Service service, Calendar timeOrder, Calendar timeFinish, int isFinish) {
+        this.id = id;
+        this.customer = customer;
+        this.service = service;
+        this.timeOrder = timeOrder;
+        this.timeFinish = timeFinish;
+        this.isFinish = isFinish;
     }
 
-    public int getImage() {
-        return image;
+    public String getId() {
+        return id;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public User getCustomer() {
+        return customer;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomer(User customer) {
+        this.customer = customer;
     }
 
-    public String getTime() {
-        return time;
+    public Service getService() {
+        return service;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setService(Service service) {
+        this.service = service;
     }
 
-    public String getPrice() {
-        return price;
+    public Calendar getTimeOrder() {
+        return timeOrder;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setTimeOrder(Calendar timeOrder) {
+        this.timeOrder = timeOrder;
+    }
+
+    public Calendar getTimeFinish() {
+        return timeFinish;
+    }
+
+    public void setTimeFinish(Calendar timeFinish) {
+        this.timeFinish = timeFinish;
+    }
+
+    public int getIsFinish() {
+        return isFinish;
+    }
+
+    public void setIsFinish(int isFinish) {
+        this.isFinish = isFinish;
     }
 }

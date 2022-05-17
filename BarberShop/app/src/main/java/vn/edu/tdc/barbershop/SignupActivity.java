@@ -168,43 +168,7 @@ public class SignupActivity extends AppCompatActivity {
                             // Update UI
 
                             //dang ky tai khoan roi -> khong dang ky nua
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference("user/" + user.getUid());
-                            reference.addChildEventListener(new ChildEventListener() {
-                                @Override
-                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                    userValue = snapshot.getValue(User.class);
-
-                                }
-
-                                @Override
-                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                }
-
-                                @Override
-                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                }
-
-                                @Override
-                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-                            if (userValue != null) {
-                                if (userValue.getPhone().equals(user.getPhoneNumber())) {
-                                    startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
-                                    finish();
-                                }
-                            }
-                            Toast.makeText(SignupActivity.this, "Vui lòng đăng ký tài khoản", Toast.LENGTH_SHORT).show();
-                            goToRegisterActivity(user.getPhoneNumber(), user.getUid());
+                            isUserExist(user);
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -217,6 +181,7 @@ public class SignupActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void goToRegisterActivity(String phoneNumber, String idToken) {
         Intent intent = new Intent(this, RegisterActivity.class);
         intent.putExtra("phoneNumber", phoneNumber);
@@ -249,8 +214,49 @@ public class SignupActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
-            finish();
+            isUserExist(user);
+        }
+    }
+
+    //TODO: check user exist in database
+    private void isUserExist(FirebaseUser user) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("user/" + user.getUid());
+        reference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                userValue = snapshot.getValue(User.class);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        if (userValue != null) {
+            if (userValue.getPhone().equals(user.getPhoneNumber())) {
+                startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
+                finish();
+            }
+        }
+        else {
+            Toast.makeText(SignupActivity.this, "Vui lòng đăng ký tài khoản", Toast.LENGTH_SHORT).show();
+            goToRegisterActivity(user.getPhoneNumber(), user.getUid());
         }
     }
 }
