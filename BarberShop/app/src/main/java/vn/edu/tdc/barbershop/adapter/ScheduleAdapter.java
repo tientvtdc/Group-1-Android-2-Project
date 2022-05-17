@@ -23,19 +23,19 @@ import vn.edu.tdc.barbershop.models.Oder;
 import vn.edu.tdc.barbershop.models.User;
 
 public class OderAdapter extends RecyclerView.Adapter<OderAdapter.OderViewHolder>{
-//    *
+
     private Context mContext;
     private List<Oder> mListOder;
-//*
+
     public OderAdapter(Context mContext) {
         this.mContext = mContext;
     }
-//*
+
     public void setData(List<Oder> list){
         this.mListOder = list;
         notifyDataSetChanged();
     }
-//*
+
     @NonNull
     @Override
     public OderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -57,15 +57,17 @@ public class OderAdapter extends RecyclerView.Adapter<OderAdapter.OderViewHolder
             }
         });
 
-        //holder.txtId.setText(oder.getId);
-        //holder.imgService.setImageResource(oder.getService());
-        //holder.txtName.setText(oder.getName);
-        //holder.txtPhone.setText(oder.get);
-        //holder.txtTimeOder.getText(oder.getTimeOder());
-        //holder.txtTimeFinish.getText(oder.getTimeOder());
-
+//        Thêm những trường khác vào đây
+//        holder.txtId.setText(oder.getId);
+//        holder.imgService.setImageResource(oder.getService());
+//        holder.txtName.setText(oder.getName);
+//        holder.txtPhone.setText(oder.get);
+//        holder.txtTimeOder.getText(oder.getTimeOder());
+//        holder.txtTimeFinish.getText(oder.getTimeOder());
         holder.txtTest.setText(oder.getTest());
     }
+
+//    Đi tới màn hình chi tiết lịch hẹn
     private void onCLickGoToDetail(Oder oder){
         Intent intent = new Intent(mContext, ManamentServiceDetailActivity.class);
         Bundle bundle = new Bundle();
@@ -74,7 +76,6 @@ public class OderAdapter extends RecyclerView.Adapter<OderAdapter.OderViewHolder
         mContext.startActivity(intent);
     }
 
-    //*
     @Override
     public int getItemCount() {
         if (mListOder != null){
@@ -82,70 +83,35 @@ public class OderAdapter extends RecyclerView.Adapter<OderAdapter.OderViewHolder
         }
         return 0;
     }
+        private List<Oder> oders;
 
-    //    private List<Oder> oders;
-//
-//    public OderAdapter(List<Oder> oders) {
-//        this.oders = oders;
-//    }
-//
-//    @NonNull
-//    @Override
-//    public UserAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-////        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oder, parent, false);
-//////        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oder, parent, false);
-////        return new OderViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull UserAdapter.UserViewHolder holder, int position) {
-//        Oder oder = oders.get(position);
-//        if (oder == null) {
-//            return;
-//        }
-//
-////        holder.imgSchedule.setImageResource(oder.getImage());
-////        holder.txtName.setText(oder.getName());
-////        holder.txtTime.setText(oder.getTime());
-////        holder.txtPrice.setText(oder.getPrice());
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        if (oders != null) {
-//            return oders.size();
-//        }
-//        return 0;
-//    }
-//*
+    public OderAdapter(List<Oder> oders) {
+        this.oders = oders;
+    }
+
     public class OderViewHolder extends RecyclerView.ViewHolder {
 
         private CardView layoutItem;
-
+//        Thêm những trường khác vào đây
 //        private CircleImageView imgService;
 //        private TextView txtName;
 //        private TextView txtPhone;
 //        private TextView txtTimeOder;
 //        private TextView txtDen;
 //        private TextView txtTimeFinish;
-
         private TextView txtTest;
-
-
-
 //*
     public OderViewHolder(@NonNull View itemView) {
         super(itemView);
 
         layoutItem = itemView.findViewById(R.id.layout_item);
-
+//        Thêm những trường khác vào đây
 //        imgService = itemView.findViewById(R.id.imgService);
 //        txtName = itemView.findViewById(R.id.txtName);
 //        txtPhone = itemView.findViewById(R.id.txtPhone);
 //        txtTimeOder = itemView.findViewById(R.id.txtTimeOder);
 //        txtDen = itemView.findViewById(R.id.txtDen);
 //        txtTimeFinish = itemView.findViewById(R.id.txtTimeFinish);
-
         txtTest = itemView.findViewById(R.id.txtTest);
     }
     }

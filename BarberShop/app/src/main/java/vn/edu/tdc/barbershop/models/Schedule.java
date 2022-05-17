@@ -6,13 +6,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Oder extends AppCompatActivity implements Serializable {
-//    private int id;
+//    Những trường trên firebase
+//    private String id;
 //    private User customer;
 //    private Service service;
 //    private Date timeOder;
 //    private Date timeFinish;
 //    private int isFinish;
-
 
     private String test;
     public String getTest() {
@@ -23,11 +23,11 @@ public class Oder extends AppCompatActivity implements Serializable {
     }
 
 
-//    public int getId() {
+//    public String getId() {
 //        return id;
 //    }
 //
-//    public void setId(int id) {
+//    public void setId(String id) {
 //        this.id = id;
 //    }
 //
@@ -71,7 +71,7 @@ public class Oder extends AppCompatActivity implements Serializable {
 //        this.isFinish = isFinish;
 //    }
 
-//    int id, User customer, Service service, Date timeOder, Date timeFinish, int isFinish,
+//String id, User customer, Service service, Date timeOder, Date timeFinish, int isFinish,
     public Oder( String test) {
 //        this.id = id;
 //        this.customer = customer;
@@ -83,18 +83,18 @@ public class Oder extends AppCompatActivity implements Serializable {
         this.test = test;
     }
 
-//    int contentLayoutId, int id, User customer, Service service, Date timeOder, Date timeFinish, int isFinish,
-//    public Oder( String test) {
-//        super(contentLayoutId);
-////        this.id = id;
-////        this.customer = customer;
-////        this.service = service;
-////        this.timeOder = timeOder;
-////        this.timeFinish = timeFinish;
-////        this.isFinish = isFinish;
-//
-//        this.test = test;
-//    }
+//String id, User customer, Service service, Date timeOder, Date timeFinish, int isFinish,
+    public Oder(int contentLayoutId,  String test) {
+        super(contentLayoutId);
+//        this.id = id;
+//        this.customer = customer;
+//        this.service = service;
+//        this.timeOder = timeOder;
+//        this.timeFinish = timeFinish;
+//        this.isFinish = isFinish;
+
+        this.test = test;
+    }
 
 
 
