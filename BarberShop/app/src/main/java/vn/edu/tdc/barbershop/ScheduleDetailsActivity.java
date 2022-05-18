@@ -45,8 +45,8 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
         textName.setText(schedule.getService().getName());
         textDescription.setText(schedule.getService().getDescription());
-        textTime.setText(String.valueOf(schedule.getTimeOrder().get(Calendar.HOUR_OF_DAY)));
-        textDay.setText(String.valueOf(schedule.getTimeOrder().get(Calendar.DAY_OF_MONTH)));
+        textTime.setText(String.valueOf(schedule.getTimeOrder().getHours()));
+        textDay.setText(String.valueOf(schedule.getTimeOrder().getDay()));
         textPrice.setText(String.valueOf(schedule.getService().getPrice()));
 
         btnPrevious.setOnClickListener(new View.OnClickListener() {

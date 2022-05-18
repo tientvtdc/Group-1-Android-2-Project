@@ -52,8 +52,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 
         Glide.with(mContext).load(schedule.getService().getImage()).error(R.drawable.anh1).placeholder(new ColorDrawable(Color.BLACK)).into(holder.imgSchedule);
         holder.txtName.setText(schedule.getService().getName());
-        holder.txtTime.setText(String.valueOf(schedule.getTimeOrder().get(Calendar.HOUR_OF_DAY)));
-        holder.txtPrice.setText(String.valueOf(schedule.getTimeOrder().get(Calendar.DAY_OF_MONTH)));
+        holder.txtTime.setText(String.valueOf(schedule.getTimeOrder().getHours()));
+        holder.txtPrice.setText(String.valueOf(schedule.getService().getPrice()));
 
         holder.cardViewItem.setOnClickListener(new View.OnClickListener() {
             @Override

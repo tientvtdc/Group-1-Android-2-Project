@@ -2,16 +2,21 @@ package vn.edu.tdc.barbershop.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Schedule implements Serializable {
     private String id;
     private User customer;
     private Service service;
-    private Calendar timeOrder;
-    private Calendar timeFinish;
+    private Date timeOrder;
+    private Date timeFinish;
     private int isFinish;
 
-    public Schedule(String id, User customer, Service service, Calendar timeOrder, Calendar timeFinish, int isFinish) {
+    public Schedule() {
+
+    }
+
+    public Schedule(String id, User customer, Service service, Date timeOrder, Date timeFinish, int isFinish) {
         this.id = id;
         this.customer = customer;
         this.service = service;
@@ -44,19 +49,19 @@ public class Schedule implements Serializable {
         this.service = service;
     }
 
-    public Calendar getTimeOrder() {
+    public Date getTimeOrder() {
         return timeOrder;
     }
 
-    public void setTimeOrder(Calendar timeOrder) {
+    public void setTimeOrder(Date timeOrder) {
         this.timeOrder = timeOrder;
     }
 
-    public Calendar getTimeFinish() {
+    public Date getTimeFinish() {
         return timeFinish;
     }
 
-    public void setTimeFinish(Calendar timeFinish) {
+    public void setTimeFinish(Date timeFinish) {
         this.timeFinish = timeFinish;
     }
 

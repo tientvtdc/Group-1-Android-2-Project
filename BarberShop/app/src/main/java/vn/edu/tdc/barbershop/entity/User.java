@@ -8,6 +8,10 @@ public class User {
     private String image;
     private int role;
 
+    public User() {
+
+    }
+
     public User(String id, String name, String phone, String image, int role) {
         this.id = id;
         this.name = name;
