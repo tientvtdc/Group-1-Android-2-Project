@@ -15,7 +15,6 @@
     <string name="txtId">1</string>
     <string name="txtName">Phu</string>
     <string name="txtPhone">0338143476</string>
-    <!--    <string name="txtName">Phu</string>-->
     <string name="txtTimeOder">17/10</string>
     <string name="txtDen">-></string>
     <string name="txtTimeFinish">17/10</string>
@@ -24,6 +23,10 @@
     <string name="TitleSchedule">Quản lý lịch hẹn</string>
     <string name="title_detail_service">Chi tiết lịch hẹn</string>
     <string name="btn_pass">Xong</string>
+    <string name="edtName">Nhập Tên</string>
+    <string name="edtPhone">Nhập Số điện thoại</string>
+    <string name="edtImage">Hình ảnh</string>
+    <string name="btn_edt_information">Lưu</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
