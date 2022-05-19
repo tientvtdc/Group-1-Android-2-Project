@@ -92,4 +92,12 @@ public class ScheduleFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (scheduleAdapter != null) {
+            scheduleAdapter.release();
+        }
+    }
 }

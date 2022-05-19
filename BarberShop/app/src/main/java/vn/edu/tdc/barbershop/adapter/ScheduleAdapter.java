@@ -17,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import vn.edu.tdc.barbershop.CusomerScreenActivity;
@@ -53,7 +55,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         Glide.with(mContext).load(schedule.getService().getImage()).error(R.drawable.anh1).placeholder(new ColorDrawable(Color.BLACK)).into(holder.imgSchedule);
         holder.txtName.setText(schedule.getService().getName());
         holder.txtTime.setText(String.valueOf(schedule.getTimeOrder().getHours()));
-        holder.txtPrice.setText(String.valueOf(schedule.getService().getPrice()));
+
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+        holder.txtPrice.setText(currencyVN.format(schedule.getService().getPrice()));
 
         holder.cardViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +74,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         bundle.putSerializable("schedule", schedule);
         intent.putExtras(bundle);
         mContext.startActivity(intent);
+    }
+
+    public void release() {
+        mContext = null;
     }
 
     @Override
