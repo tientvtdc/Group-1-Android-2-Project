@@ -12,10 +12,11 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/btn_prev"
             android:layout_margin="10dp"
             android:background="@drawable/ic_arrow_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -23,6 +24,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/bar"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible"/>
 
 <!--        image-->
         <androidx.cardview.widget.CardView
@@ -67,13 +76,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btn_success"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:id="@+id/btn_success"
             android:layout_gravity="end"
             android:background="@drawable/ic_arrow_forward"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
 
     </LinearLayout>
 

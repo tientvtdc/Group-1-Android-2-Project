@@ -20,11 +20,13 @@
     <string name="toast_verify_failed">Xác minh thất bại</string>
     <string name="toast_The_SMS_send_to_phone">Mã xác minh SMS đã được gửi</string>
     <string name="toast_verification_invalid">Mã xác minh đã nhập không hợp lệ</string>
+    <string name="toast_phone_number_has_not_been_verified">Số điện thoại chưa được xác thực, vui lòng xác thực !</string>
+    <string name="toast_please_register_for_an_account">Vui lòng đăng ký tài khoản</string>
     <!-- layout -->
     <string name="layout_enter_phone">Nhập số diện thoại của bạn</string>
     <string name="layout_hint_phone">0123456789</string>
-    <string name="layout_send_otp">Gửi mã OTP</string>
+    <string name="layout_verify">Gửi mã OTP</string>
     <string name="layout_re_send_otp">Gửi lại mã OTP</string>
     <string name="layout_enter_otp">Nhập mã OTP đã được gửi về số điện thoại của bạn</string>
-    <string name="layout_hint_otp">358789</string>
+    <string name="layout_hint_otp">OTP</string>
 </resources>

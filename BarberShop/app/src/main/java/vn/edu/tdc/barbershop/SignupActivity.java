@@ -1,5 +1,7 @@
 package vn.edu.tdc.barbershop;
 
+import static android.text.TextUtils.isEmpty;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,9 +45,11 @@ public class SignupActivity extends AppCompatActivity {
     private EditText phone, otp;
     private Button btnSendOtp;
     private Button btnVerify;
+    private Button btnPrev;
     private ProgressBar bar;
     private TextView btnSendOtpAgain;
     private User userValue;
+    private boolean isLoadFirebase = false;
 
     //firebase
     private FirebaseAuth mAuth;
@@ -58,19 +62,20 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        mAuth = FirebaseAuth.getInstance();
+        //find view
+        init();
 
-        phone = (EditText) findViewById(R.id.phone_number);
-        otp = (EditText) findViewById(R.id.otp);
-        btnSendOtp = findViewById(R.id.send_otp);
-        btnVerify = findViewById(R.id.verify);
-        btnSendOtpAgain = findViewById(R.id.send_otp_again);
-        bar = findViewById(R.id.bar);
-
-        btnSendOtp.setOnClickListener(new View.OnClickListener() {
+        //event
+        btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(phone.getText().toString())) {
+                finish();
+            }
+        });
+        btnVerify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isEmpty(phone.getText().toString())) {
                     Toast.makeText(SignupActivity.this, "Nhập số điện thoại của bạn !", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -80,13 +85,14 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
-        btnVerify.setOnClickListener(new View.OnClickListener() {
+        btnSendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(otp.getText().toString())) {
+                if (isEmpty(otp.getText().toString())) {
                     Toast.makeText(SignupActivity.this, "Nhập mã OTP !", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    bar.setVisibility(View.VISIBLE);
                     VerifyCode(otp.getText().toString());
                 }
             }
@@ -94,9 +100,21 @@ public class SignupActivity extends AppCompatActivity {
         btnSendOtpAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bar.setVisibility(View.VISIBLE);
                 SendOtpAgain();
             }
         });
+    }
+
+    private void init() {
+        mAuth = FirebaseAuth.getInstance();
+        phone = (EditText) findViewById(R.id.phone_number);
+        otp = (EditText) findViewById(R.id.otp);
+        btnPrev = findViewById(R.id.btn_prev);
+        btnSendOtp = findViewById(R.id.send_otp);
+        btnVerify = findViewById(R.id.verify);
+        btnSendOtpAgain = findViewById(R.id.send_otp_again);
+        bar = findViewById(R.id.bar);
     }
 
     //TODO: send OTP to phone number
@@ -116,7 +134,7 @@ public class SignupActivity extends AppCompatActivity {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential credential) {
             Log.d(TAG, "onVerificationCompleted:" + credential);
-            Toast.makeText(SignupActivity.this, "Xác minh thành công", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this, getString(R.string.toast_verify_success), Toast.LENGTH_SHORT).show();
 
             signInWithPhoneAuthCredential(credential);
         }
@@ -129,14 +147,15 @@ public class SignupActivity extends AppCompatActivity {
 
             if (e instanceof FirebaseAuthInvalidCredentialsException) {
                 // Invalid request
-                Toast.makeText(SignupActivity.this, "Yêu cầu không hợp lệ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupActivity.this, getString(R.string.toast_invalid_request), Toast.LENGTH_SHORT).show();
             } else if (e instanceof FirebaseTooManyRequestsException) {
                 // The SMS quota for the project has been exceeded
-                Toast.makeText(SignupActivity.this, "Đã vượt quá số lần gửi SMS cho số điện thoại này", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupActivity.this, getString(R.string.toast_The_SMS_quota_exceeded), Toast.LENGTH_SHORT).show();
             }
 
             // Show a message and update the UI
-            Toast.makeText(SignupActivity.this, "Xác minh thất bại", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this, getString(R.string.toast_verify_failed), Toast.LENGTH_SHORT).show();
+            bar.setVisibility(View.INVISIBLE);
         }
 
         @Override
@@ -147,7 +166,7 @@ public class SignupActivity extends AppCompatActivity {
             // now need to ask the user to enter the code and then construct a credential
             // by combining the code with a verification ID.
             Log.d(TAG, "onCodeSent:" + verificationId);
-            Toast.makeText(SignupActivity.this, "Mã xác minh SMS đã được gửi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this, getString(R.string.toast_The_SMS_send_to_phone), Toast.LENGTH_SHORT).show();
 
             // Save verification ID and resending token so we can use them later
             mVerificationId = verificationId;
@@ -175,7 +194,7 @@ public class SignupActivity extends AppCompatActivity {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
                                 Toast.makeText(SignupActivity.this,
-                                        "Mã xác minh đã nhập không hợp lệ", Toast.LENGTH_SHORT).show();
+                                        getString(R.string.toast_verification_invalid), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -204,8 +223,12 @@ public class SignupActivity extends AppCompatActivity {
 
     //TODO: verify otp
     private void VerifyCode(String code) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
-        signInWithPhoneAuthCredential(credential);
+        if (mVerificationId == null) {
+            Toast.makeText(this, getString(R.string.toast_phone_number_has_not_been_verified), Toast.LENGTH_SHORT).show();
+        }else {
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+            signInWithPhoneAuthCredential(credential);
+        }
     }
 
     //dang nhap
@@ -214,33 +237,30 @@ public class SignupActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
+            bar.setVisibility(View.VISIBLE);
             isUserExist(user);
         }
+        bar.setVisibility(View.INVISIBLE);
     }
 
     //TODO: check user exist in database
     private void isUserExist(FirebaseUser user) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("user/" + user.getUid());
-        reference.addChildEventListener(new ChildEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userValue = snapshot.getValue(User.class);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                if (userValue != null) {
+                    if (userValue.getPhone().equals(user.getPhoneNumber())) {
+                        startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
+                        finish();
+                    }
+                }
+                else {
+                    Toast.makeText(SignupActivity.this, getString(R.string.toast_please_register_for_an_account), Toast.LENGTH_SHORT).show();
+                    goToRegisterActivity(user.getPhoneNumber(), user.getUid());
+                }
             }
 
             @Override
@@ -248,15 +268,5 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
-        if (userValue != null) {
-            if (userValue.getPhone().equals(user.getPhoneNumber())) {
-                startActivity(new Intent(SignupActivity.this, CusomerScreenActivity.class));
-                finish();
-            }
-        }
-        else {
-            Toast.makeText(SignupActivity.this, "Vui lòng đăng ký tài khoản", Toast.LENGTH_SHORT).show();
-            goToRegisterActivity(user.getPhoneNumber(), user.getUid());
-        }
     }
 }

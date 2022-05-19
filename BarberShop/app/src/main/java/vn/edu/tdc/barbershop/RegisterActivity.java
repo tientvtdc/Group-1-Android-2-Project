@@ -11,6 +11,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,16 +24,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Magnifier;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -43,21 +50,21 @@ public class RegisterActivity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 10;
     private ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            if (result.getResultCode() == RESULT_OK) {
-                Intent intent = result.getData();
-                if (intent == null) return;
-                uri = intent.getData();
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                    imgUser.setImageBitmap(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent intent = result.getData();
+                        if (intent == null) return;
+                        uri = intent.getData();
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                            imgUser.setImageBitmap(bitmap);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-            }
-        }
-    });
+            });
 
     //TODO: method
     private ImageView imgUser;
@@ -66,6 +73,11 @@ public class RegisterActivity extends AppCompatActivity {
     private String id, name, phone, image;
     private int role = 0;
     private Uri uri;
+    private Button btn_prev;
+    private ProgressBar bar;
+
+    //logout and login
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +87,36 @@ public class RegisterActivity extends AppCompatActivity {
         editName = (EditText) findViewById(R.id.name);
         btn_success = findViewById(R.id.btn_success);
         imgUser = findViewById(R.id.imgUser);
+        btn_prev = findViewById(R.id.btn_prev);
+        bar = findViewById(R.id.bar);
+
+        //set default image user
+        uri = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.avatar);
+
+        try {
+            Bitmap bitmap = null;
+            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+            imgUser.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        btn_prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                finish();
+            }
+        });
 
         btn_success.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (TextUtils.isEmpty(editName.getText().toString().trim())) {
                     Toast.makeText(RegisterActivity.this, "Tên không được bỏ trống", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
+                    bar.setVisibility(View.VISIBLE);
                     name = editName.getText().toString().trim();
                     phone = getIntent().getStringExtra("phoneNumber");
                     id = getIntent().getStringExtra("idToken");
@@ -104,9 +139,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             openDallery();
-        }
-        else {
-            String [] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+        } else {
+            String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
             requestPermissions(permissions, MY_REQUEST_CODE);
         }
     }
@@ -133,6 +167,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         startActivity(new Intent(RegisterActivity.this, CusomerScreenActivity.class));
                                         finish();
                                     } else {
+                                        bar.setVisibility(View.INVISIBLE);
                                         Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -141,6 +176,8 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 }
             });
+        } else {
+            Toast.makeText(this, "Bạn cần có ảnh", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -13,22 +13,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import vn.edu.tdc.barbershop.entity.Schedule;
-import vn.edu.tdc.barbershop.entity.Service;
-import vn.edu.tdc.barbershop.entity.User;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
-import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
-import vn.edu.tdc.barbershop.models.ScheduleModel;
 
 public class CusomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
@@ -88,12 +79,6 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
             case R.id.nav_address:
                 break;
             case R.id.nav_schedule: {
-                if (mCurrentFragment != FRAGMENT_SCHEDULE) {
-                    collapsingToolbarLayout.setTitle(getString(R.string.nav_schedule));
-                    replaceFragment(new ScheduleFragment());
-                    mCurrentFragment = FRAGMENT_SCHEDULE;
-                    imageViewBGToolbar.setImageResource(R.drawable.schedule_bg);
-                }
                 break;
             }
             case R.id.nav_log_out: {
@@ -124,30 +109,5 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
     @Override
     protected void onStart() {
         super.onStart();
-//        User user = new User("1",
-//                "Nguyen Van Bao",
-//                "012345",
-//                "https://firebasestorage.googleapis.com/v0/b/barber-shop-group-1.appspot.com/o/imgUser%2F1652735219735?alt=media&token=96401e1d-45a9-40d0-a14e-45fcc2b175c5",
-//                0);
-//        Service service = new Service("1",
-//                "massage",
-//                "https://firebasestorage.googleapis.com/v0/b/barber-shop-group-1.appspot.com/o/imgUser%2F1652735219735?alt=media&token=96401e1d-45a9-40d0-a14e-45fcc2b175c5",
-//                4,
-//                "good");
-//        Date date = new Date();
-//
-//        Schedule schedule = new Schedule("1", user, service, date, date, 1);
-//
-//        ScheduleModel scheduleModel = new ScheduleModel();
-//        scheduleModel.addSchedule(schedule, new ScheduleModel.IScheduleListennerModel() {
-//            @Override
-//            public void onCompleteRegisterUser(DatabaseError error) {
-//                if (error == null) {
-//                    Toast.makeText(CusomerScreenActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
-//                }else {
-//                    Toast.makeText(CusomerScreenActivity.this, "that bai", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
     }
 }
