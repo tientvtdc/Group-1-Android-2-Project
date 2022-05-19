@@ -19,8 +19,6 @@
         <activity
             android:name=".ScheduleDetailsActivity"
             android:exported="false" />
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".SignupActivity"></activity>
         <activity
             android:name=".CusomerScreenActivity"
             android:exported="true"

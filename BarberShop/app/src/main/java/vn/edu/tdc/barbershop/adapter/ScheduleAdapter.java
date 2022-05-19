@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -54,11 +55,29 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 
         Glide.with(mContext).load(schedule.getService().getImage()).error(R.drawable.anh1).placeholder(new ColorDrawable(Color.BLACK)).into(holder.imgSchedule);
         holder.txtName.setText(schedule.getService().getName());
-        holder.txtTime.setText(String.valueOf(schedule.getTimeOrder().getHours()));
+        holder.txtTime.setText(String.valueOf(schedule.getTimeOrder().getHours())
+                + ":" + String.valueOf(schedule.getTimeOrder().getMinutes()));
 
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
         holder.txtPrice.setText(currencyVN.format(schedule.getService().getPrice()));
+
+        switch (schedule.getIsFinish()) {
+            case 0:
+                holder.txtState.setText("Đang đợi");
+                holder.txtState.setTextColor(ContextCompat.getColor(mContext, R.color.comming));
+                break;
+            case 1:
+                holder.txtState.setText("Đã xong");
+                holder.txtState.setTextColor(ContextCompat.getColor(mContext, R.color.done));
+                break;
+            case 2:
+                holder.txtState.setText("Đã Hủy");
+                holder.txtState.setTextColor(ContextCompat.getColor(mContext, R.color.missed));
+                break;
+            default:
+                break;
+        }
 
         holder.cardViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +115,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         private TextView txtName;
         private TextView txtTime;
         private TextView txtPrice;
+        private TextView txtState;
 
         public ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,6 +124,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
             txtName = itemView.findViewById(R.id.txtName);
             txtTime = itemView.findViewById(R.id.txtTime);
             txtPrice = itemView.findViewById(R.id.txtPrice);
+            txtState = itemView.findViewById(R.id.txtState);
 
             cardViewItem = itemView.findViewById(R.id.layout_item_schedule);
         }

@@ -8,4 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blueDark">#0F044C</color>
+    <color name="header_dialog">#2196F3</color>
+    <color name="xam">#B5AFB1</color>
+    <color name="comming">#FFC107</color>
+    <color name="done">#4CAF50</color>
+    <color name="missed">#FF0033</color>
 </resources>

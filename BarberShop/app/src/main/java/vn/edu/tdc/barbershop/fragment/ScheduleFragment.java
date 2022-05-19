@@ -73,7 +73,17 @@ public class ScheduleFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Schedule schedule = snapshot.getValue(Schedule.class);
+                if (schedule != null) {
+                    if (scheduleArrayList == null || scheduleArrayList.isEmpty()) return;
 
+                    for (int i = 0; i < scheduleArrayList.size(); i++) {
+                        if (scheduleArrayList.get(i).getId().equals(schedule.getId())) {
+                            scheduleArrayList.set(i, schedule);
+                        }
+                    }
+                    scheduleAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override

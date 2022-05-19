@@ -3,6 +3,8 @@ package vn.edu.tdc.barbershop.entity;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Schedule implements Serializable {
     private String id;
@@ -71,5 +73,12 @@ public class Schedule implements Serializable {
 
     public void setIsFinish(int isFinish) {
         this.isFinish = isFinish;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("isFinish", isFinish);
+
+        return result;
     }
 }

@@ -97,10 +97,6 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
                 break;
             }
             case R.id.nav_log_out: {
-                mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
-                startActivity(new Intent(CusomerScreenActivity.this, SignupActivity.class));
-                finish();
                 break;
             }
         }
