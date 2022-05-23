@@ -27,4 +27,7 @@
     <string name="layout_re_send_otp">Gửi lại mã OTP</string>
     <string name="layout_enter_otp">Nhập mã OTP đã được gửi về số điện thoại của bạn</string>
     <string name="layout_hint_otp">358789</string>
+    <!--  notification  -->
+    <string name="channel_name_schedule">Schedule</string>
+    <string name="channel_description_schedule">this channel schedule</string>
 </resources>

@@ -3,10 +3,20 @@ package vn.edu.tdc.barbershop;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -32,6 +42,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
 
+import vn.edu.tdc.barbershop.application.NotificationApplication;
 import vn.edu.tdc.barbershop.entity.Schedule;
 
 public class ScheduleDetailsActivity extends AppCompatActivity {
@@ -90,9 +101,11 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(ScheduleDetailsActivity.this, "Doi Lich", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
+
 
     private void openCancelScheduleDialog(Schedule schedule) {
         final Dialog dialog = new Dialog(this);
