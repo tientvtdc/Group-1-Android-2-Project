@@ -16,17 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
         <activity
+            android:name=".UserDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".VerifyPhoneActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".DetailServiceActivity"
             android:exported="false" /> <!-- <activity -->
@@ -40,18 +37,23 @@
             android:exported="false" />
         <activity
             android:name=".ServiceListActivity"
-            android:exported="true">
+            android:exported="true"></activity>
+        <activity
+            android:name=".CustomerScreenActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BarberShop.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".UserManagementActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BarberShop.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CustomerScreenActivity"
-            android:exported="false"
-            android:theme="@style/Theme.BarberShop.NoActionBar"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
     </application>
 
 </manifest>

@@ -1,28 +1,39 @@
 package vn.edu.tdc.barbershop.entity;
 
-public class User {
-    private int id;
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private String id;
+    private String image;
     private String name;
     private String phone;
-    private String password;
-    private String image;
     private int role;
 
-    public User(int id, String name, String phone, String password, String image, int role) {
+    public User() {
+    }
+
+    public User(String id, String image, String name, String phone, int role) {
         this.id = id;
+        this.image = image;
         this.name = name;
         this.phone = phone;
-        this.password = password;
-        this.image = image;
         this.role = role;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {
@@ -41,27 +52,22 @@ public class User {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public int getRole() {
         return role;
     }
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", image='" + image + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

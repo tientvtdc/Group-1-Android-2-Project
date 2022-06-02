@@ -5,4 +5,10 @@
         <item name="cornerSize">50dp</item>
         <item name="color">@color/white</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/design_default_color_primary</item>
+        <item name="colorPrimaryDark">@color/design_default_color_primary_dark</item>
+        <item name="colorAccent">@color/design_default_color_secondary_variant</item>
+    </style>
 </resources>

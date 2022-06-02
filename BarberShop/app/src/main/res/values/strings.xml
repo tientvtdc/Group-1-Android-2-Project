@@ -38,4 +38,6 @@
     <string name="title_dialog_logout">Bạn thực sự muốn đăng xuất</string>
     <string name="text_positive_btn">OK</string>
     <string name="text_neutral_btn">Cancel</string>
+
+    <!--    User Detail    -->
 </resources>

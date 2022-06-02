@@ -68,6 +68,25 @@
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/menu/menu_nav.xml" value="0.25833333333333336" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.163" />
         <entry key="..\:/Android/ProjectAnroid2/BarberShop/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.163" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable/border_radius.xml" value="0.1" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_add_new_service.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_customer.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_detail_service.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_service_detail.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_service_list.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/activity_user_detail.xml" value="0.25" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/fragment_home.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/fragment_schedule.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/image_slider_layout_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_featured_service.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_manage_service.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/item_service.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/layout_header_nav.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/layout_user_list.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/layout_user_management.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/layout_user_management_recyclerview_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/layout_user_row.xml" value="0.15" />
+        <entry key="..\:/Android/project/Group-1-Android-2-Project/BarberShop/app/src/main/res/layout/option_item.xml" value="0.17074275362318841" />
       </map>
     </option>
   </component>

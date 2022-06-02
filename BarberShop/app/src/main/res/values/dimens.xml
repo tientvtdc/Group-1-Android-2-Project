@@ -9,4 +9,8 @@
     <dimen name="corner_50dp">50dp</dimen>
     <dimen name="padding_15dp">15dp</dimen>
     <dimen name="text_size_40dp">40sp</dimen>
+    <dimen name="user_row_height">180dp</dimen>
+    <dimen name="user_row_width">180dp</dimen>
+    <!--  User Detail  -->
+    <dimen name="user_detail_font_size">24sp</dimen>
 </resources>
