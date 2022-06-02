@@ -21,12 +21,10 @@ import vn.edu.tdc.barbershop.entity.Service;
 import vn.edu.tdc.barbershop.entity.User;
 
 public class UserAPIS {
-    // Fields
-
+    private static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private static DatabaseReference myRef =  database.getReference("users");
 
     public static void getAllUsers(UserAdapter mUserAdapter, ArrayList<User> mUser, Context context) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -37,7 +35,6 @@ public class UserAPIS {
                     // here you can access to name property like university.name
                 }
                 mUserAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -45,5 +42,10 @@ public class UserAPIS {
                 System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
+    }
+
+    public static void updateUserRole(String id, int role){
+        Log.d("aaa",    myRef.child(id).child("role").setValue(role) + "");
+
     }
 }

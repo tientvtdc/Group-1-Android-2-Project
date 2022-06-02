@@ -5,6 +5,7 @@
     android:ellipsize="end"
     android:padding="16dp"
     android:maxLines="1"
+    android:textSize="@dimen/user_detail_font_size"
     android:textAppearance="?attr/textAppearanceSubtitle1">
 
 </TextView>

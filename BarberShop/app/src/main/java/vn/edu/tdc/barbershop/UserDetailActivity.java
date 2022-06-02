@@ -3,15 +3,19 @@ package vn.edu.tdc.barbershop;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import vn.edu.tdc.barbershop.apis.UserAPIS;
 import vn.edu.tdc.barbershop.entity.Service;
 import vn.edu.tdc.barbershop.entity.User;
 
@@ -21,6 +25,8 @@ public class UserDetailActivity extends AppCompatActivity {
     ImageView userImage;
     TextView tvUserName;
     TextView tvUserPhone;
+    Button btnSaveUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +42,7 @@ public class UserDetailActivity extends AppCompatActivity {
         tvUserName = (TextView) findViewById(R.id.tv_userdetail_name);
         tvUserPhone = (TextView) findViewById(R.id.tv_userdetail_phonenumber);
         autoCompleteTextView = findViewById(R.id.autoCompleteText);
+        btnSaveUser = findViewById(R.id.btn_save_user);
 
         tvUserName.setText(user.getName());
         tvUserPhone.setText(user.getPhone());
@@ -53,8 +60,20 @@ public class UserDetailActivity extends AppCompatActivity {
                 autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
                 break;
         }
-
         autoCompleteTextView.setAdapter(arrayAdapter);
+
+        btnSaveUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = -1;
+                if(autoCompleteTextView.getText().toString().equals("Người quản trị")) position = 2;
+                else if(autoCompleteTextView.getText().toString().equals("Quản lý")) position = 1;
+                else if(autoCompleteTextView.getText().toString().equals("Người dùng")) position = 0;
+                Log.d("aaaa", position + "");
+                UserAPIS.updateUserRole(user.getId(), position != -1 ? position : user.getRole());
+                finish();
+            }
+        });
 
         btnBack.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,5 +81,9 @@ public class UserDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
     }
+
 }
