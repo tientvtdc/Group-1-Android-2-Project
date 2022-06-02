@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -17,8 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import vn.edu.tdc.barbershop.apis.UserAPIS;
-import vn.edu.tdc.barbershop.entity.Service;
+import vn.edu.tdc.barbershop.apis.UserAPIs;
 import vn.edu.tdc.barbershop.entity.User;
 
 public class UserDetailActivity extends AppCompatActivity {
@@ -95,7 +92,7 @@ public class UserDetailActivity extends AppCompatActivity {
                         if(autoCompleteTextView.getText().toString().equals("Người quản trị")) position = 2;
                         else if(autoCompleteTextView.getText().toString().equals("Quản lý")) position = 1;
                         else if(autoCompleteTextView.getText().toString().equals("Người dùng")) position = 0;
-                        UserAPIS.updateUserRole(user.getId(), position != -1 ? position : user.getRole());
+                        UserAPIs.updateUserRole(user.getId(), position != -1 ? position : user.getRole());
                         finish();
                     }
                 })

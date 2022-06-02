@@ -20,7 +20,7 @@ import vn.edu.tdc.barbershop.adapter.UserAdapter;
 import vn.edu.tdc.barbershop.entity.Service;
 import vn.edu.tdc.barbershop.entity.User;
 
-public class UserAPIS {
+public class UserAPIs {
     private static FirebaseDatabase database = FirebaseDatabase.getInstance();
     private static DatabaseReference myRef =  database.getReference("users");
 
@@ -45,7 +45,6 @@ public class UserAPIS {
     }
 
     public static void updateUserRole(String id, int role){
-        Log.d("aaa",    myRef.child(id).child("role").setValue(role) + "");
-
+        myRef.child(id).child("role").setValue(role) ;
     }
 }
