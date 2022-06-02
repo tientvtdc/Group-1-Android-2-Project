@@ -28,6 +28,7 @@ public class UserDetailActivity extends AppCompatActivity {
     TextView tvUserName;
     TextView tvUserPhone;
     Button btnSaveUser;
+    String TAG = "test";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +68,8 @@ public class UserDetailActivity extends AppCompatActivity {
         btnSaveUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = -1;
-                if(autoCompleteTextView.getText().toString().equals("Người quản trị")) position = 2;
-                else if(autoCompleteTextView.getText().toString().equals("Quản lý")) position = 1;
-                else if(autoCompleteTextView.getText().toString().equals("Người dùng")) position = 0;
-                Log.d("aaaa", position + "");
-                UserAPIS.updateUserRole(user.getId(), position != -1 ? position : user.getRole());
-                finish();
+                AlertDialog diaBox = AskOption(user);
+                diaBox.show();
             }
         });
 
@@ -85,27 +81,28 @@ public class UserDetailActivity extends AppCompatActivity {
         });
     }
 
-    private AlertDialog AskOption()
+    private AlertDialog AskOption(User user)
     {
         AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
                 // set message, title, and icon
-                .setTitle("Delete")
-                .setMessage("Do you want to Delete")
-                .setIcon(R.drawable.delete)
-
-                .setPositiveButton("Delete", new DialogInterface().OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        //your deleting code
-                        dialog.dismiss();
-                    }
-
-                })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setTitle("Lưu người dùng")
+                .setMessage("Bạn có muốn lưu người dùng hiện tại?")
+                .setIcon(R.drawable.save)
+                .setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
+                    @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        int position = -1;
+                        if(autoCompleteTextView.getText().toString().equals("Người quản trị")) position = 2;
+                        else if(autoCompleteTextView.getText().toString().equals("Quản lý")) position = 1;
+                        else if(autoCompleteTextView.getText().toString().equals("Người dùng")) position = 0;
+                        UserAPIS.updateUserRole(user.getId(), position != -1 ? position : user.getRole());
+                        finish();
+                    }
+                })
+                .setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-
                     }
                 })
                 .create();

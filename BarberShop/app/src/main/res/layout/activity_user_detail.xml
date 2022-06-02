@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="User Detail"/>
+            app:title="Chi tiết người dùng"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.cardview.widget.CardView
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="User Role"
+        android:hint="Vai trò"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_userdetail_phonenumber">
@@ -90,7 +90,7 @@
         android:textSize="@dimen/user_detail_font_size"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="SAVE"
+        android:text="LƯU"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu" />
