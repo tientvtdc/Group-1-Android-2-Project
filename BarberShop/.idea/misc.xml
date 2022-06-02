@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/BuiDuyKhanh/BarberShop/app/src/main/res/layout/activity_add_new_service.xml" value="0.264" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/BuiDuyKhanh/BarberShop/app/src/main/res/layout/activity_customer.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/BuiDuyKhanh/BarberShop/app/src/main/res/layout/activity_detail_service.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/BuiDuyKhanh/BarberShop/app/src/main/res/layout/fragment_schedule.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/BuiDuyKhanh/BarberShop/app/src/main/res/layout/item_featured_service.xml" value="0.25416666666666665" />
+        <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/BuiDuyKhanh/BarberShop/app/src/main/res/layout/item_manage_service.xml" value="0.25416666666666665" />
         <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable-v24/ic_lock.xml" value="0.155" />
         <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable-v24/ic_profile.xml" value="0.1" />
         <entry key="..\:/123-BaiTapVsTaiLieuHocTap/Android/Group-1-Android-2-Project/BarberShop/app/src/main/res/drawable-v24/ic_schedule.xml" value="0.1" />

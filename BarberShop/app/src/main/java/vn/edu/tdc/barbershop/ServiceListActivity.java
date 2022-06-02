@@ -119,14 +119,25 @@ public class ServiceListActivity extends AppCompatActivity {
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 Service service = snapshot.getValue(Service.class);
                 if (service != null) {
-                    mListServices.remove(service);
-                    for (Service sv :
-                            mListServices) {
+                    mListServices.add(service);
+                    // Tìm sv trong mList sau
+                    List<Service> toRemove = new ArrayList<>();
+                    for (Service sv : mListServices) {
                         if (service.getID().equals(sv.getID())) {
-                            mListServices.remove(sv);
+                            toRemove.add(sv);
                         }
                     }
+                    mListServices.removeAll(toRemove);
                     manageServiceAdapter.notifyDataSetChanged();
+
+//                    mListServices.remove(service);
+//                    for (Service sv :
+//                            mListServices) {
+//                        if (service.getID().equals(sv.getID())) {
+//                            mListServices.remove(sv);
+//                        }
+//                    }
+//                    manageServiceAdapter.notifyDataSetChanged();
                 }
             }
 

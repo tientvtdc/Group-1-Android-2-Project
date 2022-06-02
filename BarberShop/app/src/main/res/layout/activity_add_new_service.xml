@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNewServiceActivity">
+    tools:context=".AddNewServiceActivity"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="Add New Service"
+            app:title="Thêm Dịch Vụ"
             android:background="@color/white">
 
         </com.google.android.material.appbar.MaterialToolbar>
@@ -30,10 +31,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
         android:hint="@string/txt_name_add_service"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         app:counterEnabled="true"
         app:counterMaxLength="50"
         app:endIconMode="clear_text"
@@ -58,17 +58,14 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:hint="@string/txt_price_add_service"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         app:counterEnabled="true"
         app:counterMaxLength="20"
         app:endIconMode="clear_text"
         app:helperText="Required*"
         app:helperTextTextColor="@color/red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputNameLayout"
         app:startIconDrawable="@drawable/ic_money">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -86,17 +83,14 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:hint="@string/txt_description_add_service"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         app:counterEnabled="true"
         app:counterMaxLength="200"
         app:endIconMode="clear_text"
         app:helperText="Required*"
         app:helperTextTextColor="@color/red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputPriceLayout"
         app:startIconDrawable="@drawable/ic_description">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -108,29 +102,55 @@
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgInput"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputDesLayout"
-        app:srcCompat="@drawable/blank_img" />
-
-    <Button
-        android:id="@+id/btnAddNewService"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputTimeLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="#FF8C00"
-        android:text="@string/btn_add_new_service"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgInput" />
+        android:hint="Nhập số phút"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        app:endIconMode="clear_text"
+        app:helperText="Required*"
+        app:helperTextTextColor="@color/red"
+        app:startIconDrawable="@drawable/ic_time">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputTime"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:maxLength="10"
+            android:inputType="number"
+            android:textColorHint="@color/txt_input_add_new_service"
+            tools:ignore="TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgInput"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/blank_img" />
+
+        <Button
+            android:id="@+id/btnAddNewService"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8C00"
+            android:text="@string/btn_add_new_service"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/imgInput" />
+
+    </LinearLayout>
+
+</LinearLayout>

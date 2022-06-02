@@ -1,6 +1,8 @@
 package vn.edu.tdc.barbershop.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class Service implements Serializable {
     private String ID;
@@ -8,13 +10,17 @@ public class Service implements Serializable {
     private String image;
     private double price;
     private String description;
+    private int time;
+    private String create_at;
 
-    public Service(String ID, String name, String image, double price, String description) {
+    public Service(String ID, String name, String image, double price, String description, int time) {
         this.ID = ID;
         this.name = name;
         this.image = image;
         this.price = price;
         this.description = description;
+        this.time = time;
+        this.create_at = (new Timestamp((new Date()).getTime())).toString();
     }
 
     public Service(){
@@ -58,5 +64,21 @@ public class Service implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public String getCreate_at() {
+        return create_at;
+    }
+
+    public void setCreate_at(String create_at) {
+        this.create_at = create_at;
     }
 }
