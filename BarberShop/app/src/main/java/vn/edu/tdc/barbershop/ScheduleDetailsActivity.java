@@ -38,6 +38,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
     //firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference dataRef = database.getReference("schedule");
+    private DatabaseReference dataRef = database.getReference("orders");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +75,13 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
         textName.setText(schedule.getService().getName());
         textDescription.setText(schedule.getService().getDescription());
-        textTime.setText(String.valueOf(schedule.getTimeOrder().getHours())
-                + ":" + String.valueOf(schedule.getTimeOrder().getMinutes()));
 
-        textDay.setText(String.valueOf(schedule.getTimeOrder().getDate())
-                + "-" + String.valueOf(schedule.getTimeOrder().getMonth())
-                + "-" + String.valueOf(schedule.getTimeOrder().getYear()));
+        //format time
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+        textTime.setText(simpleDateFormat.format(schedule.getCalendarOrder().getTime()));
+
+        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
+        textDay.setText(s.format(schedule.getCalendarOrder().getTime()));
 
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
@@ -138,7 +140,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         btnAgree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                schedule.setIsFinish(2);
+                schedule.setFinish(2);
                 dataRef.child(schedule.getId()).updateChildren(schedule.toMap(), new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {

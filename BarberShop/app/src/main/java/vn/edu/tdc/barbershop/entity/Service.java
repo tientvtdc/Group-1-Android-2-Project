@@ -8,17 +8,23 @@ public class Service implements Serializable {
     private String image;
     private double price;
     private String description;
+    private String create_at;
+    private int time;
 
-    public Service(String ID, String name, String image, double price, String description) {
+    public Service() {
+
+    }
+
+    public Service(String ID, String name, String image, double price, String description, String create_at, int time) {
         this.ID = ID;
         this.name = name;
         this.image = image;
         this.price = price;
         this.description = description;
+        this.create_at = create_at;
+        this.time = time;
     }
-    public Service(){
 
-    }
     public String getID() {
         return ID;
     }
@@ -57,5 +63,21 @@ public class Service implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCreate_at() {
+        return create_at;
+    }
+
+    public void setCreate_at(String create_at) {
+        this.create_at = create_at;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }

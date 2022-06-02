@@ -15,7 +15,7 @@ public class ServiceModel {
 
     public void addNewSevice(String name,String image, Double price,String description) {
         String id = database.push().getKey();
-        Service service = new Service(id, name, image, 100000, description);
+        Service service = new Service(id, name, image, 100000, description, "1231214324", 15);
         database.child(id).setValue(service);
     }
 }

@@ -14,7 +14,7 @@ import vn.edu.tdc.barbershop.entity.User;
 
 public class UserModel {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private final static String NAME_TABLE = "user";
+    private final static String NAME_TABLE = "users";
 
     public void regiterUser(User user, IUserListennerModel iUserListennerModel) {
         DatabaseReference databaseReference = database.getReference(NAME_TABLE);

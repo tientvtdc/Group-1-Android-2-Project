@@ -60,7 +60,7 @@ public class ScheduleFragment extends Fragment {
     }
 
     private void getScheduleArrayList() {
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("schedule");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("orders");
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {

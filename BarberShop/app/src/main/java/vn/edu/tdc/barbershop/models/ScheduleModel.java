@@ -13,7 +13,7 @@ import vn.edu.tdc.barbershop.entity.Schedule;
 
 public class ScheduleModel {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private final static String NAME_TABLE = "schedule";
+    private final static String NAME_TABLE = "orders";
 
     public void addSchedule(Schedule schedule, IScheduleListennerModel listennerModel) {
         DatabaseReference databaseReference = database.getReference(NAME_TABLE);
