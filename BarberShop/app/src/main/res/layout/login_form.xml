@@ -24,9 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/sign_in"
+            android:text="@string/loi_chao"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_40dp"
+            android:textSize="@dimen/text_size_25dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -39,10 +39,11 @@
         >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/loi_choo_login"
-            android:textSize="@dimen/text_size_loi_chao"
+            android:textSize="15sp"
+            android:paddingLeft="@dimen/padding_15dp"
             />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -88,13 +89,6 @@
             app:iconGravity="end"
             />
 
-        <TextView
-            android:layout_marginTop="15dp"
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/register"
-            android:textColor="@color/black" />
     </LinearLayout>
 
 

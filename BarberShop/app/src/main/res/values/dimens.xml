@@ -9,4 +9,5 @@
     <dimen name="corner_50dp">50dp</dimen>
     <dimen name="padding_15dp">15dp</dimen>
     <dimen name="text_size_40dp">40sp</dimen>
+    <dimen name="text_size_25dp">25dp</dimen>
 </resources>
