@@ -1,5 +1,6 @@
 package vn.edu.tdc.barbershop.service;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -21,16 +23,31 @@ import androidx.core.app.NotificationCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import vn.edu.tdc.barbershop.R;
+import vn.edu.tdc.barbershop.ScheduleDetailsActivity;
 import vn.edu.tdc.barbershop.application.NotificationApplication;
 import vn.edu.tdc.barbershop.entity.Schedule;
 
 public class NotificationScheduleService extends JobService {
 
     private boolean jobCancelled;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("orders");
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String idUser = "VGXCM73STFRxN1uxNBz6tJmy8s02";
+    private long timeNotification = (20 * 60 * 1000);
+    private List<String> listNotification = new ArrayList<String>();
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
@@ -51,23 +68,85 @@ public class NotificationScheduleService extends JobService {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 20; i++) {
+                int i = 0;
+                while (true) {
                     if (jobCancelled) return;
-                    Log.d("TAG", "run: " + i);
+                    Log.d("TAG", "run: " + i++);
+                    Log.d("TAG", "run: " + listNotification.toString());
+
+                    //DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("time");
+                    //dataRef.setValue(i);
+
+                    //get id user client
+//                    if (user != null) {
+//                        idUser = user.getUid();
+//                    }
+//                    else {
+//                        return;
+//                    }
+
+                    //get schedule firebase
+                    databaseReference.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            Schedule schedule = snapshot.getValue(Schedule.class);
+                            if (schedule != null) {
+                                //customer = user id
+                                if (idUser.equalsIgnoreCase(schedule.getCustomer().getId())) {
+                                    //check time notification < 20p
+                                    if ((schedule.getTimeOrder() - Calendar.getInstance().getTimeInMillis()) < timeNotification) {
+//                                        if (!listNotification.contains(schedule.getId())) {
+//                                            sendNotification(schedule, getBaseContext());
+//                                            listNotification.add(schedule.getId());
+//                                        }
+                                        sendNotification(schedule, getBaseContext());
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    // delay
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(30000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                Log.d("TAG", "run: finish");
-                jobFinished(jobParameters, false);
+                //Log.d("TAG", "run: finish");
+                //jobFinished(jobParameters, false);
             }
         }).start();
     }
 
     //TODO: notification
-    private void sendNotification(Intent intent, Schedule schedule, Context mContext) {
+    private void sendNotification(Schedule schedule, Context mContext) {
+
+        Intent intent = new Intent(mContext, ScheduleDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("schedule", schedule);
+        intent.putExtras(bundle);
+
         final Bitmap[] bitmap = {null};
         Glide.with(mContext)
                 .asBitmap()
@@ -95,7 +174,7 @@ public class NotificationScheduleService extends JobService {
                                 .setSound(uriSound) //set sound default
                                 .setContentIntent(pendingIntent) // start activity
                                 .setAutoCancel(true) //auto clear notification click
-                                //.setPriority(NotificationCompat.PRIORITY_MAX) // set do uu tien <- 8.0
+                                .setPriority(NotificationCompat.PRIORITY_MAX) // set do uu tien <- 8.0
                                 //.setColor(getResources().getColor(R.color.header_dialog)) //set color icon
                                 .setStyle(new NotificationCompat.BigTextStyle().bigText(schedule.getService().getDescription())) //show full content
                                 .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap[0]).bigLargeIcon(null)) //show full image

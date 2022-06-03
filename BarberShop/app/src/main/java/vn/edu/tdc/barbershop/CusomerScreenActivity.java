@@ -38,6 +38,7 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
     private static final int FRAGMENT_ADDRESS = 2;
+    private static final int JOB_ID = 1;
 
     private int mCurrentFragment = 0;
 
@@ -124,38 +125,13 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
     @Override
     protected void onStart() {
         super.onStart();
-        //ComponentName componentName = new ComponentName(this, NotificationScheduleService.class);
-        //JobInfo jobInfo = new JobInfo.Builder(JOB_ID, componentName)
-                //.setPersisted(true)
-                //.build();
-        //JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        //jobScheduler.schedule(jobInfo);
-
-//        User user = new User("1",
-//                "Nguyen Van Bao",
-//                "012345",
-//                "https://firebasestorage.googleapis.com/v0/b/barber-shop-group-1.appspot.com/o/imgUser%2F1652735219735?alt=media&token=96401e1d-45a9-40d0-a14e-45fcc2b175c5",
-//                0);
-//        Service service = new Service("1",
-//                "massage",
-//                "https://firebasestorage.googleapis.com/v0/b/barber-shop-group-1.appspot.com/o/imgUser%2F1652735219735?alt=media&token=96401e1d-45a9-40d0-a14e-45fcc2b175c5",
-//                4,
-//                "good");
-//        Date date = new Date();
-//
-//        Schedule schedule = new Schedule("1", user, service, date, date, 1);
-//
-//        ScheduleModel scheduleModel = new ScheduleModel();
-//        scheduleModel.addSchedule(schedule, new ScheduleModel.IScheduleListennerModel() {
-//            @Override
-//            public void onCompleteRegisterUser(DatabaseError error) {
-//                if (error == null) {
-//                    Toast.makeText(CusomerScreenActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
-//                }else {
-//                    Toast.makeText(CusomerScreenActivity.this, "that bai", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+//        ComponentName componentName = new ComponentName(this, NotificationScheduleService.class);
+//        JobInfo jobInfo = new JobInfo.Builder(JOB_ID, componentName)
+//                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+//                .setPersisted(true)
+//                .build();
+//        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+//        jobScheduler.schedule(jobInfo);
     }
 
     @Override

@@ -5,6 +5,9 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +19,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +36,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -47,9 +53,11 @@ import vn.edu.tdc.barbershop.ScheduleDetailsActivity;
 import vn.edu.tdc.barbershop.application.NotificationApplication;
 import vn.edu.tdc.barbershop.entity.Schedule;
 import vn.edu.tdc.barbershop.service.AlarmScheduleReceiver;
+import vn.edu.tdc.barbershop.service.NotificationScheduleService;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder> {
 
+    private static final int JOB_ID = 1;
     private List<Schedule> schedules;
     private Context mContext;
     private AlarmManager alarmManager;
@@ -115,25 +123,28 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         intent.putExtras(bundle);
 
         //register alarm schedule
-        alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        Intent intent1 = new Intent(mContext, AlarmScheduleReceiver.class);
-        intent1.putExtras(bundle);
+//        alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+//        Intent intent1 = new Intent(mContext, AlarmScheduleReceiver.class);
+//
+//        pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        alarmManager.set(
+//                AlarmManager.RTC_WAKEUP
+//                ,(Calendar.getInstance().getTimeInMillis() + (1 * 60 * 1000))
+//                ,pendingIntent
+//                );
 
-        pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        ComponentName componentName = new ComponentName(mContext, NotificationScheduleService.class);
+        JobInfo jobInfo = new JobInfo.Builder(JOB_ID, componentName)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .setPersisted(true)
+                .setRequiresCharging(false)
+                //.setPeriodic(15 * 60 * 1000)
+                .build();
+        JobScheduler jobScheduler = (JobScheduler) mContext.getSystemService(mContext.JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(jobInfo);
 
-        Intent intent2 = new Intent();
-        intent2.putExtras(bundle);
-        try {
-            pendingIntent.send(mContext, 0, intent2);
-        } catch (PendingIntent.CanceledException e) {
-            e.printStackTrace();
-        }
-
-        alarmManager.set(
-                AlarmManager.RTC_WAKEUP
-                ,(Calendar.getInstance().getTimeInMillis() + (1 * 60 * 1000))
-                ,pendingIntent
-                );
+        //Log.d("time", "onClickLayoutItem: " + (Calendar.getInstance().getTimeInMillis() + (30 * 60 * 1000)));
 
         mContext.startActivity(intent);
     }
