@@ -1,6 +1,7 @@
 package vn.edu.tdc.barbershop.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Service implements Serializable {
     private String ID;
@@ -58,5 +59,18 @@ public class Service implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Service service = (Service) o;
+        return Objects.equals(ID, service.ID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID);
     }
 }

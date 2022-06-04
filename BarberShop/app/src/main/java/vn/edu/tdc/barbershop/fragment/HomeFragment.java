@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
@@ -40,11 +41,16 @@ import vn.edu.tdc.barbershop.entity.Service;
 import vn.edu.tdc.barbershop.interface_listener.IClickItemServiceListener;
 
 public class HomeFragment extends Fragment {
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("services");
+
     private FeaturedServiceAdapter featuredServiceAdapter;
     private RecyclerView rcvFeaturedService;
 
     private RecyclerView rcvService;
     private ServiceAdpapter serviceAdpapter;
+
+    private List<Service> serviceNewList;
+    private SliderNewServiceAdapter sliderNewServiceAdapter;
 
     @Nullable
     @Override
@@ -61,16 +67,25 @@ public class HomeFragment extends Fragment {
         serviceAdpapter = new ServiceAdpapter(services, new IClickItemServiceListener() {
             @Override
             public void onClickItem(Service service) {
-                onCLickGoDetaiService( service);
+                onCLickGoDetaiService(service);
             }
         });
 
+        serviceNewList = new ArrayList<>();
         SliderView sliderView = view.findViewById(R.id.imageSlider);
-        SliderNewServiceAdapter sliderNewServiceAdapter = new SliderNewServiceAdapter(view.getContext(),services);
+        sliderNewServiceAdapter = new SliderNewServiceAdapter(view.getContext(), serviceNewList);
         sliderView.setSliderAdapter(sliderNewServiceAdapter);
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         sliderView.startAutoCycle();
+        getNewServices();
+        sliderNewServiceAdapter.setIClickItemServiceListener(new IClickItemServiceListener() {
+            @Override
+            public void onClickItem(Service service) {
+                onCLickGoDetaiService(service);
+            }
+        });
+
         rcvService.setAdapter(serviceAdpapter);
 
         rcvFeaturedService = (RecyclerView) view.findViewById(R.id.featured_service_recycler_view);
@@ -81,17 +96,13 @@ public class HomeFragment extends Fragment {
         featuredServiceAdapter.setServiceList(services);
         rcvFeaturedService.setAdapter(featuredServiceAdapter);
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("services");
-
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Service service = snapshot.getValue(Service.class);
                 if (service != null) {
-                    StorageReference storageRef = FirebaseStorage.getInstance().getReference("imgService");
                     services.add(service);
                     serviceAdpapter.notifyDataSetChanged();
-                    featuredServiceAdapter.notifyDataSetChanged();
                     sliderNewServiceAdapter.notifyDataSetChanged();
                 }
             }
@@ -103,7 +114,11 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                Service service = snapshot.getValue(Service.class);
+                if (service != null) {
+                    services.remove(service);
+                    serviceAdpapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -118,16 +133,52 @@ public class HomeFragment extends Fragment {
         });
 
 
-
         return view;
     }
 
     private void onCLickGoDetaiService(Service service) {
-        Intent intent  =  new Intent(this.getActivity(), ServiceDetailActivity.class);
+        Intent intent = new Intent(this.getActivity(), ServiceDetailActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("service",service);
+        bundle.putSerializable("service", service);
         intent.putExtras(bundle);
         startActivity(intent);
     }
 
+    private void getNewServices() {
+        Query query = mDatabase.limitToFirst(5);
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Service service = snapshot.getValue(Service.class);
+                if (service != null) {
+                    serviceNewList.add(service);
+                    sliderNewServiceAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                Service service = snapshot.getValue(Service.class);
+                if (service != null) {
+                    serviceNewList.remove(service);
+                    sliderNewServiceAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 }
