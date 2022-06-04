@@ -106,8 +106,6 @@ public class RegisterActivity extends AppCompatActivity {
         btn_prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
                 finish();
             }
         });
