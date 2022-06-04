@@ -52,6 +52,8 @@ public class HomeFragment extends Fragment {
     private List<Service> serviceNewList;
     private SliderNewServiceAdapter sliderNewServiceAdapter;
 
+    private List<Service> serviceCheapList;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -89,13 +91,17 @@ public class HomeFragment extends Fragment {
         rcvService.setAdapter(serviceAdpapter);
 
         rcvFeaturedService = (RecyclerView) view.findViewById(R.id.featured_service_recycler_view);
-
         rcvFeaturedService.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-
         featuredServiceAdapter = new FeaturedServiceAdapter();
-        featuredServiceAdapter.setServiceList(services);
+        serviceCheapList = new ArrayList<>();
+        featuredServiceAdapter.setServiceList(serviceCheapList);
         rcvFeaturedService.setAdapter(featuredServiceAdapter);
-
+        featuredServiceAdapter.setIClickItemServiceListener(new IClickItemServiceListener() {
+            @Override
+            public void onClickItem(Service service) {
+                onCLickGoDetaiService(service);
+            }
+        });
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -103,7 +109,7 @@ public class HomeFragment extends Fragment {
                 if (service != null) {
                     services.add(service);
                     serviceAdpapter.notifyDataSetChanged();
-                    sliderNewServiceAdapter.notifyDataSetChanged();
+                    featuredServiceAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -131,7 +137,36 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        mDatabase.orderByChild("price").limitToFirst(5).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Service service = snapshot.getValue(Service.class);
+                if (service != null) {
+                    serviceCheapList.add(service);
+                    featuredServiceAdapter.notifyDataSetChanged();
+                }
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return view;
     }

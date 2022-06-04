@@ -22,7 +22,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_detail_service">Chi tiết dịch vụ</string>
     <string name="btn_text_dat_lich">Đặt lịch</string>
-    <string name="heading_feature_service">Dịch vụ nổi bật</string>
+    <string name="heading_feature_service">Dịch vụ giá rẻ</string>
     <string name="sign_in">Đăng nhập</string>
     <string name="loi_chao">Chào mừng đến với Barber Shop</string>
     <string name="register">Đăng ký</string>
