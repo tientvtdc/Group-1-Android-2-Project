@@ -118,7 +118,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         btnAgree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OrderDetailsActivity.this, CusomerScreenActivity.class);
+                Intent intent = new Intent(OrderDetailsActivity.this, CustomerScreenActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("order", order);
                 intent.putExtras(bundle);
