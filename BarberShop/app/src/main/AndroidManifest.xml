@@ -26,6 +26,11 @@
             android:name=".VerifyPhoneActivity"
             android:exported="false" />
         <activity
+            android:name=".OrderDetailsActivity"
+            android:parentActivityName=".CusomerScreenActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -47,6 +52,11 @@
             android:exported="false">
 
         </activity>
+        <activity
+            android:name=".CusomerScreenActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BarberShop.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".CustomerScreenActivity"
             android:exported="false"

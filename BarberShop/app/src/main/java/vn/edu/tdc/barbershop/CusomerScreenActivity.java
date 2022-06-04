@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
+import vn.edu.tdc.barbershop.fragment.OrderFragment;
 
 public class CusomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
@@ -77,6 +78,12 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
             case R.id.nav_address:
                 break;
             case R.id.nav_schedule: {
+                if (mCurrentFragment != FRAGMENT_SCHEDULE) {
+                    collapsingToolbarLayout.setTitle(getString(R.string.nav_schedule));
+                    replaceFragment(new OrderFragment());
+                    mCurrentFragment = FRAGMENT_SCHEDULE;
+                    imageViewBGToolbar.setImageResource(R.drawable.schedule_bg);
+                }
                 break;
             }
             case R.id.nav_log_out: {
