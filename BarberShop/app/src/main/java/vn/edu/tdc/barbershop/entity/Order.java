@@ -2,11 +2,10 @@ package vn.edu.tdc.barbershop.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Schedule implements Serializable {
+public class Order implements Serializable {
     private String id;
     private User customer;
     private Service service;
@@ -14,11 +13,11 @@ public class Schedule implements Serializable {
     private long timeFinish;
     private int finish;
 
-    public Schedule() {
+    public Order() {
 
     }
 
-    public Schedule(String id, User customer, Service service, long timeOrder, long timeFinish, int finish) {
+    public Order(String id, User customer, Service service, long timeOrder, long timeFinish, int finish) {
         this.id = id;
         this.customer = customer;
         this.service = service;

@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name=".application.NotificationApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_logo"
         android:label="@string/app_name"
@@ -19,21 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
 
-        <receiver android:name=".service.AlarmScheduleReceiver"/>
-
-        <service android:name=".service.NotificationScheduleService"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
-
-        <service
-            android:name=".service.MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
         <activity
-            android:name=".ScheduleDetailsActivity"
+            android:name=".OrderDetailsActivity"
             android:parentActivityName=".CusomerScreenActivity"
             android:exported="false" />
 

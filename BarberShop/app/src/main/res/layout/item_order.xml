@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    android:id="@+id/layout_item_schedule"
+    android:id="@+id/layout_item_order"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    android:background="@drawable/bg_header_dialog"
     app:cardCornerRadius="5dp"
     app:contentPadding="5dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgSchedule"
+        android:id="@+id/imgOrder"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
         android:src="@drawable/anh1"/>
 
     <LinearLayout
-        android:layout_toEndOf="@+id/imgSchedule"
+        android:layout_toEndOf="@+id/imgOrder"
         android:layout_marginStart="60dp"
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
@@ -63,21 +64,6 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:gravity="center"
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/txtState"
-                android:textColor="@color/done"
-                android:textSize="16sp"
-                android:text="Đã Xong"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
 
     </LinearLayout>
