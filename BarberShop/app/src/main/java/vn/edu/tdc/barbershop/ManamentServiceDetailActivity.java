@@ -11,7 +11,7 @@ public class ManamentServiceDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manament_schedule_detail);
 
-        //Màn hình chi tiết một lịch hẹn
+        //Màn hình chi tiết một lịch hẹn Hiển thị ra chỗ này 
 //        Bundle bundle = getIntent().getBundleExtra();
 //        if(bundle == null){
 //            return;
