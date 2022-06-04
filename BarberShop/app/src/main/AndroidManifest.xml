@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="vn.edu.tdc.barbershop">
+    package="vn.edu.tdc.barbershop" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,19 +14,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BarberShop">
+        android:theme="@style/Theme.BarberShop" >
         <activity
             android:name=".ManageDetailServiceActivity"
-            android:exported="false" />
-        <!-- <activity -->
-        <!-- android:name=".ServiceListActivity" -->
-        <!-- android:exported="false" /> -->
-         <activity
-         android:name=".AddNewServiceActivity"
+            android:exported="false" /> <!-- <activity -->
+        <activity android:name=".ServiceListActivity"
          android:exported="false" />
         <activity
-            android:name=".ServiceListActivity"
-            android:exported="true">
+            android:name=".AddNewServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManageServiceScreenActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

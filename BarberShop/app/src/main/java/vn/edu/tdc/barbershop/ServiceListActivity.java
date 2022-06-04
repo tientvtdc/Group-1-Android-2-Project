@@ -36,6 +36,7 @@ import vn.edu.tdc.barbershop.models.ServiceModel;
 
 public class ServiceListActivity extends AppCompatActivity {
 
+    private MaterialToolbar btnGoBackManageServiceScreen;
     private RecyclerView rcvData;
     private ManageServiceAdapter manageServiceAdapter;
     private List<Service> mListServices;
@@ -50,6 +51,7 @@ public class ServiceListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_service_list);
 
         service_list_bar = findViewById(R.id.service_list_bar);
+
         // Hỗ trợ gán menu cho toolbar
         setSupportActionBar(service_list_bar);
         rcvData = findViewById(R.id.rcv_list_service);
@@ -73,7 +75,12 @@ public class ServiceListActivity extends AppCompatActivity {
                 ServiceListActivity.this.startActivity(intent);
             }
         });
-
+        service_list_bar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private List<Service> getListUsersFromReatimeDatabase() {
