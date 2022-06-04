@@ -200,7 +200,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userValue = snapshot.getValue(User.class);
                 if (userValue != null) {
-                    if (userValue.getId().equalsIgnoreCase(user.getUid())) {
+                    if (userValue.getPhone().equalsIgnoreCase(user.getPhoneNumber())) {
                         startActivity(new Intent(RegisterActivity.this, CusomerScreenActivity.class));
                         finish();
                     }
