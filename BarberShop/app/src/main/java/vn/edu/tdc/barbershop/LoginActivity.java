@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private MaterialButton buttonLogin;
@@ -18,15 +19,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_form);
-if (FirebaseAuth.getInstance().getCurrentUser()!=null)
-{
-    Intent intent = new Intent(this, CustomerScreenActivity.class);
-    finish();
-    startActivity(intent);
-}
+
         inputPhone = findViewById(R.id.input_login_phone);
 
         buttonLogin = findViewById(R.id.loginbtn);
+        nextActivity();
         buttonLogin.setOnClickListener(view -> {
             String mobile = inputPhone.getText().toString().trim();
             if(mobile.isEmpty() || mobile.length() < 9){
@@ -39,4 +36,14 @@ if (FirebaseAuth.getInstance().getCurrentUser()!=null)
             startActivity(intent);
         });
     }
+
+    private void nextActivity() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user!=null){
+            Intent intent = new Intent(LoginActivity.this,CustomerScreenActivity.class);
+            startActivity(intent);
+            finishAffinity();
+        }
+    }
+
 }

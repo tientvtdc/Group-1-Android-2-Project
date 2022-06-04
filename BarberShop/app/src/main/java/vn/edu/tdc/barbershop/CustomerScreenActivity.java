@@ -9,12 +9,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.ScheduleFragment;
@@ -29,17 +35,21 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
     private ImageView imageViewBGToolbar;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
         imageViewBGToolbar = findViewById(R.id.img_backgound_collapsing_toolbar);
         collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
         toolbar = findViewById(R.id.toolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         setSupportActionBar(toolbar);
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -54,6 +64,7 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
         replaceFragment(new HomeFragment());
         collapsingToolbarLayout.setTitle(getString(R.string.app_name));
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
+
     }
 
     @Override
@@ -79,6 +90,22 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
                     imageViewBGToolbar.setImageResource(R.drawable.schedule_bg);
                 }
                 break;
+            }
+            case  R.id.nav_log_out:{
+                (new MaterialAlertDialogBuilder(this)).setTitle(R.string.title_dialog_logout).setPositiveButton(R.string.text_positive_btn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(CustomerScreenActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                        finishAffinity();
+                    }
+                }).setNeutralButton(R.string.text_neutral_btn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }).show();
+
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
