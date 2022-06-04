@@ -21,85 +21,79 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Note: A RecyclerView can also be used -->
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="9"
             android:orientation="vertical">
+            <ImageView
+                android:id="@+id/img_detail_service"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="70dp"
+                android:src="@drawable/anh1" />
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp">
+                android:orientation="vertical"
+                android:padding="@dimen/padding_10dp">
 
-                <ImageView
-                    android:id="@+id/img_detail_service"
-                    android:layout_width="wrap_content"
-                    android:layout_height="250dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/anh1" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                >
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/name_service_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_10dp"
-                    >
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:text="@string/nav_change_password"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_detail"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/name_service_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/fab_margin"
-                        android:text="@string/nav_change_password"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_detail"
-                        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/price_service_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="500.000d"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="@dimen/text_size_price_service_detail"
+                    android:textStyle="italic" />
 
-                    <TextView
-                        android:id="@+id/price_service_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="500.000d"
-                        android:textColor="@android:color/holo_red_light"
-                        android:textSize="@dimen/text_size_price_service_detail"
-                        android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/decription_service_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="500.000d"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_decription_service_detail" />
+            </LinearLayout>
+        </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/decription_service_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="500.000d"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_size_decription_service_detail" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <Button
-                style="@style/Widget.Material3.Button.ElevatedButton"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:background="@color/black"
                 android:backgroundTint="@color/bg_warning"
                 android:text="@string/btn_text_dat_lich"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:icon="@drawable/ic_baseline_add_24" />
         </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
