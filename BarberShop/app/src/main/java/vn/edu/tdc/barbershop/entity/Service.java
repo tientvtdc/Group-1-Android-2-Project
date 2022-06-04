@@ -16,6 +16,14 @@ public class Service implements Serializable {
 
     }
 
+    public Service(String ID, String name, String image, double price, String description) {
+        this.ID = ID;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.description = description;
+    }
+
     public Service(String ID, String name, String image, double price, String description, String create_at, int time) {
         this.ID = ID;
         this.name = name;
@@ -74,9 +82,6 @@ public class Service implements Serializable {
         return Objects.equals(ID, service.ID);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID);
     public String getCreate_at() {
         return create_at;
     }
