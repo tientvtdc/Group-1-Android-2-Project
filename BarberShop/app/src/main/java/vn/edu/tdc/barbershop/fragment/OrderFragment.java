@@ -84,14 +84,18 @@ public class OrderFragment extends Fragment {
                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                     Order order = snapshot.getValue(Order.class);
                     if (order != null) {
-                        if (orderArrayList == null || orderArrayList.isEmpty()) return;
+						// kiem tra id user
+                        if (idUser.equalsIgnoreCase(order.getCustomer().getId())) {
+                            if (orderArrayList == null || orderArrayList.isEmpty()) return;
 
-                        for (int i = 0; i < orderArrayList.size(); i++) {
-                            if (orderArrayList.get(i).getId().equals(order.getId())) {
-                                orderArrayList.set(i, order);
-                            }
+							for (int i = 0; i < orderArrayList.size(); i++) {
+								if (orderArrayList.get(i).getId().equals(order.getId())) {
+									orderArrayList.set(i, order);
+								}
+							}
+							orderAdapter.notifyDataSetChanged();
                         }
-                        orderAdapter.notifyDataSetChanged();
+                        
                     }
                 }
 
