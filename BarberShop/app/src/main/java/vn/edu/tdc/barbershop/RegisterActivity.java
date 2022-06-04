@@ -30,8 +30,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -188,6 +191,32 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    //TODO: check user exist in database
+    private void isUserExist(FirebaseUser user) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("users/" + user.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userValue = snapshot.getValue(User.class);
+                if (userValue != null) {
+                    if (userValue.getId().equalsIgnoreCase(user.getUid())) {
+                        startActivity(new Intent(RegisterActivity.this, CusomerScreenActivity.class));
+                        finish();
+                    }
+                }
+                else {
+                    Toast.makeText(RegisterActivity.this, getString(R.string.toast_please_register_for_an_account), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -216,6 +245,9 @@ public class RegisterActivity extends AppCompatActivity {
         if (user == null) {
             finish();
             return;
+        }
+        else {
+            isUserExist(user);
         }
     }
 }
