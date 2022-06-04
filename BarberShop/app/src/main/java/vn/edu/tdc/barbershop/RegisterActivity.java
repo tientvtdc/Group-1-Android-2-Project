@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -78,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     //logout and login
     private FirebaseAuth mAuth;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,9 +120,16 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     bar.setVisibility(View.VISIBLE);
                     name = editName.getText().toString().trim();
-                    phone = getIntent().getStringExtra("phoneNumber");
-                    id = getIntent().getStringExtra("idToken");
-                    register();
+                    //get id and phone
+                    if (user != null) {
+                        id = user.getUid();
+                        phone = user.getPhoneNumber();
+                        register();
+                    }
+                    else {
+                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại, bạn cần đăng nhập", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
             }
         });
@@ -200,5 +209,15 @@ public class RegisterActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         mActivityResultLauncher.launch(Intent.createChooser(intent, "Select picture"));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //check login
+        if (user == null) {
+            finish();
+            return;
+        }
     }
 }

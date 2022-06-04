@@ -16,9 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
-        <activity android:name=".RegisterActivity"></activity>
         <activity
-            android:name=".SignupActivity"
+            android:name=".RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

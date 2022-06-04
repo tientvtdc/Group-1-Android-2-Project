@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -17,7 +16,6 @@ import android.widget.ImageView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseError;
 
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 
@@ -82,10 +80,6 @@ public class CusomerScreenActivity extends AppCompatActivity implements Navigati
                 break;
             }
             case R.id.nav_log_out: {
-                mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
-                startActivity(new Intent(CusomerScreenActivity.this, SignupActivity.class));
-                finish();
                 break;
             }
         }
