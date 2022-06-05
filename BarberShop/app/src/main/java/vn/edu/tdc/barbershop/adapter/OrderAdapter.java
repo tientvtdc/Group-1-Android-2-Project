@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import vn.edu.tdc.barbershop.OrderDetailActivity;
@@ -47,7 +48,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         Glide.with(mContext).load(order.getService().getImage()).into(holder.imgService);
         holder.tvUserPhoneNumber.setText(order.getCustomer().getPhone());
         holder.tvServiceName.setText(order.getService().getName());
-        holder.tvOrderDate.setText(order.getTimeOrder().toString());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+        holder.tvOrderDate.setText(simpleDateFormat.format(order.getTimeOrder().getTime()));
+
 
         switch (order.getIsFinish()){
             case 0:

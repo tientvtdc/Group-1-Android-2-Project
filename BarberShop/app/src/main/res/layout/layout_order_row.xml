@@ -29,6 +29,8 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:textSize="@dimen/order_detail_text_size"
+            android:textColor="@color/black"
             android:id="@+id/tv_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,6 +44,7 @@
             android:id="@+id/tv_service_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Combo Kid"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

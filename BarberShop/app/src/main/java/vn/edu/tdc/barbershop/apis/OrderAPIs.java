@@ -48,6 +48,6 @@ public class OrderAPIs {
     }
 
     public static void updateOrderStatus(String id, int status){
-        myRef.child(id).child("status").setValue(status) ;
+        myRef.child(id).child("finish").setValue(status) ;
     }
 }

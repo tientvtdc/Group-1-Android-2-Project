@@ -13,4 +13,8 @@
     <dimen name="user_row_width">180dp</dimen>
     <!--  User Detail  -->
     <dimen name="user_detail_font_size">24sp</dimen>
+    <dimen name="order_detail_margin_top">20sp</dimen>
+    <dimen name="order_detail_text_size">20sp</dimen>
+
+
 </resources>
