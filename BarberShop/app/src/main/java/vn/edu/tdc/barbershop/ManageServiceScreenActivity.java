@@ -31,16 +31,15 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO
-//                Intent intent = new Intent(ManageServiceScreenActivity.this, ServiceListActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(ManageServiceScreenActivity.this,UserManagementActivity.class);
+                startActivity(intent);
             }
         });
         btnGoToSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO
-//                Intent intent = new Intent(ManageServiceScreenActivity.this, ServiceListActivity.class);
-//                startActivity(intent);
+
             }
         });
         btnGoToUserPage.setOnClickListener(new View.OnClickListener() {
