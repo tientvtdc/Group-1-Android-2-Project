@@ -21,7 +21,6 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-import vn.edu.tdc.barbershop.DetailServiceActivity;
 import vn.edu.tdc.barbershop.R;
 import vn.edu.tdc.barbershop.UserDetailActivity;
 import vn.edu.tdc.barbershop.entity.User;
