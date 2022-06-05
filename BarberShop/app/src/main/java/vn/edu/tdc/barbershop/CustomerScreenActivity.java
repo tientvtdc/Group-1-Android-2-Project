@@ -9,6 +9,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,11 +27,14 @@ import com.google.firebase.auth.FirebaseUser;
 import vn.edu.tdc.barbershop.fragment.AddressFragment;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.OrderFragment;
+import vn.edu.tdc.barbershop.service.NotificationBackgroundService;
+import vn.edu.tdc.barbershop.service.NotificationScheduleService;
 
 public class CustomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
     private static final int FRAGMENT_ADDRESS = 2;
+    private static final int JOB_ID = 1;
     private int mCurrentFragment = 0;
 
     private DrawerLayout mDrawerLayout;
@@ -129,5 +135,24 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START))
             mDrawerLayout.closeDrawer(GravityCompat.START);
         else super.onBackPressed();
+    }
+
+    //run background service push notificatoin
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ComponentName componentName = new ComponentName(this, NotificationScheduleService.class);
+        JobInfo jobInfo = new JobInfo.Builder(JOB_ID, componentName)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .setPersisted(true)
+                .setRequiresCharging(false)
+                .setPeriodic(15 * 60 * 1000)
+                .build();
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(jobInfo);
+
+        //background
+        //Intent intent = new Intent(this, NotificationBackgroundService.class);
+        //startService(intent);
     }
 }

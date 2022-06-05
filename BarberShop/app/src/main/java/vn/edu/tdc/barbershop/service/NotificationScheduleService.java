@@ -1,6 +1,5 @@
 package vn.edu.tdc.barbershop.service;
 
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -31,28 +30,62 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import vn.edu.tdc.barbershop.OrderDetailsActivity;
 import vn.edu.tdc.barbershop.R;
-import vn.edu.tdc.barbershop.ScheduleDetailsActivity;
 import vn.edu.tdc.barbershop.application.NotificationApplication;
-import vn.edu.tdc.barbershop.entity.Schedule;
+import vn.edu.tdc.barbershop.entity.Order;
 
 public class NotificationScheduleService extends JobService {
 
     private boolean jobCancelled;
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("orders");
+    private DatabaseReference dataRefOrders = FirebaseDatabase.getInstance().getReference("orders");
+    private DatabaseReference dataRefNotifications = FirebaseDatabase.getInstance().getReference("notifications");
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private String idUser = "VGXCM73STFRxN1uxNBz6tJmy8s02";
-    private long timeNotification = (20 * 60 * 1000);
+    private String idUser;
+    private long timeNotification = (10 * 60 * 1000);
     private List<String> listNotification = new ArrayList<String>();
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
         Log.d("TAG", "onStartJob: start");
-        notificationSchedule(jobParameters);
+        //get list notification
+        dataRefNotifications.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String notificationID = snapshot.getValue(String.class);
+                if (notificationID != null) {
+                    listNotification.add(notificationID);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //notification
+        notificationSchedule();
         return true;
     }
 
@@ -63,72 +96,68 @@ public class NotificationScheduleService extends JobService {
         return true;
     }
 
-    //notification schedule
-    private void notificationSchedule(JobParameters jobParameters) {
+    private void notificationSchedule() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int i = 0;
                 while (true) {
                     if (jobCancelled) return;
-                    Log.d("TAG", "run: " + i++);
-                    Log.d("TAG", "run: " + listNotification.toString());
-
-                    //DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("time");
-                    //dataRef.setValue(i);
-
+                    Log.d("TAG", "run-background: " + i++);
                     //get id user client
-//                    if (user != null) {
-//                        idUser = user.getUid();
-//                    }
-//                    else {
-//                        return;
-//                    }
-
-                    //get schedule firebase
-                    databaseReference.addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                            Schedule schedule = snapshot.getValue(Schedule.class);
-                            if (schedule != null) {
-                                //customer = user id
-                                if (idUser.equalsIgnoreCase(schedule.getCustomer().getId())) {
-                                    //check time notification < 20p
-                                    if ((schedule.getTimeOrder() - Calendar.getInstance().getTimeInMillis()) < timeNotification) {
-//                                        if (!listNotification.contains(schedule.getId())) {
-//                                            sendNotification(schedule, getBaseContext());
-//                                            listNotification.add(schedule.getId());
-//                                        }
-                                        sendNotification(schedule, getBaseContext());
+                    if (user != null) {
+                        idUser = user.getUid();
+                    }
+                    else {
+                        return;
+                    }
+                    if (!listNotification.isEmpty()) {
+                        //get schedule firebase
+                        dataRefOrders.addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                Order order = snapshot.getValue(Order.class);
+                                if (order != null) {
+                                    //customer = user id
+                                    if (idUser.equalsIgnoreCase(order.getCustomer().getId())) {
+                                        //check time notification < 10p
+                                        if ((order.getTimeOrder() - Calendar.getInstance().getTimeInMillis()) < timeNotification) {
+                                            if (!listNotification.contains(order.getId())) {
+                                                sendNotification(order, getBaseContext());
+                                                //loai tru thong bao
+                                                DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("notifications");
+                                                dataRef.child(order.getId()).setValue(order.getId());
+                                            }
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
+                            }
+                        });
+                    }
 
                     // delay
                     try {
-                        Thread.sleep(30000);
+                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -140,24 +169,23 @@ public class NotificationScheduleService extends JobService {
     }
 
     //TODO: notification
-    private void sendNotification(Schedule schedule, Context mContext) {
+    private void sendNotification(Order order, Context mContext) {
 
-        Intent intent = new Intent(mContext, ScheduleDetailsActivity.class);
+        Intent intent = new Intent(mContext, OrderDetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("schedule", schedule);
+        bundle.putSerializable("order", order);
         intent.putExtras(bundle);
 
         final Bitmap[] bitmap = {null};
         Glide.with(mContext)
                 .asBitmap()
-                .load(schedule.getService().getImage())
+                .load(order.getService().getImage())
                 .into(new CustomTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         bitmap[0] = resource;
-
                         //Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.anh1);
-                        Uri uriSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION); //set sound default
+                        //Uri uriSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION); //set sound default
 
                         // start activity
                         //Intent intent = new Intent(mContext, ScheduleDetailsActivity.class);
@@ -165,18 +193,21 @@ public class NotificationScheduleService extends JobService {
                         stackBuilder.addNextIntentWithParentStack(intent);
                         PendingIntent pendingIntent = stackBuilder.getPendingIntent(getNotificationId(), PendingIntent.FLAG_UPDATE_CURRENT);
 
+                        //format time
+                        SimpleDateFormat sf = new SimpleDateFormat("HH:mm");
+
                         //Notification
                         Notification notification = new NotificationCompat.Builder(mContext, NotificationApplication.CHANNEL_ID_SCHEDULE)
-                                .setContentTitle(schedule.getService().getName()) //title
-                                .setContentText(schedule.getService().getDescription()) //content
+                                .setContentTitle(order.getService().getName() + " vào lúc: " + sf.format(order.getCalendarOrder().getTime())) //title
+                                .setContentText(order.getService().getDescription()) //content
                                 .setSmallIcon(R.drawable.ic_account_box) //show anh nho ben canh content
                                 .setLargeIcon(bitmap[0]) //icon
-                                .setSound(uriSound) //set sound default
+                                //.setSound(uriSound) //set sound default
                                 .setContentIntent(pendingIntent) // start activity
                                 .setAutoCancel(true) //auto clear notification click
                                 .setPriority(NotificationCompat.PRIORITY_MAX) // set do uu tien <- 8.0
                                 //.setColor(getResources().getColor(R.color.header_dialog)) //set color icon
-                                .setStyle(new NotificationCompat.BigTextStyle().bigText(schedule.getService().getDescription())) //show full content
+                                .setStyle(new NotificationCompat.BigTextStyle().bigText(order.getService().getDescription())) //show full content
                                 .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap[0]).bigLargeIcon(null)) //show full image
                                 .build();
 
@@ -195,5 +226,16 @@ public class NotificationScheduleService extends JobService {
 
     private int getNotificationId() {
         return (int) Calendar.getInstance().getTimeInMillis();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("TAG", "onDestroy: ok");
     }
 }
