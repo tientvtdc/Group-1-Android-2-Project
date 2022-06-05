@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ManageServiceScreenActivity extends AppCompatActivity {
     private Button btnGoToManageService,
             btnGoToManageAccount,
@@ -45,16 +47,19 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO
-//                Intent intent = new Intent(ManageServiceScreenActivity.this, ServiceListActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(ManageServiceScreenActivity.this,CustomerScreenActivity.class);
+                startActivity(intent);
+                finishAffinity();
             }
         });
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO
-//                Intent intent = new Intent(ManageServiceScreenActivity.this, ServiceListActivity.class);
-//                startActivity(intent);
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(ManageServiceScreenActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finishAffinity();
             }
         });
     }

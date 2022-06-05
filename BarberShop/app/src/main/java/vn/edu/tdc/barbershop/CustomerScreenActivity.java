@@ -70,7 +70,6 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
         Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -122,6 +121,12 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
                     mCurrentFragment = FRAGMENT_SCHEDULE;
                     imageViewBGToolbar.setImageResource(R.drawable.schedule_bg);
                 }
+                break;
+            }
+            case R.id.nav_management_page: {
+                Intent intent = new Intent(this, ManageServiceScreenActivity.class);
+                startActivity(intent);
+                finishAffinity();
                 break;
             }
             case  R.id.nav_log_out:{

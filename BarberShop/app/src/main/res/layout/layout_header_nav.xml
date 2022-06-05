@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="53 Võ Văn Ngân, Linh Chiểu, Tp Thủ Đức, Tp Hồ Chí Minh"
+        android:text="@string/address_shop"
         android:textColor="@color/white"
         android:textSize="8sp" />
 </LinearLayout>
