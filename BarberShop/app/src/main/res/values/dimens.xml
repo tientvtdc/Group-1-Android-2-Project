@@ -12,8 +12,8 @@
     <dimen name="text_size_40dp">40sp</dimen>
     <dimen name="text_size_25dp">25dp</dimen>
     <dimen name="text_size_20dp">20sp</dimen>
-    <dimen name="user_row_height">180dp</dimen>
-    <dimen name="user_row_width">180dp</dimen>
+    <dimen name="user_row_height">100dp</dimen>
+    <dimen name="user_row_width">100dp</dimen>
     <!--  User Detail  -->
     <dimen name="user_detail_font_size">24sp</dimen>
 </resources>
