@@ -2,6 +2,7 @@ package vn.edu.tdc.barbershop.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,19 +41,32 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Order user = mOrder.get(position);
+        Order order = mOrder.get(position);
 
-        holder.
+        Glide.with(mContext).load(order.getService().getImage()).into(holder.imgService);
+        holder.tvUserPhoneNumber.setText(order.getCustomer().getPhone());
+        holder.tvServiceName.setText(order.getService().getName());
+        holder.tvOrderDate.setText(order.getTimeOrder().toString());
 
-        Glide.with(mContext).load(user.getImage()).into(holder.imgUser);
-        holder.tvUserName.setText(user.getName());
+        switch (order.getIsFinish()){
+            case 0:
+                holder.tvOrderState.setText("Chưa Hoàn Thành");
+                break;
+            case 1:
+                holder.tvOrderState.setTextColor(Color.GREEN);
+                holder.tvOrderState.setText("Hoàn Thành");
+                break;
+            case 2:
+                holder.tvOrderState.setTextColor(Color.RED);
+                holder.tvOrderState.setText("Đã Huỷ");
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, UserDetailActivity.class);
+                Intent intent = new Intent(mContext, OrderDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("object_user", user);
+                bundle.putSerializable("object_order", order);
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);
             }
@@ -65,13 +79,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgUser;
-        private TextView tvUserName;
+        private ImageView imgService;
+        private TextView tvUserPhoneNumber;
+        private TextView tvServiceName;
+        private TextView tvOrderDate;
+        private TextView tvOrderState;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgUser = itemView.findViewById(R.id.img_user);
-            tvUserName= itemView.findViewById(R.id.tv_username);
+            this.imgService = itemView.findViewById(R.id.img_service);
+            this.tvUserPhoneNumber = itemView.findViewById(R.id.tv_phone_number);
+            this.tvServiceName = itemView.findViewById(R.id.tv_service_name);
+            this.tvOrderDate = itemView.findViewById(R.id.tv_order_time);
+            this.tvOrderState = itemView.findViewById(R.id.tv_order_status);
         }
     }
 }
