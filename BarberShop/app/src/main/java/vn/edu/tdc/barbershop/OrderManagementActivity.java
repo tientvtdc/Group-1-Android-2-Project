@@ -1,12 +1,21 @@
 package vn.edu.tdc.barbershop;
 
+<<<<<<< HEAD
 import android.os.Bundle;
 import android.view.View;
 
+=======
+>>>>>>> merge_tuan_and_phu
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+<<<<<<< HEAD
+=======
+import android.os.Bundle;
+import android.view.View;
+
+>>>>>>> merge_tuan_and_phu
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
