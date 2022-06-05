@@ -94,7 +94,7 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO
-                (new MaterialAlertDialogBuilder(getApplicationContext())).setTitle(R.string.title_dialog_logout).setPositiveButton(R.string.text_positive_btn, new DialogInterface.OnClickListener() {
+                (new MaterialAlertDialogBuilder(ManageServiceScreenActivity.this)).setTitle(R.string.title_dialog_logout).setPositiveButton(R.string.text_positive_btn, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseAuth.getInstance().signOut();
