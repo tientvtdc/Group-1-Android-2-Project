@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
         <activity
+            android:name=".OrderDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserDetailActivity"
             android:exported="false" />
         <activity
@@ -23,7 +26,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".DetailServiceActivity"
             android:exported="false" /> <!-- <activity -->
@@ -37,7 +40,7 @@
             android:exported="false" />
         <activity
             android:name=".ServiceListActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".CustomerScreenActivity"
             android:exported="false"

@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import vn.edu.tdc.barbershop.OrderDetailActivity;
 import vn.edu.tdc.barbershop.R;
 import vn.edu.tdc.barbershop.UserDetailActivity;
 import vn.edu.tdc.barbershop.entity.Order;
