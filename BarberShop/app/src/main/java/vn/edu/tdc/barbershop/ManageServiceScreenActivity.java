@@ -78,7 +78,8 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO
-
+                Intent intent = new Intent(ManageServiceScreenActivity.this, OrderManagementActivity.class);
+                startActivity(intent);
             }
         });
         btnGoToUserPage.setOnClickListener(new View.OnClickListener() {
