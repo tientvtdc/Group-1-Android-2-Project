@@ -32,7 +32,7 @@ public class OrderAPIs {
                     int isFinish = postSnapshot.child("finish").getValue(Integer.class);
                     User user = postSnapshot.child("customer").getValue(User.class);
                     Service service = postSnapshot.child("service").getValue(Service.class);
-                    Order other = new Order(id, user, service, timeOrder, timeFinish, isFinish);
+                    Order other = new Order(id, user, service, timeOrder.getTime(), timeFinish.getTime(), isFinish);
                     mOrder.add(other);
                     // here you can access to name property like university.name
                 }

@@ -48,10 +48,10 @@ public class OrderManagementAdapter extends RecyclerView.Adapter<OrderManagement
         holder.tvServiceName.setText(order.getService().getName());
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
-        holder.tvOrderDate.setText(simpleDateFormat.format(order.getTimeOrder().getTime()));
+        holder.tvOrderDate.setText(simpleDateFormat.format(order.getTimeOrder()));
 
 
-        switch (order.getIsFinish()){
+        switch (order.getFinish()){
             case 0:
                 holder.tvOrderState.setText("Chưa Hoàn Thành");
                 break;

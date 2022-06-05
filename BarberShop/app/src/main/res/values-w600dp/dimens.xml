@@ -1,3 +1,20 @@
 <resources>
-    <dimen name="fab_margin">48dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_size_detail">30sp</dimen>
+    <dimen name="text_size_price_service_detail">20sp</dimen>
+    <dimen name="text_size_decription_service_detail">12sp</dimen>
+    <dimen name="padding_10dp">10dp</dimen>
+    <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="text_size_loi_chao">20sp</dimen>
+    <dimen name="corner_50dp">50dp</dimen>
+    <dimen name="padding_15dp">15dp</dimen>
+    <dimen name="text_size_40dp">40sp</dimen>
+    <dimen name="user_row_height">180dp</dimen>
+    <dimen name="user_row_width">180dp</dimen>
+    <!--  User Detail  -->
+    <dimen name="user_detail_font_size">24sp</dimen>
+    <dimen name="order_detail_margin_top">20sp</dimen>
+    <dimen name="order_detail_text_size">20sp</dimen>
+
+
 </resources>
