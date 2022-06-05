@@ -21,8 +21,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
+
+import vn.edu.tdc.barbershop.entity.Service;
+import vn.edu.tdc.barbershop.entity.User;
 
 public class VerifyPhoneActivity extends AppCompatActivity {
 
@@ -112,9 +120,28 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                             FirebaseUser user = task.getResult().getUser();
                             Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
                             Log.d(TAG, "onComplete: "+user);
-                            Intent intent = new Intent(VerifyPhoneActivity.this,RegisterActivity.class);
-                            startActivity(intent);
-                            finishAffinity();
+                         Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
+                         query.addListenerForSingleValueEvent(new ValueEventListener() {
+                             @Override
+                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                 User user = snapshot.getValue(User.class);
+                                 if (user != null) {
+                                     Intent intent = new Intent(VerifyPhoneActivity.this,CustomerScreenActivity.class);
+                                     startActivity(intent);
+                                     finishAffinity();
+                                 }
+                               else {
+                                     Intent intent = new Intent(VerifyPhoneActivity.this,RegisterActivity.class);
+                                     startActivity(intent);
+                                 }
+                             }
+
+                             @Override
+                             public void onCancelled(@NonNull DatabaseError error) {
+
+                             }
+                         });
+
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {

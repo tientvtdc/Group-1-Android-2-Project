@@ -13,6 +13,12 @@
             android:id="@+id/nav_address"
             android:icon="@drawable/ic_location"
             android:title="@string/nav_address" />
+        <item
+            android:id="@+id/nav_management_page"
+            android:icon="@drawable/ic_baseline_handyman_24"
+            android:title="@string/nav_management_page"
+            android:visible="false"
+            />
         <item android:title="@string/nav_account">
             <menu>
                 <item

@@ -12,15 +12,24 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import vn.edu.tdc.barbershop.entity.User;
 import vn.edu.tdc.barbershop.fragment.AddressFragment;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
 import vn.edu.tdc.barbershop.fragment.OrderFragment;
@@ -60,7 +69,25 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
+        Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if (user.getRole() != 0) {
+                    Menu menu = navigationView.getMenu();
+                    MenuItem item = menu.findItem(R.id.nav_management_page);
+                    item.setVisible(true);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         replaceFragment(new HomeFragment());
         collapsingToolbarLayout.setTitle(getString(R.string.app_name));
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);

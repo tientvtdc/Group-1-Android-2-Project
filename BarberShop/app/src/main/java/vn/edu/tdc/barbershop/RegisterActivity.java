@@ -174,7 +174,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onCompleteRegisterUser(DatabaseError error) {
                                     if (error == null) {
                                         Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(RegisterActivity.this, CusomerScreenActivity.class));
+                                        startActivity(new Intent(RegisterActivity.this, CustomerScreenActivity.class));
                                         finish();
                                     } else {
                                         bar.setVisibility(View.INVISIBLE);
@@ -201,7 +201,7 @@ public class RegisterActivity extends AppCompatActivity {
                 User userValue = snapshot.getValue(User.class);
                 if (userValue != null) {
                     if (userValue.getPhone().equalsIgnoreCase(user.getPhoneNumber())) {
-                        startActivity(new Intent(RegisterActivity.this, CusomerScreenActivity.class));
+                        startActivity(new Intent(RegisterActivity.this, CustomerScreenActivity.class));
                         finish();
                     }
                 }
