@@ -17,6 +17,14 @@
             android:background="@drawable/ic_arrow_back"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
+        
+        <TextView
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:text="Thiết Lập Tài Khoản"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </androidx.cardview.widget.CardView>
 
