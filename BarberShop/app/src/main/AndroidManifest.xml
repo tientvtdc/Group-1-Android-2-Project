@@ -19,16 +19,20 @@
         android:roundIcon="@mipmap/ic_launcher_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
+        <activity
+            android:name=".OrderServiceActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/api_key_googl_map" />
+
         <activity
             android:name=".VerifyPhoneActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -38,19 +42,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-         <activity
-         android:name=".AddNewServiceActivity"
-         android:exported="false" />
-
+        <activity
+            android:name=".AddNewServiceActivity"
+            android:exported="false" />
         <activity
             android:name=".ServiceDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ServiceListActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".CustomerScreenActivity"
             android:exported="false"

@@ -118,7 +118,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
-                            Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
                             Log.d(TAG, "onComplete: "+user);
                          Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
                          query.addListenerForSingleValueEvent(new ValueEventListener() {
