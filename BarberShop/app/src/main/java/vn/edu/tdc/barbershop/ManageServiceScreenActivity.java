@@ -66,6 +66,9 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
                         User user = snapshot.getValue(User.class);
                         if (user.getRole() == 2) {
                             Intent intent = new Intent(ManageServiceScreenActivity.this,UserManagementActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("recent_user", user);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                         else{
