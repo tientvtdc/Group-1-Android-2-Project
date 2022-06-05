@@ -19,4 +19,8 @@
     <color name="comming">#FFC107</color>
     <color name="done">#4CAF50</color>
     <color name="missed">#FF0033</color>
+    <color name="bg_warning">#7A7463</color>
+    <color name="green">#4CAF50</color>
+    <color name="grey">#7C6B6B</color>
+
 </resources>

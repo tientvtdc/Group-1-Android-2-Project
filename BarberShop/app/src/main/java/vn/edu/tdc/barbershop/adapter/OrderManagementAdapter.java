@@ -21,20 +21,20 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import vn.edu.tdc.barbershop.OrderDetailActivity;
 import vn.edu.tdc.barbershop.R;
-import vn.edu.tdc.barbershop.OrderDetailsActivity;
 import vn.edu.tdc.barbershop.entity.Order;
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
-
-    private static final int JOB_ID = 1;
-    private List<Order> orders;
+public class OrderManagementAdapter extends RecyclerView.Adapter<OrderManagementAdapter.ViewHolder> {
     private Context mContext;
-
-    public OrderAdapter(List<Order> orders, Context context) {
-        this.orders = orders;
-        this.mContext = context;
+    private ArrayList<Order> mOrder;
+    public OrderManagementAdapter(Context mContext, ArrayList<Order> mOrder){
+        this.mContext = mContext;
+        this.mOrder = mOrder;
     }
 
     @NonNull
@@ -50,8 +50,18 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         Order order = orders.get(position);
         if (order == null) return;
 
-        Glide.with(mContext).load(order.getService().getImage()).error(R.drawable.anh1).placeholder(new ColorDrawable(Color.BLACK)).into(holder.imgOrder);
-        holder.txtName.setText(order.getService().getName());
+        Glide.with(mContext).load(order.getService().getImage()).into(holder.imgService);
+        holder.tvUserPhoneNumber.setText(order.getCustomer().getPhone());
+        holder.tvServiceName.setText(order.getService().getName());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+        holder.tvOrderDate.setText(simpleDateFormat.format(order.getTimeOrder().getTime()));
+
+
+        switch (order.getIsFinish()){
+            case 0:
+                holder.tvOrderState.setText("Chưa Hoàn Thành");
+                break;
 
         //format time
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
