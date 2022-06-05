@@ -16,6 +16,7 @@ public class User implements Serializable {
 
     public User(String id, String name, String phone, String image, int role) {
         this.id = id;
+        this.image = image;
         this.name = name;
         this.phone = phone;
         this.image = image;
@@ -28,6 +29,14 @@ public class User implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {
@@ -60,5 +69,16 @@ public class User implements Serializable {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", image='" + image + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

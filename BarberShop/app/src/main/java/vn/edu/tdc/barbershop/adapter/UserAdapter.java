@@ -1,6 +1,10 @@
 package vn.edu.tdc.barbershop.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,48 +14,67 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+
+import vn.edu.tdc.barbershop.DetailServiceActivity;
 import vn.edu.tdc.barbershop.R;
+import vn.edu.tdc.barbershop.UserDetailActivity;
 import vn.edu.tdc.barbershop.entity.User;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
-    private List<User> mUserList;
-
-    public UserAdapter(List<User> mUserList) {
-        this.mUserList = mUserList;
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
+    private Context mContext;
+    private ArrayList<User> mUser;
+    public UserAdapter(Context mContext, ArrayList<User> mUser){
+        this.mContext = mContext;
+        this.mUser = mUser;
     }
 
     @NonNull
     @Override
-    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_user_management_recyclerview_item, parent, false);
-        return new UserViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View weatherView = inflater.inflate(R.layout.layout_user_row, parent, false);
+        ViewHolder viewHolder = new ViewHolder(weatherView);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        User user = mUserList.get(position);
-        if (user == null) return;
-        holder.txtName.setText(user.getName() + "");
-        holder.txtPhone.setText(user.getPhone() + "");
-        holder.imgItem.setImageResource(R.drawable.google);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        User user = mUser.get(position);
+
+        Glide.with(mContext).load(user.getImage()).into(holder.imgUser);
+        holder.tvUserName.setText(user.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, UserDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("object_user", user);
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        if (mUserList != null) return mUserList.size();
-        return 0;
+        return mUser.size();
     }
 
-    class UserViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtName, txtPhone;
-        private ImageView imgItem;
-        public UserViewHolder(@NonNull View itemView) {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView imgUser;
+        private TextView tvUserName;
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.tv_user_name);
-            txtPhone = itemView.findViewById(R.id.tv_phone_number);
-            imgItem = itemView.findViewById(R.id.img_user_img);
+            imgUser = itemView.findViewById(R.id.img_user);
+            tvUserName= itemView.findViewById(R.id.tv_username);
         }
     }
 }
