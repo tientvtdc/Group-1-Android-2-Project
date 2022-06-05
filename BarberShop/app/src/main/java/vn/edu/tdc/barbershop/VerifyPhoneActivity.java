@@ -112,7 +112,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                             FirebaseUser user = task.getResult().getUser();
                             Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
                             Log.d(TAG, "onComplete: "+user);
-                            Intent intent = new Intent(VerifyPhoneActivity.this,CustomerScreenActivity.class);
+                            Intent intent = new Intent(VerifyPhoneActivity.this,RegisterActivity.class);
                             startActivity(intent);
                             finishAffinity();
                         } else {

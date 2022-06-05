@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:name=".application.NotificationApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_logo"
         android:label="@string/app_name"
@@ -65,6 +66,10 @@
             android:exported="false"
             android:theme="@style/Theme.BarberShop.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <service android:name=".service.NotificationScheduleService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".service.NotificationBackgroundService"/>
     </application>
 
 </manifest>
