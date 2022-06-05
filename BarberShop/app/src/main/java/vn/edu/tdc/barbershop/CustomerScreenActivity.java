@@ -45,7 +45,6 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private FirebaseUser user;
-    private int role = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

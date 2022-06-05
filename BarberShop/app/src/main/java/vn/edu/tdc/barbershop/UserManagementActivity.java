@@ -16,17 +16,17 @@ import vn.edu.tdc.barbershop.apis.UserAPIs;
 import vn.edu.tdc.barbershop.entity.User;
 
 public class UserManagementActivity extends AppCompatActivity {
+    MaterialToolbar btnBack;
     private ArrayList<User> mUser;
     private RecyclerView mRecyclerUser;
     private UserAdapter mUserAdapter ;
-    MaterialToolbar btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_user_list);
 
-        btnBack = (MaterialToolbar) findViewById(R.id.user_management_back_button);
+        btnBack = (MaterialToolbar) findViewById(R.id.btn_user_management_back);
         mUser = new ArrayList<User>();
         mRecyclerUser = findViewById(R.id.rcv_user);
         mUserAdapter = new UserAdapter(this, mUser);
@@ -34,12 +34,11 @@ public class UserManagementActivity extends AppCompatActivity {
         mRecyclerUser.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerUser.setAdapter(mUserAdapter);
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        btnBack.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                onBackPressed();
+            public void onClick(View view) {
+                finish();
             }
         });
     }
-
 }

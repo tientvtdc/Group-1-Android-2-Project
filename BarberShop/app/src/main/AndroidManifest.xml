@@ -20,8 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberShop">
         <activity
+            android:name=".OrderDetailManagementActivity"
+            android:exported="false" />
+        <activity
             android:name=".ManageDetailServiceActivity"
             android:exported="false" /> <!-- <activity -->
+        <activity
+            android:name=".OrderManagementActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ServiceListActivity"
             android:exported="false" />
@@ -33,6 +40,9 @@
             android:exported="true" />
         <activity
             android:name=".OrderServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderDetailsActivity"
             android:exported="false" />
 
         <meta-data
@@ -56,6 +66,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -43,21 +44,6 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO
-                Intent intent = new Intent(ManageServiceScreenActivity.this,UserManagementActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnGoToSchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO
-
-            }
-        });
-        btnGoToUserPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -66,15 +52,12 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
                         User user = snapshot.getValue(User.class);
                         if (user.getRole() == 2) {
                             Intent intent = new Intent(ManageServiceScreenActivity.this,UserManagementActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("recent_user", user);
-                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                         else{
                             new AlertDialog.Builder(ManageServiceScreenActivity.this)
                                     .setTitle("Cảnh báo")
-                                    .setMessage("Chỉ có quản trị viên mới sử dụng được tính năng này!")
+                                    .setMessage("Chức năng này chỉ dành cho quản trị viên!")
                                     .setIcon(android.R.drawable.ic_dialog_alert)
                                     .show();
                         }
@@ -85,7 +68,24 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+        btnGoToSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO
+                Intent intent = new Intent(ManageServiceScreenActivity.this,OrderManagementActivity.class);
+                startActivity(intent);
 
+            }
+        });
+        btnGoToUserPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO
+                Intent intent = new Intent(ManageServiceScreenActivity.this,CustomerScreenActivity.class);
+                startActivity(intent);
+                finishAffinity();
             }
         });
         btnLogOut.setOnClickListener(new View.OnClickListener() {

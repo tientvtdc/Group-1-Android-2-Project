@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +29,7 @@ import vn.edu.tdc.barbershop.apis.UserAPIs;
 import vn.edu.tdc.barbershop.entity.User;
 
 public class UserDetailActivity extends AppCompatActivity {
+    TextInputLayout roleMenu;
     MaterialToolbar btnBack;
     AutoCompleteTextView autoCompleteTextView;
     ImageView userImage;
@@ -45,26 +47,7 @@ public class UserDetailActivity extends AppCompatActivity {
         if (bundle == null) return;
         User user = (User) bundle.get("object_user");
 
-        // TODO
-        FirebaseUser recentUser = FirebaseAuth.getInstance().getCurrentUser();
-        Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(recentUser.getUid());
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User recentUser = snapshot.getValue(User.class);
-                if (recentUser.getRole() == user.getRole()) {
-                    findViewById(R.id.user_role_menu).setEnabled(false);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
+        roleMenu = (TextInputLayout) findViewById(R.id.user_management_role_menu);
         btnBack = (MaterialToolbar) findViewById(R.id.userdetail_back_button);
         userImage = (ImageView) findViewById(R.id.img_user);
         Glide.with(this).load(user.getImage()).into(userImage);
@@ -75,6 +58,23 @@ public class UserDetailActivity extends AppCompatActivity {
 
         tvUserName.setText(user.getName());
         tvUserPhone.setText(user.getPhone());
+
+        FirebaseUser recentUser = FirebaseAuth.getInstance().getCurrentUser();
+        Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(recentUser.getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user1 = snapshot.getValue(User.class);
+                if (user1.getRole() == user.getRole()) {
+                    roleMenu.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         String []option = {"Người quản trị", "Người dùng", "Quản lý"};
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.option_item, option);
