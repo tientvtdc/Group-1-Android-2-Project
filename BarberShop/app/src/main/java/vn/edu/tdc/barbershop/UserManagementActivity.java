@@ -29,12 +29,4 @@ public class UserManagementActivity extends AppCompatActivity {
         mRecyclerUser.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerUser.setAdapter(mUserAdapter);
     }
-
-//    private void onClickGoToDetail(User user) {
-//        Intent intent = new Intent(this, DetailServiceActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("object_service", service);
-//        intent.putExtras(bundle);
-//        this.startActivity(intent);
-//    }
 }
