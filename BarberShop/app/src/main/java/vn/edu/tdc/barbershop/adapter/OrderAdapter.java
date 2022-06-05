@@ -55,7 +55,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         //format time
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
-        holder.txtTime.setText(simpleDateFormat.format(order.getDateOrder()));
+        holder.txtTime.setText(simpleDateFormat.format(order.getCalendarOrder().getTime()));
 
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);

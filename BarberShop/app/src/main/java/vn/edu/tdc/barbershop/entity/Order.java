@@ -82,13 +82,16 @@ public class Order implements Serializable {
         return result;
     }
 
-    public Date getDateOrder() {
-        Date date = new Date(getTimeOrder());
-        return date;
+
+    public Calendar getCalendarOrder() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeOrder);
+        return calendar;
     }
 
-    public Date getDateFinish() {
-        Date date = new Date(getTimeFinish());
-        return date;
+    public Calendar getCalendarFinish() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeFinish);
+        return calendar;
     }
 }

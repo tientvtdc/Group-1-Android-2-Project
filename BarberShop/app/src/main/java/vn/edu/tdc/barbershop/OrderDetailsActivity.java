@@ -61,10 +61,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         //format time
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-        textTime.setText(simpleDateFormat.format(order.getDateOrder()));
+        textTime.setText(simpleDateFormat.format(order.getCalendarOrder().getTime()));
 
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
-        textDay.setText(s.format(order.getDateOrder()));
+        textDay.setText(s.format(order.getCalendarOrder().getTime()));
 
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
