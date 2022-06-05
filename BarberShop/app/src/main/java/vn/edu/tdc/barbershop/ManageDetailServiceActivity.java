@@ -43,7 +43,7 @@ public class ManageDetailServiceActivity extends AppCompatActivity {
     private MaterialToolbar materialToolbar;
     private Button btnSave, btnDelete;
     ShapeableImageView img;
-    private TextInputEditText edtName, edtPrice, edtDes;
+    private TextInputEditText edtName, edtPrice, edtDes, edtTime;
     private int REQ = 1;
     private Service service;
 
@@ -115,6 +115,7 @@ public class ManageDetailServiceActivity extends AppCompatActivity {
         edtName = findViewById(R.id.textInputEditName);
         edtPrice = findViewById(R.id.textInputEditPrice);
         edtDes = findViewById(R.id.textInputEditDes);
+        edtTime = findViewById(R.id.textInputEditTime);
         btnSave = findViewById(R.id.btn_save);
         btnDelete = findViewById(R.id.btn_del);
         img = findViewById(R.id.imgEditInput);
@@ -126,7 +127,7 @@ public class ManageDetailServiceActivity extends AppCompatActivity {
         edtName.setText(service.getName());
         edtPrice.setText(service.getPrice() + "");
         edtDes.setText(service.getDescription());
-
+        edtTime.setText(service.getTime() + "");
         Picasso.with(ManageDetailServiceActivity.this).load(service.getImage()).into(img);
     }
 
@@ -181,7 +182,8 @@ public class ManageDetailServiceActivity extends AppCompatActivity {
                                             edtName.getText().toString(),
                                             String.valueOf(downloadUrl),
                                             Double.parseDouble(edtPrice.getText().toString()),
-                                            edtDes.getText().toString(), new ServiceModel.IServiceListennerModel() {
+                                            edtDes.getText().toString(),
+                                            Integer.parseInt(edtTime.getText().toString()), new ServiceModel.IServiceListennerModel() {
                                                 @Override
                                                 public void onCompleteAddService(DatabaseError error) {
                                                     if (error == null) {
@@ -218,7 +220,7 @@ public class ManageDetailServiceActivity extends AppCompatActivity {
                     edtName.getText().toString(),
                     service.getImage(),
                     Double.parseDouble(edtPrice.getText().toString()),
-                    edtDes.getText().toString(), new ServiceModel.IServiceListennerModel() {
+                    edtDes.getText().toString(),0, new ServiceModel.IServiceListennerModel() {
                         @Override
                         public void onCompleteAddService(DatabaseError error) {
                             if (error == null) {

@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import vn.edu.tdc.barbershop.adapter.ManageServiceAdapter;
@@ -35,6 +36,7 @@ import vn.edu.tdc.barbershop.models.ServiceModel;
 
 public class ServiceListActivity extends AppCompatActivity {
 
+    private MaterialToolbar btnGoBackManageServiceScreen;
     private RecyclerView rcvData;
     private ManageServiceAdapter manageServiceAdapter;
     private List<Service> mListServices;
@@ -49,6 +51,7 @@ public class ServiceListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_service_list);
 
         service_list_bar = findViewById(R.id.service_list_bar);
+
         // Hỗ trợ gán menu cho toolbar
         setSupportActionBar(service_list_bar);
         rcvData = findViewById(R.id.rcv_list_service);
@@ -72,7 +75,12 @@ public class ServiceListActivity extends AppCompatActivity {
                 ServiceListActivity.this.startActivity(intent);
             }
         });
-
+        service_list_bar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private List<Service> getListUsersFromReatimeDatabase() {
@@ -96,12 +104,20 @@ public class ServiceListActivity extends AppCompatActivity {
                     // Thêm service vào mảng
                     mListServices.add(service);
                     // Tìm sv trong mList sau
-                    for (Service sv :
-                            mListServices) {
+                    List<Service> toRemove = new ArrayList<>();
+                    for (Service sv : mListServices) {
                         if (service.getID().equals(sv.getID())) {
-                            mListServices.add(sv);
+                            toRemove.add(sv);
                         }
                     }
+                    mListServices.removeAll(toRemove);
+                    mListServices.add(toRemove.get(1));
+//                    mListServices.addAll(toRemove);
+//                    for (Service sv : mListServices) {
+//                        if (service.getID().equals(sv.getID())) {
+//                            mListServices.add(sv);
+//                        }
+//                    }
                     manageServiceAdapter.notifyDataSetChanged();
                 }
             }
@@ -110,14 +126,25 @@ public class ServiceListActivity extends AppCompatActivity {
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 Service service = snapshot.getValue(Service.class);
                 if (service != null) {
-                    mListServices.remove(service);
-                    for (Service sv :
-                            mListServices) {
+                    mListServices.add(service);
+                    // Tìm sv trong mList sau
+                    List<Service> toRemove = new ArrayList<>();
+                    for (Service sv : mListServices) {
                         if (service.getID().equals(sv.getID())) {
-                            mListServices.remove(sv);
+                            toRemove.add(sv);
                         }
                     }
+                    mListServices.removeAll(toRemove);
                     manageServiceAdapter.notifyDataSetChanged();
+
+//                    mListServices.remove(service);
+//                    for (Service sv :
+//                            mListServices) {
+//                        if (service.getID().equals(sv.getID())) {
+//                            mListServices.remove(sv);
+//                        }
+//                    }
+//                    manageServiceAdapter.notifyDataSetChanged();
                 }
             }
 

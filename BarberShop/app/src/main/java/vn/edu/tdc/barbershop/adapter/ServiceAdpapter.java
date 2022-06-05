@@ -66,7 +66,6 @@ public class ServiceAdpapter extends RecyclerView.Adapter<ServiceAdpapter.Servic
             StorageReference storageRef = FirebaseStorage.getInstance().getReference("imgService");
             Glide.with(context).load(service.getImage()).error(R.drawable.anh1).placeholder(new ColorDrawable(Color.BLACK)).into(holder.imgService);
             holder.nameService.setText(service.getName());
-
             Locale localeVN = new Locale("vi", "VN");
             NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
             holder.priceService.setText(currencyVN.format(service.getPrice()));

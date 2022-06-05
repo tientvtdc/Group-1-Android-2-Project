@@ -28,9 +28,9 @@ public class ServiceModel {
         this.database = FirebaseDatabase.getInstance().getReference(NAME_TABLE);
     }
 
-    public void addNewSevice(String name,String image, Double price,String description,IServiceListennerModel iServiceListennerModel) {
+    public void addNewSevice(String name,String image, Double price, String description, int time, IServiceListennerModel iServiceListennerModel) {
         String id = database.push().getKey();
-        Service service = new Service(id, name, image, price, description);
+        Service service = new Service(id, name, image, price, description, time);
         database.child(id).setValue(service, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
@@ -39,8 +39,8 @@ public class ServiceModel {
         });
     }
 
-    public void editServiceWithID(String id,String name,String image, Double price,String description,IServiceListennerModel iServiceListennerModel) {
-        Service service = new Service(id, name, image, price, description);
+    public void editServiceWithID(String id,String name,String image, Double price,String description, int time,IServiceListennerModel iServiceListennerModel) {
+        Service service = new Service(id, name, image, price, description, time);
         database.child(id).setValue(service, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
@@ -54,7 +54,6 @@ public class ServiceModel {
     };
 
     public interface IClickItemListener {
-
         void onClickItemService(Service service);
     }
 

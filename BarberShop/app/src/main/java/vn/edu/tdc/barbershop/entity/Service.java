@@ -16,12 +16,14 @@ public class Service implements Serializable {
 
     }
 
-    public Service(String ID, String name, String image, double price, String description) {
+    public Service(String ID, String name, String image, double price, String description, int time) {
         this.ID = ID;
         this.name = name;
         this.image = image;
         this.price = price;
         this.description = description;
+        this.time = time;
+        this.create_at = (new Timestamp((new Date()).getTime())).toString();
     }
 
     public Service(String ID, String name, String image, double price, String description, String create_at, int time) {

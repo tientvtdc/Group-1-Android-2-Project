@@ -37,7 +37,7 @@ import vn.edu.tdc.barbershop.models.ServiceModel;
 
 public class AddNewServiceActivity extends AppCompatActivity {
 
-    private TextInputEditText name, description, price;
+    private TextInputEditText name, description, price, time;
     private ShapeableImageView img;
     private Button btnAdd;
     private int REQ = 1;
@@ -80,6 +80,7 @@ public class AddNewServiceActivity extends AppCompatActivity {
         serviceModel = new ServiceModel();
         name = (TextInputEditText) findViewById(R.id.textInputName);
         description = (TextInputEditText) findViewById(R.id.textInputDes);
+        time = (TextInputEditText) findViewById(R.id.textInputTime);
         price = (TextInputEditText) findViewById(R.id.textInputPrice);
         img = (ShapeableImageView) findViewById(R.id.imgInput);
         btnAdd = (Button) findViewById(R.id.btnAddNewService);
@@ -135,7 +136,7 @@ public class AddNewServiceActivity extends AppCompatActivity {
                                     serviceModel.addNewSevice(name.getText().toString(),
                                             String.valueOf(downloadUrl),
                                             Double.parseDouble(price.getText().toString()),
-                                            description.getText().toString(), new ServiceModel.IServiceListennerModel() {
+                                            description.getText().toString(), Integer.parseInt(time.getText().toString()), new ServiceModel.IServiceListennerModel() {
                                                 @Override
                                                 public void onCompleteAddService(DatabaseError error) {
                                                     if (error == null) {
@@ -166,6 +167,9 @@ public class AddNewServiceActivity extends AppCompatActivity {
                             progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
+        }
+        else {
+            Toast.makeText(this, "Vui Lòng chọn hình ảnh để thêm dịch vụ", Toast.LENGTH_SHORT).show();
         }
     }
 }
