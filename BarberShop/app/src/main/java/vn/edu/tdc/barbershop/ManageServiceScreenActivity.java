@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,21 +45,6 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO
-                Intent intent = new Intent(ManageServiceScreenActivity.this,UserManagementActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnGoToSchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO
-
-            }
-        });
-        btnGoToUserPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -85,17 +72,42 @@ public class ManageServiceScreenActivity extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+        btnGoToSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO
 
+            }
+        });
+        btnGoToUserPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO
+                Intent intent = new Intent(ManageServiceScreenActivity.this, CustomerScreenActivity.class);
+                startActivity(intent);
+                finishAffinity();
             }
         });
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(ManageServiceScreenActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finishAffinity();
+                (new MaterialAlertDialogBuilder(getApplicationContext())).setTitle(R.string.title_dialog_logout).setPositiveButton(R.string.text_positive_btn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(ManageServiceScreenActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                        finishAffinity();
+                    }
+                }).setNeutralButton(R.string.text_neutral_btn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }).show();
+
             }
         });
     }
