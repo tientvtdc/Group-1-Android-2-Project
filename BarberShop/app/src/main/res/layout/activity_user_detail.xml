@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -48,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Trương Văn Tiến"
-        android:textSize="@dimen/user_detail_font_size"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -59,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="0123456789"
-        android:textSize="@dimen/user_detail_font_size"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_userdetail_name" />
@@ -77,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_userdetail_phonenumber">
 
         <AutoCompleteTextView
-            android:textSize="@dimen/user_detail_font_size"
+            android:textSize="24sp"
             android:id="@+id/autoCompleteText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,7 +88,7 @@
     <Button
         android:id="@+id/btn_save_user"
         android:layout_width="wrap_content"
-        android:textSize="@dimen/user_detail_font_size"
+        android:textSize="24sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="LƯU"
