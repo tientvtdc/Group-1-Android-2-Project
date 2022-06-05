@@ -20,14 +20,12 @@ import java.util.ArrayList;
 
 import vn.edu.tdc.barbershop.OrderDetailActivity;
 import vn.edu.tdc.barbershop.R;
-import vn.edu.tdc.barbershop.UserDetailActivity;
 import vn.edu.tdc.barbershop.entity.Order;
-import vn.edu.tdc.barbershop.entity.User;
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
+public class OrderManagementAdapter extends RecyclerView.Adapter<OrderManagementAdapter.ViewHolder> {
     private Context mContext;
     private ArrayList<Order> mOrder;
-    public OrderAdapter(Context mContext, ArrayList<Order> mOrder){
+    public OrderManagementAdapter(Context mContext, ArrayList<Order> mOrder){
         this.mContext = mContext;
         this.mOrder = mOrder;
     }

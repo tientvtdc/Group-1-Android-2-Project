@@ -11,8 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Date;
 
-import vn.edu.tdc.barbershop.adapter.OrderAdapter;
-import vn.edu.tdc.barbershop.adapter.UserAdapter;
+import vn.edu.tdc.barbershop.adapter.OrderManagementAdapter;
 import vn.edu.tdc.barbershop.entity.Order;
 import vn.edu.tdc.barbershop.entity.Service;
 import vn.edu.tdc.barbershop.entity.User;
@@ -21,7 +20,7 @@ public class OrderAPIs {
     private static FirebaseDatabase database = FirebaseDatabase.getInstance();
     private static DatabaseReference myRef =  database.getReference("orders");
 
-    public static void getAllOrders(OrderAdapter mOrderAdapter, ArrayList<Order> mOrder, Context context) {
+    public static void getAllOrders(OrderManagementAdapter mOrderManagementAdapter, ArrayList<Order> mOrder, Context context) {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -37,7 +36,7 @@ public class OrderAPIs {
                     mOrder.add(other);
                     // here you can access to name property like university.name
                 }
-                mOrderAdapter.notifyDataSetChanged();
+                mOrderManagementAdapter.notifyDataSetChanged();
             }
 
             @Override

@@ -10,7 +10,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.text.SimpleDateFormat;
 
-import vn.edu.tdc.barbershop.adapter.OrderAdapter;
 import vn.edu.tdc.barbershop.apis.OrderAPIs;
 import vn.edu.tdc.barbershop.entity.Order;
 
