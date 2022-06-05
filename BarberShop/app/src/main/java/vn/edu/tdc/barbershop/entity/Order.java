@@ -2,6 +2,7 @@ package vn.edu.tdc.barbershop.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,6 +81,7 @@ public class Order implements Serializable {
 
         return result;
     }
+
 
     public Calendar getCalendarOrder() {
         Calendar calendar = Calendar.getInstance();
