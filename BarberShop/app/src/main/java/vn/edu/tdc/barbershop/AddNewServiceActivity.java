@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseError;
@@ -37,18 +36,16 @@ import vn.edu.tdc.barbershop.models.ServiceModel;
 
 public class AddNewServiceActivity extends AppCompatActivity {
 
-    private TextInputEditText name, description, price, time;
+    private TextInputEditText name, description, price;
     private ShapeableImageView img;
     private Button btnAdd;
     private int REQ = 1;
-    private MaterialToolbar add_new_service_back;
 
     private Uri filePath;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
     private ServiceModel serviceModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,28 +65,23 @@ public class AddNewServiceActivity extends AppCompatActivity {
                 uploadImg();
             }
         });
-        add_new_service_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
-    private void init() {
+    private void init(){
         serviceModel = new ServiceModel();
         name = (TextInputEditText) findViewById(R.id.textInputName);
         description = (TextInputEditText) findViewById(R.id.textInputDes);
-        time = (TextInputEditText) findViewById(R.id.textInputTime);
         price = (TextInputEditText) findViewById(R.id.textInputPrice);
         img = (ShapeableImageView) findViewById(R.id.imgInput);
         btnAdd = (Button) findViewById(R.id.btnAddNewService);
-        add_new_service_back = findViewById(R.id.add_new_service_back);
     }
-
-    private void selectImg() {
+    private void selectImg(){
+//        Intent intent = new Intent();
+//        intent.setType("imgService/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQ);
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, REQ);
+        startActivityForResult(intent,REQ);
     }
 
     @Override
@@ -108,7 +100,7 @@ public class AddNewServiceActivity extends AppCompatActivity {
         }
     }
 
-    private void uploadImg() {
+    private void uploadImg(){
         if (filePath != null) {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
@@ -136,17 +128,26 @@ public class AddNewServiceActivity extends AppCompatActivity {
                                     serviceModel.addNewSevice(name.getText().toString(),
                                             String.valueOf(downloadUrl),
                                             Double.parseDouble(price.getText().toString()),
-                                            description.getText().toString(), Integer.parseInt(time.getText().toString()), new ServiceModel.IServiceListennerModel() {
+                                            description.getText().toString(), new ServiceModel.IServiceListennerModel() {
                                                 @Override
                                                 public void onCompleteAddService(DatabaseError error) {
                                                     if (error == null) {
                                                         Toast.makeText(AddNewServiceActivity.this, "Luu du lieu thanh cong", Toast.LENGTH_SHORT).show();
-                                                        finish();
                                                     } else {
                                                         Toast.makeText(AddNewServiceActivity.this, "Loi!!!", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
-                                    });
+                                            });
+//                                    mData.child("mServiceId").setValue(String.valueOf(downloadUrl), new DatabaseReference.CompletionListener() {
+//                                        @Override
+//                                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+//                                            if (error == null) {
+//                                                Toast.makeText(AddNewServiceActivity.this, "Luu du lieu thanh cong", Toast.LENGTH_SHORT).show();
+//                                            } else {
+//                                                Toast.makeText(AddNewServiceActivity.this, "Loi!!!", Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        }
+//                                    });
                                 }
                             });
 
@@ -167,9 +168,6 @@ public class AddNewServiceActivity extends AppCompatActivity {
                             progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
-        }
-        else {
-            Toast.makeText(this, "Vui Lòng chọn hình ảnh để thêm dịch vụ", Toast.LENGTH_SHORT).show();
         }
     }
 }

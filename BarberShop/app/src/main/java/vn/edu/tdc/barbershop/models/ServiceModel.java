@@ -1,6 +1,5 @@
 package vn.edu.tdc.barbershop.models;
 
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,19 +27,9 @@ public class ServiceModel {
         this.database = FirebaseDatabase.getInstance().getReference(NAME_TABLE);
     }
 
-    public void addNewSevice(String name,String image, Double price, String description, int time, IServiceListennerModel iServiceListennerModel) {
+    public void addNewSevice(String name,String image, Double price,String description,IServiceListennerModel iServiceListennerModel) {
         String id = database.push().getKey();
-        Service service = new Service(id, name, image, price, description, time);
-        database.child(id).setValue(service, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                iServiceListennerModel.onCompleteAddService(error);
-            }
-        });
-    }
-
-    public void editServiceWithID(String id,String name,String image, Double price,String description, int time,IServiceListennerModel iServiceListennerModel) {
-        Service service = new Service(id, name, image, price, description, time);
+        Service service = new Service(id, name, image, price, description);
         database.child(id).setValue(service, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
@@ -54,6 +43,7 @@ public class ServiceModel {
     };
 
     public interface IClickItemListener {
+
         void onClickItemService(Service service);
     }
 

@@ -1,11 +1,9 @@
 package vn.edu.tdc.barbershop;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,13 +14,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import vn.edu.tdc.barbershop.apis.UserAPIs;
 import vn.edu.tdc.barbershop.entity.User;
@@ -44,26 +35,6 @@ public class UserDetailActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) return;
         User user = (User) bundle.get("object_user");
-
-        // TODO
-        FirebaseUser recentUser = FirebaseAuth.getInstance().getCurrentUser();
-        Query query =  FirebaseDatabase.getInstance().getReference().child("users").child(recentUser.getUid());
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User recentUser = snapshot.getValue(User.class);
-                if (recentUser.getRole() == user.getRole()) {
-                    findViewById(R.id.user_role_menu).setEnabled(false);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 
         btnBack = (MaterialToolbar) findViewById(R.id.userdetail_back_button);
         userImage = (ImageView) findViewById(R.id.img_user);

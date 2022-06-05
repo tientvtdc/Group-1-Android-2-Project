@@ -9,30 +9,6 @@
     <string name="nav_logout">Đăng xuất</string>
     <string name="navigation_drawer_open">Open navigation drawer </string>
     <string name="navigation_drawer_close">Close navigation drawer </string>
-
-    <!-- TODO: Bao - Remove or change this placeholder text -->
-    <!-- toast -->
-    <string name="toast_phone_is_empty">Nhập số điện thoại của bạn !</string>
-    <string name="toast_otp_is_empty">Nhập mã OTP !</string>
-    <string name="toast_verify_success">Xác minh thành công</string>
-    <string name="toast_invalid_request">Yêu cầu không hợp lệ</string>
-    <string name="toast_The_SMS_quota_exceeded">Đã vượt quá số lần gửi SMS cho số điện thoại này</string>
-    <string name="toast_verify_failed">Xác minh thất bại</string>
-    <string name="toast_The_SMS_send_to_phone">Mã xác minh SMS đã được gửi</string>
-    <string name="toast_verification_invalid">Mã xác minh đã nhập không hợp lệ</string>
-    <string name="toast_phone_number_has_not_been_verified">Số điện thoại chưa được xác thực, vui lòng xác thực !</string>
-    <string name="toast_please_register_for_an_account">Vui lòng đăng ký tài khoản</string>
-    <!-- layout -->
-    <string name="layout_enter_phone">Nhập số diện thoại của bạn</string>
-    <string name="layout_hint_phone">0123456789</string>
-    <string name="layout_verify">Gửi mã OTP</string>
-    <string name="layout_send_otp">Gửi mã OTP</string>
-    <string name="layout_re_send_otp">Gửi lại mã OTP</string>
-    <string name="layout_enter_otp">Nhập mã OTP đã được gửi về số điện thoại của bạn</string>
-    <string name="layout_hint_otp">OTP</string>
-    <!--  notification  -->
-    <string name="channel_name_schedule">Schedule</string>
-    <string name="channel_description_schedule">this channel schedule</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_service_detail">ServiceDetailActivity</string>
@@ -44,39 +20,24 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="btn_delete_manage_service_detail">Lưu</string>
-    <string name="btn_content_edit_detail_service">Xóa</string>
-    <string name="txt_name_add_service">Nhập tên dịch vụ</string>
-    <string name="txt_price_add_service">Nhập giá dịch vụ</string>
-    <string name="txt_description_add_service">Nhập mô tả dịch vụ</string>
-    <string name="btn_add_new_service">Thêm dịch vụ</string>
-    <string name="txt_name_item_manage_service_default">Tên dịch vụ</string>
-    <string name="txt_price_item_manage_service_default">Giá dịch vụ</string>
-    <string name="content_img_item_manage_service_default">ImgService</string>
     <string name="title_detail_service">Chi tiết dịch vụ</string>
     <string name="btn_text_dat_lich">Đặt lịch</string>
-    <string name="heading_feature_service">Dịch vụ giá rẻ</string>
+    <string name="heading_feature_service">Dịch vụ nổi bật</string>
     <string name="sign_in">Đăng nhập</string>
-    <string name="loi_chao">Chào mừng đến với Barber Shop</string>
     <string name="register">Đăng ký</string>
     <string name="forgot_password">Quên mật khẩu?</string>
-    <string name="btn_log_in">Tiếp tục</string>
+    <string name="btn_log_in">ĐĂNG NHẬP</string>
     <string name="tv_password">Mật khẩu</string>
     <string name="edt_phone_number">Số điện thoại</string>
     <string name="edtFindUser">Tìm kiếm</string>
     <string name="tv_user_name">Tên user</string>
     <string name="tv_phone_number">Số điện thoại</string>
-    <string name="loi_choo_login">Vui lòng nhập số điện thoại</string>
+    <string name="loi_choo_login">Vui lòng nhập số điện thoại đăng nhập</string>
     <string name="text_hint_code_login">Nhập mã xác nhận</string>
     <string name="label_code_login">Chờ nhận mã xác nhận</string>
-    <string name="alert_number_phone">Số điện thoại không hợp lệ</string>
     <string name="title_dialog_logout">Bạn thực sự muốn đăng xuất</string>
     <string name="text_positive_btn">OK</string>
     <string name="text_neutral_btn">Cancel</string>
-    <string name="api_key_googl_map">AIzaSyDfY_sXprnWMB8R1x2f4nFIWQzDJIHLk18</string>
-    <string name="nav_management_page">Trang quản lý</string>
-    <string name="text_thoi_gian_su_dung">Chọn thời gian sử dụng</string>
-    <string name="address_shop">53 Võ Văn Ngân, Linh Chiểu, Tp Thủ Đức, Tp Hồ Chí Minh</string>
 
     <!--    User Detail    -->
 </resources>

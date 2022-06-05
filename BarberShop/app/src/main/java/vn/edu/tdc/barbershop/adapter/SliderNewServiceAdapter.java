@@ -17,26 +17,19 @@ import java.util.List;
 
 import vn.edu.tdc.barbershop.R;
 import vn.edu.tdc.barbershop.entity.Service;
-import vn.edu.tdc.barbershop.interface_listener.IClickItemServiceListener;
 
 public class SliderNewServiceAdapter extends  SliderViewAdapter<SliderNewServiceAdapter.SliderNewServiceAdapterVH> {
     private Context context;
     private List<Service> serviceList = new ArrayList<>();
-    private IClickItemServiceListener clickItemServiceListener;
     @Override
     public SliderNewServiceAdapterVH onCreateViewHolder(ViewGroup parent) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_slider_layout_item, null);
         return  new SliderNewServiceAdapterVH(inflate);
     }
-    public SliderNewServiceAdapter(Context context,List<Service> serviceList ) {
+    public SliderNewServiceAdapter(Context context,List<Service> serviceList) {
         this.serviceList = serviceList;
         this.context = context;
     }
-
-    public void setIClickItemServiceListener(vn.edu.tdc.barbershop.interface_listener.IClickItemServiceListener IClickItemServiceListener) {
-        this.clickItemServiceListener = IClickItemServiceListener;
-    }
-
     @Override
     public void onBindViewHolder(SliderNewServiceAdapterVH viewHolder, int position) {
         Service service = serviceList.get(position);
@@ -51,7 +44,7 @@ public class SliderNewServiceAdapter extends  SliderViewAdapter<SliderNewService
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickItemServiceListener.onClickItem(service);
+                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
             }
         });
     }

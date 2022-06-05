@@ -1,13 +1,11 @@
 package vn.edu.tdc.barbershop;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.text.SimpleDateFormat;
@@ -49,9 +47,9 @@ public class OrderDetailManagementActivity extends AppCompatActivity {
         tvOrderUserPhone.setText(order.getCustomer().getPhone());
         tvOrderServiceName.setText(order.getService().getName());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
-        tvOrderDate.setText(simpleDateFormat.format(order.getTimeOrder()));
+        tvOrderDate.setText(simpleDateFormat.format(order.getTimeOrder().getTime()));
 
-        switch (order.getFinish()){
+        switch (order.getIsFinish()){
             case 0:
                 tvOrderState.setText("Chưa Hoàn Thành");
                 break;

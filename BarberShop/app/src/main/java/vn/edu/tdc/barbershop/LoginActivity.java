@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(view -> {
             String mobile = inputPhone.getText().toString().trim();
             if(mobile.isEmpty() || mobile.length() < 9){
-                inputPhone.setError(getString(R.string.alert_number_phone));
+                inputPhone.setError("Số điện thoại không hợp lệ");
                 inputPhone.requestFocus();
                 return;
             }

@@ -1,30 +1,26 @@
 package vn.edu.tdc.barbershop.entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Order implements Serializable {
     private String id;
     private User customer;
     private Service service;
-    private long timeOrder;
-    private long timeFinish;
-    private int finish;
+    private Date timeOrder;
+    private Date timeFinish;
+    private int isFinish;
 
     public Order() {
-
     }
 
-    public Order(String id, User customer, Service service, long timeOrder, long timeFinish, int finish) {
+    public Order(String id, User customer, Service service, Date timeOrder, Date timeFinish, int isFinish) {
         this.id = id;
         this.customer = customer;
         this.service = service;
         this.timeOrder = timeOrder;
         this.timeFinish = timeFinish;
-        this.finish = finish;
+        this.isFinish = isFinish;
     }
 
     public String getId() {
@@ -51,47 +47,27 @@ public class Order implements Serializable {
         this.service = service;
     }
 
-    public long getTimeOrder() {
+    public Date getTimeOrder() {
         return timeOrder;
     }
 
-    public void setTimeOrder(long timeOrder) {
+    public void setTimeOrder(Date timeOrder) {
         this.timeOrder = timeOrder;
     }
 
-    public long getTimeFinish() {
+    public Date getTimeFinish() {
         return timeFinish;
     }
 
-    public void setTimeFinish(long timeFinish) {
+    public void setTimeFinish(Date timeFinish) {
         this.timeFinish = timeFinish;
     }
 
-    public int getFinish() {
-        return finish;
+    public int getIsFinish() {
+        return isFinish;
     }
 
-    public void setFinish(int finish) {
-        this.finish = finish;
-    }
-
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("finish", finish);
-
-        return result;
-    }
-
-
-    public Calendar getCalendarOrder() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(timeOrder);
-        return calendar;
-    }
-
-    public Calendar getCalendarFinish() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(timeFinish);
-        return calendar;
+    public void setIsFinish(int isFinish) {
+        this.isFinish = isFinish;
     }
 }

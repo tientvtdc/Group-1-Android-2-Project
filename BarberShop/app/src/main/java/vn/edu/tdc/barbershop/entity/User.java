@@ -3,23 +3,20 @@ package vn.edu.tdc.barbershop.entity;
 import java.io.Serializable;
 
 public class User implements Serializable {
-
     private String id;
+    private String image;
     private String name;
     private String phone;
-    private String image;
     private int role;
 
     public User() {
-
     }
 
-    public User(String id, String name, String phone, String image, int role) {
+    public User(String id, String image, String name, String phone, int role) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.phone = phone;
-        this.image = image;
         this.role = role;
     }
 
@@ -31,6 +28,13 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getName() {
         return name;
@@ -46,14 +50,6 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public int getRole() {

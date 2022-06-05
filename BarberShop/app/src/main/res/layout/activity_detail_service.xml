@@ -1,170 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_item_detail"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".AddNewServiceActivity">
+    tools:context=".DetailServiceActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_detail_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_centerInParent="true"
+        android:text="@string/app_name"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/detail_edit_topAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="Chỉnh Sửa Dịch Vụ"
-            app:titleCentered="true">
-
-        </com.google.android.material.appbar.MaterialToolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEditNameLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="@string/txt_name_add_service"
-        app:counterEnabled="true"
-        app:counterMaxLength="50"
-        app:endIconMode="clear_text"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/red"
-        app:startIconDrawable="@drawable/ic_name_service">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="50"
-            android:textColorHint="@color/txt_input_add_new_service"
-            tools:ignore="TextContrastCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEditPriceLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="@string/txt_price_add_service"
-        app:counterEnabled="true"
-        app:counterMaxLength="20"
-        app:endIconMode="clear_text"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/red"
-        app:startIconDrawable="@drawable/ic_money">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditPrice"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:inputType="number"
-            android:maxLength="20"
-            android:textColorHint="@color/txt_input_add_new_service"
-            tools:ignore="TextContrastCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEditDesLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="@string/txt_description_add_service"
-        app:counterEnabled="true"
-        app:counterMaxLength="200"
-        app:endIconMode="clear_text"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/red"
-        app:startIconDrawable="@drawable/ic_description">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditDes"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:maxLength="200"
-            android:textColorHint="@color/txt_input_add_new_service"
-            tools:ignore="TextContrastCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEditTimeLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nhập số phút"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="10"
-        app:endIconMode="clear_text"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/red"
-        app:startIconDrawable="@drawable/ic_time">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditTime"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:maxLength="200"
-            android:textColorHint="@color/txt_input_add_new_service"
-            tools:ignore="TextContrastCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgEditInput"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
-            app:srcCompat="@drawable/blank_img" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btn_del"
-                style="@style/Widget.Material3.Button.ElevatedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/br_danger"
-                android:text="@string/btn_content_edit_detail_service"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <Button
-                android:id="@+id/btn_save"
-                style="@style/Widget.Material3.Button.ElevatedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/btn_agree"
-                android:text="@string/btn_delete_manage_service_detail"
-                android:textColor="@color/white"
-                android:textSize="@dimen/btn_del_size_detail_manage_service"
-                android:tint="@color/br_danger" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>
