@@ -29,13 +29,13 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:textSize="@dimen/order_detail_text_size"
-            android:textColor="@color/black"
             android:id="@+id/tv_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="+84123412345"
+            android:textColor="@color/black"
+            android:textSize="@dimen/order_detail_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,9 +43,10 @@
         <TextView
             android:id="@+id/tv_service_name"
             android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:text="Combo Kid"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_phone_number" />
@@ -53,9 +54,10 @@
         <TextView
             android:id="@+id/tv_order_time"
             android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:text="15:00 31/05/22"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_service_name" />
 
@@ -66,8 +68,8 @@
             android:text="Chưa Hoàn Thành"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_order_time"
-            app:layout_constraintTop_toBottomOf="@+id/tv_service_name" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_order_time" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
