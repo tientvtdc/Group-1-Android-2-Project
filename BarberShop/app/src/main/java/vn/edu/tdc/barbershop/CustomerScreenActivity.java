@@ -32,12 +32,14 @@ import com.google.firebase.database.ValueEventListener;
 import vn.edu.tdc.barbershop.entity.User;
 import vn.edu.tdc.barbershop.fragment.AddressFragment;
 import vn.edu.tdc.barbershop.fragment.HomeFragment;
+import vn.edu.tdc.barbershop.fragment.InformationFragment;
 import vn.edu.tdc.barbershop.fragment.OrderFragment;
 
 public class CustomerScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_SCHEDULE = 1;
     private static final int FRAGMENT_ADDRESS = 2;
+    private static final int FRAGMENT_INFORMATION = 3;
     private int mCurrentFragment = 0;
 
     private DrawerLayout mDrawerLayout;
@@ -144,6 +146,15 @@ public class CustomerScreenActivity extends AppCompatActivity implements Navigat
                     }
                 }).show();
 
+            }
+            case R.id.nav_profile: {
+                if (mCurrentFragment != FRAGMENT_INFORMATION) {
+                    collapsingToolbarLayout.setTitle(getString(R.string.nav_profile));
+                    replaceFragment(new InformationFragment());
+                    mCurrentFragment = FRAGMENT_INFORMATION;
+                    // imageViewBGToolbar.setImageResource(R.drawable.schedule_bg);
+                }
+                break;
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
